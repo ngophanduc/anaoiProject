@@ -1,0 +1,1004 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Chip,
+  IconButton,
+  Snackbar,
+  Alert,
+  Fade,
+  Dialog,
+  DialogContent,
+  Button,
+  Avatar,
+  Rating,
+  Divider,
+} from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import CloseIcon from '@mui/icons-material/Close';
+import StarIcon from '@mui/icons-material/Star';
+import { useCart } from '../context/CartContext';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import CartDrawer from '../components/CartDrawer';
+
+// Import product images
+import sp1_100ml from '../assets/product/sp1_100ml.png';
+import sp1_250ml from '../assets/product/sp1_250ml.png';
+import sp2_500ml from '../assets/product/sp2_500ml.png';
+import sp2_1l from '../assets/product/sp2_1l.png';
+import sp3_500ml from '../assets/product/sp3_500ml.png';
+import sp3_1l from '../assets/product/sp3_1l.png';
+import sp4_500ml from '../assets/product/sp4_500ml.png';
+import sp4_1l from '../assets/product/sp4_1l.png';
+
+// Color scheme
+const primaryColor = '#F7F3CD';
+const bronzeYellow = '#667B00';
+const americanYellow = '#EDB500';
+
+const products = [
+  {
+    id: 1,
+    name: 'Dầu bơ ép lạnh AnaOi',
+    category: null,
+    description:
+      'Dầu bơ ép lạnh 100% nguyên chất từ những quả bơ được trồng theo phương pháp organic trên vùng đất Dak Lak...',
+    sizes: ['100ml', '250ml'],
+    images: {
+      '100ml': sp1_100ml,
+      '250ml': sp1_250ml,
+    },
+    prices: {
+      '100ml': 120000,
+      '250ml': 280000,
+    },
+  },
+  {
+    id: 2,
+    name: 'Dầu lạc ép lạnh AnaOi',
+    category: null,
+    description:
+      'Từ những hạt lạc được canh tác chuẩn VietGap trên cao nguyên Tây Nguyên, dầu lạc AnaOi được ép lạnh hoàn toàn để giữ trọn hương thơm tự nhiên và hàm lượng chất béo tốt.',
+    sizes: ['500ml', '1l'],
+    images: {
+      '500ml': sp2_500ml,
+      '1l': sp2_1l,
+    },
+    prices: {
+      '500ml': 95000,
+      '1l': 180000,
+    },
+  },
+  {
+    id: 3,
+    name: 'Dầu blend đậu nành & cám gạo ép lạnh AnaOi',
+    category: 'Dầu blend',
+    description:
+      'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa đậu nành và cám gạo được canh tác theo chuẩn VietGap trên cao nguyên Tây Nguyên...',
+    sizes: ['500ml', '1l'],
+    images: {
+      '500ml': sp3_500ml,
+      '1l': sp3_1l,
+    },
+    prices: {
+      '500ml': 85000,
+      '1l': 160000,
+    },
+  },
+  {
+    id: 4,
+    name: 'Dầu blend mè đen & cám gạo ép lạnh AnaOi',
+    category: 'Dầu blend',
+    description:
+      'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa mè đen và cám gạo được canh tác theo chuẩn VietGap trên cao nguyên Tây Nguyên...',
+    sizes: ['500ml', '1l'],
+    images: {
+      '500ml': sp4_500ml,
+      '1l': sp4_1l,
+    },
+    prices: {
+      '500ml': 90000,
+      '1l': 170000,
+    },
+  },
+];
+
+// Mock reviews data cho từng sản phẩm
+const productReviews = {
+  1: [
+    {
+      id: 1,
+      userName: 'Nguyễn Thị Hương',
+      avatar: 'H',
+      rating: 5,
+      date: '20/11/2025',
+      comment: 'Dầu bơ rất thơm và nguyên chất, dùng cho da mặt rất tốt. Gia đình tôi đã dùng được 2 tháng và thấy da mịn màng hơn nhiều!',
+    },
+    {
+      id: 2,
+      userName: 'Trần Minh Tuấn',
+      avatar: 'T',
+      rating: 5,
+      date: '18/11/2025',
+      comment: 'Chất lượng tuyệt vời! Mùi vị tự nhiên, không bị tanh. Dùng để nấu ăn hoặc trộn salad đều rất ngon.',
+    },
+    {
+      id: 3,
+      userName: 'Lê Thị Mai',
+      avatar: 'M',
+      rating: 4,
+      date: '15/11/2025',
+      comment: 'Sản phẩm tốt, đóng gói cẩn thận. Giá hơi cao một chút nhưng chất lượng xứng đáng.',
+    },
+  ],
+  2: [
+    {
+      id: 1,
+      userName: 'Phạm Văn Hùng',
+      avatar: 'H',
+      rating: 5,
+      date: '22/11/2025',
+      comment: 'Dầu lạc thơm ngon tự nhiên, không hề có mùi tanh. Dùng nấu cơm, xào rau đều rất hợp. Sẽ ủng hộ lâu dài!',
+    },
+    {
+      id: 2,
+      userName: 'Võ Thị Lan',
+      avatar: 'L',
+      rating: 5,
+      date: '19/11/2025',
+      comment: 'Chất lượng cao, giá cả hợp lý. Cả nhà đều thích dùng dầu này, đặc biệt là món gỏi củ hũ dừa.',
+    },
+    {
+      id: 3,
+      userName: 'Hoàng Minh Đức',
+      avatar: 'D',
+      rating: 4,
+      date: '17/11/2025',
+      comment: 'Sản phẩm tốt, mùi vị đặc trưng của lạc. Chai 1L rất tiện dụng cho gia đình.',
+    },
+  ],
+  3: [
+    {
+      id: 1,
+      userName: 'Đặng Thu Hà',
+      avatar: 'H',
+      rating: 5,
+      date: '21/11/2025',
+      comment: 'Dầu blend này rất đặc biệt! Vừa có chất béo tốt từ đậu nành, vừa có dưỡng chất từ cám gạo. Dùng nấu ăn rất thơm!',
+    },
+    {
+      id: 2,
+      userName: 'Bùi Văn Nam',
+      avatar: 'N',
+      rating: 5,
+      date: '16/11/2025',
+      comment: 'Là người bị tim mạch nên tôi rất chú ý đến loại dầu ăn. Dầu blend này của AnaOi giúp tôi yên tâm hơn rất nhiều.',
+    },
+    {
+      id: 3,
+      userName: 'Ngô Thị Phương',
+      avatar: 'P',
+      rating: 4,
+      date: '14/11/2025',
+      comment: 'Sản phẩm độc đáo, chất lượng tốt. Hơi khó tìm mua nhưng đáng để thử!',
+    },
+  ],
+  4: [
+    {
+      id: 1,
+      userName: 'Trương Thị Kim',
+      avatar: 'K',
+      rating: 5,
+      date: '23/11/2025',
+      comment: 'Dầu mè đen kết hợp cám gạo là combo hoàn hảo! Vị thơm đặc trưng của mè, bổ dưỡng cho cả gia đình.',
+    },
+    {
+      id: 2,
+      userName: 'Lý Quốc Bảo',
+      avatar: 'B',
+      rating: 5,
+      date: '20/11/2025',
+      comment: 'Tôi dùng để chấm các món ăn chay, vô cùng tuyệt vời. Mùi mè đen rất thơm và tự nhiên.',
+    },
+    {
+      id: 3,
+      userName: 'Phan Thị Hồng',
+      avatar: 'H',
+      rating: 5,
+      date: '18/11/2025',
+      comment: 'Chất lượng xuất sắc! Dùng để làm món canh chua hoặc kho thịt đều rất ngon. Highly recommended!',
+    },
+  ],
+};
+
+function ProductPage() {
+  const { addToCart } = useCart();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [addedProduct, setAddedProduct] = useState('');
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  
+  // State để lưu dung tích được chọn cho mỗi sản phẩm (mặc định là dung tích đầu tiên - nhỏ nhất)
+  const [selectedSizes, setSelectedSizes] = useState({
+    1: '100ml',
+    2: '500ml',
+    3: '500ml',
+    4: '500ml',
+  });
+
+  // State cho modal
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [modalSize, setModalSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = (product, size, qty) => {
+    addToCart(product, size, qty);
+    setAddedProduct(product.name);
+    setSnackbarOpen(true);
+    setModalOpen(false);
+    setQuantity(1);
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleSizeChange = (productId, size) => {
+    setSelectedSizes((prev) => ({
+      ...prev,
+      [productId]: size,
+    }));
+  };
+
+  const handleOpenModal = (product) => {
+    setSelectedProduct(product);
+    setModalSize(product.sizes[0]); // Set dung tích đầu tiên
+    setQuantity(1);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedProduct(null);
+    setQuantity(1);
+  };
+
+  const handleModalSizeChange = (size) => {
+    setModalSize(size);
+  };
+
+  const handleQuantityChange = (change) => {
+    setQuantity((prev) => Math.max(1, prev + change));
+  };
+
+  // Handle scroll for header visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & passed threshold -> hide header
+        setHeaderHidden(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up -> show header
+        setHeaderHidden(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
+  return (
+    <Box
+      sx={{
+        minHeight: '100vh',
+        backgroundColor: '#FDFCF5',
+      }}
+    >
+      <Header hidden={headerHidden} />
+
+      {/* Hero Section */}
+      <Box
+        sx={{
+          pt: { xs: 12, md: 16 },
+          pb: { xs: 6, md: 8 },
+          background: `linear-gradient(180deg, ${bronzeYellow}15 0%, #FDFCF5 100%)`,
+        }}
+      >
+        <Container maxWidth="lg">
+          <Fade in={true} timeout={800}>
+            <Box>
+              <Typography
+                variant="h2"
+                sx={{
+                  fontFamily: "'VNM Sans Std', sans-serif",
+                  fontWeight: 700,
+                  color: bronzeYellow,
+                  textAlign: 'center',
+                  mb: 2,
+                  fontSize: { xs: '2rem', md: '3rem' },
+                }}
+              >
+                Sản phẩm AnaOi
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "'VNM Sans Std', sans-serif",
+                  color: bronzeYellow,
+                  textAlign: 'center',
+                  maxWidth: 800,
+                  mx: 'auto',
+                  opacity: 0.8,
+                  fontSize: { xs: '1rem', md: '1.25rem' },
+                }}
+              >
+                Dầu ép lạnh nguyên chất từ thiên nhiên Tây Nguyên
+              </Typography>
+            </Box>
+          </Fade>
+        </Container>
+      </Box>
+
+      {/* Products Grid */}
+      <Container maxWidth="xl" sx={{ pb: 8 }}>
+        <Grid container spacing={3}>
+          {products.map((product, index) => (
+            <Grid item xs={12} sm={6} md={3} key={product.id}>
+              <Fade in={true} timeout={600 + index * 100}>
+                <Card
+                  onClick={() => handleOpenModal(product)}
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    backgroundColor: '#fff',
+                    borderRadius: 3,
+                    overflow: 'hidden',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
+                    },
+                  }}
+                >
+                  {/* Product Image */}
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      paddingTop: '85%', // Giảm chiều cao ảnh
+                      backgroundColor: primaryColor,
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      image={product.images[selectedSizes[product.id]]}
+                      alt={`${product.name} - ${selectedSizes[product.id]}`}
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        padding: 1,
+                        transition: 'opacity 0.3s ease',
+                      }}
+                    />
+                  </Box>
+
+                  {/* Product Content */}
+                  <CardContent
+                    sx={{
+                      flexGrow: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      p: 2,
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    {/* Top Content */}
+                    <Box>
+                      {/* Category Label */}
+                      {product.category && (
+                        <Typography
+                          variant="overline"
+                          sx={{
+                            color: americanYellow,
+                            fontFamily: "'VNM Sans Std', sans-serif",
+                            fontWeight: 600,
+                            fontSize: '0.75rem',
+                            letterSpacing: 1,
+                            mb: 1,
+                          }}
+                        >
+                          {product.category}
+                        </Typography>
+                      )}
+
+                      {/* Product Name and Cart Icon */}
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'flex-start',
+                          mb: 2,
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontFamily: "'VNM Sans Std', sans-serif",
+                            fontWeight: 700,
+                            color: bronzeYellow,
+                            fontSize: { xs: '1.1rem', md: '1.25rem' },
+                            lineHeight: 1.3,
+                            flex: 1,
+                            pr: 1,
+                          }}
+                        >
+                          {product.name}
+                        </Typography>
+                        <IconButton
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(product, selectedSizes[product.id], 1);
+                          }}
+                          sx={{
+                            backgroundColor: americanYellow,
+                            color: '#fff',
+                            '&:hover': {
+                              backgroundColor: bronzeYellow,
+                            },
+                            width: 40,
+                            height: 40,
+                          }}
+                        >
+                          <AddShoppingCartIcon />
+                        </IconButton>
+                      </Box>
+
+                      {/* Product Description */}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontFamily: "'VNM Sans Std', sans-serif",
+                          color: '#666',
+                          lineHeight: 1.7,
+                          fontSize: { xs: '0.9rem', md: '1rem' },
+                        }}
+                      >
+                        {product.description}
+                      </Typography>
+                    </Box>
+
+                    {/* Product Sizes and Price - Always at Bottom */}
+                    <Box 
+                      sx={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center',
+                        mt: 2 
+                      }}
+                    >
+                      {/* Sizes */}
+                      <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                        {product.sizes.map((size) => {
+                          const isSelected = selectedSizes[product.id] === size;
+                          return (
+                            <Chip
+                              key={size}
+                              label={size}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleSizeChange(product.id, size);
+                              }}
+                              sx={{
+                                backgroundColor: isSelected
+                                  ? bronzeYellow
+                                  : `${bronzeYellow}15`,
+                                color: isSelected ? '#fff' : bronzeYellow,
+                                fontFamily: "'VNM Sans Std', sans-serif",
+                                fontWeight: 600,
+                                fontSize: '0.875rem',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                '&:hover': {
+                                  backgroundColor: isSelected
+                                    ? bronzeYellow
+                                    : `${bronzeYellow}25`,
+                                  transform: 'scale(1.05)',
+                                },
+                              }}
+                            />
+                          );
+                        })}
+                      </Box>
+
+                      {/* Price */}
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontFamily: "'VNM Sans Std', sans-serif",
+                          fontWeight: 700,
+                          color: americanYellow,
+                          fontSize: { xs: '1.1rem', md: '1.25rem' },
+                          whiteSpace: 'nowrap',
+                          ml: 2,
+                        }}
+                      >
+                        {product.prices[selectedSizes[product.id]].toLocaleString('vi-VN')}₫
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Fade>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      {/* Product Detail Modal */}
+      <Dialog
+        open={modalOpen}
+        onClose={handleCloseModal}
+        maxWidth="md"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 3,
+            maxWidth: 900,
+          },
+        }}
+      >
+        {selectedProduct && (
+          <DialogContent sx={{ p: 0, position: 'relative' }}>
+            {/* Close Button */}
+            <IconButton
+              onClick={handleCloseModal}
+              sx={{
+                position: 'absolute',
+                right: 16,
+                top: 16,
+                zIndex: 10,
+                backgroundColor: 'rgba(255,255,255,0.9)',
+                '&:hover': {
+                  backgroundColor: '#fff',
+                },
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+
+            {/* Top Section: Product Image + Info */}
+            <Grid container>
+              {/* Left Side - Product Image */}
+              <Grid item xs={12} md={5}>
+                <Box
+                  sx={{
+                    height: '100%',
+                    minHeight: 400,
+                    backgroundColor: primaryColor,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    p: 4,
+                  }}
+                >
+                  <img
+                    src={selectedProduct.images[modalSize]}
+                    alt={selectedProduct.name}
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </Box>
+              </Grid>
+
+              {/* Right Side - Product Info */}
+              <Grid item xs={12} md={7}>
+                <Box sx={{ p: 4 }}>
+                  {/* Category */}
+                  {selectedProduct.category && (
+                    <Typography
+                      variant="overline"
+                      sx={{
+                        color: americanYellow,
+                        fontFamily: "'VNM Sans Std', sans-serif",
+                        fontWeight: 600,
+                        fontSize: '0.75rem',
+                        letterSpacing: 1,
+                        display: 'block',
+                        mb: 1,
+                      }}
+                    >
+                      {selectedProduct.category}
+                    </Typography>
+                  )}
+
+                  {/* Product Name */}
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontFamily: "'VNM Sans Std', sans-serif",
+                      fontWeight: 700,
+                      color: bronzeYellow,
+                      mb: 2,
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {selectedProduct.name}
+                  </Typography>
+
+                  {/* Price */}
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontFamily: "'VNM Sans Std', sans-serif",
+                      fontWeight: 700,
+                      color: americanYellow,
+                      mb: 3,
+                    }}
+                  >
+                    {selectedProduct.prices[modalSize].toLocaleString('vi-VN')}₫
+                  </Typography>
+
+                  {/* Description */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "'VNM Sans Std', sans-serif",
+                      color: '#666',
+                      mb: 3,
+                      lineHeight: 1.8,
+                    }}
+                  >
+                    {selectedProduct.description}
+                  </Typography>
+
+                  {/* Size Selection */}
+                  <Box sx={{ mb: 3 }}>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        fontFamily: "'VNM Sans Std', sans-serif",
+                        fontWeight: 600,
+                        color: bronzeYellow,
+                        mb: 1.5,
+                      }}
+                    >
+                      Dung tích
+                    </Typography>
+                    <Box sx={{ display: 'flex', gap: 1.5 }}>
+                      {selectedProduct.sizes.map((size) => (
+                        <Chip
+                          key={size}
+                          label={size}
+                          onClick={() => handleModalSizeChange(size)}
+                          sx={{
+                            backgroundColor:
+                              modalSize === size ? bronzeYellow : `${bronzeYellow}15`,
+                            color: modalSize === size ? '#fff' : bronzeYellow,
+                            fontFamily: "'VNM Sans Std', sans-serif",
+                            fontWeight: 600,
+                            fontSize: '1rem',
+                            cursor: 'pointer',
+                            py: 2.5,
+                            px: 2,
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                              backgroundColor:
+                                modalSize === size ? bronzeYellow : `${bronzeYellow}25`,
+                              transform: 'scale(1.05)',
+                            },
+                          }}
+                        />
+                      ))}
+                    </Box>
+                  </Box>
+
+                  {/* Quantity Selection */}
+                  <Box sx={{ mb: 4 }}>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        fontFamily: "'VNM Sans Std', sans-serif",
+                        fontWeight: 600,
+                        color: bronzeYellow,
+                        mb: 1.5,
+                      }}
+                    >
+                      Số lượng
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        border: `2px solid ${bronzeYellow}`,
+                        borderRadius: 2,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <IconButton
+                        onClick={() => handleQuantityChange(-1)}
+                        disabled={quantity <= 1}
+                        sx={{
+                          borderRadius: 0,
+                          color: bronzeYellow,
+                          px: 2,
+                          py: 1,
+                          '&:hover': {
+                            backgroundColor: `${bronzeYellow}15`,
+                          },
+                          '&.Mui-disabled': {
+                            color: `${bronzeYellow}40`,
+                          },
+                        }}
+                      >
+                        <RemoveIcon />
+                      </IconButton>
+                      <Typography
+                        sx={{
+                          fontFamily: "'VNM Sans Std', sans-serif",
+                          fontWeight: 600,
+                          color: bronzeYellow,
+                          px: 4,
+                          fontSize: '1.1rem',
+                          minWidth: 60,
+                          textAlign: 'center',
+                        }}
+                      >
+                        {quantity}
+                      </Typography>
+                      <IconButton
+                        onClick={() => handleQuantityChange(1)}
+                        sx={{
+                          borderRadius: 0,
+                          color: bronzeYellow,
+                          px: 2,
+                          py: 1,
+                          '&:hover': {
+                            backgroundColor: `${bronzeYellow}15`,
+                          },
+                        }}
+                      >
+                        <AddIcon />
+                      </IconButton>
+                    </Box>
+                  </Box>
+
+                  {/* Add to Cart Button */}
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    onClick={() => handleAddToCart(selectedProduct, modalSize, quantity)}
+                    sx={{
+                      backgroundColor: americanYellow,
+                      color: '#fff',
+                      fontFamily: "'VNM Sans Std', sans-serif",
+                      fontWeight: 600,
+                      fontSize: '1.1rem',
+                      py: 1.5,
+                      borderRadius: 2,
+                      textTransform: 'none',
+                      '&:hover': {
+                        backgroundColor: bronzeYellow,
+                      },
+                    }}
+                  >
+                    Thêm vào giỏ hàng
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
+
+            {/* Bottom Section: Customer Reviews - Full Width */}
+            <Box sx={{ p: 4, backgroundColor: '#FDFCF5' }}>
+              <Divider sx={{ mb: 3 }} />
+              
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "'VNM Sans Std', sans-serif",
+                  fontWeight: 700,
+                  color: bronzeYellow,
+                  mb: 2,
+                }}
+              >
+                Nhận xét từ khách hàng
+              </Typography>
+
+              {/* Reviews List */}
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {productReviews[selectedProduct.id]?.map((review) => (
+                  <Box
+                    key={review.id}
+                    sx={{
+                      p: 2,
+                      backgroundColor: `${primaryColor}40`,
+                      borderRadius: 2,
+                    }}
+                  >
+                    {/* Review Header */}
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        mb: 1,
+                      }}
+                    >
+                      <Avatar
+                        sx={{
+                          backgroundColor: americanYellow,
+                          color: '#fff',
+                          width: 40,
+                          height: 40,
+                          fontWeight: 600,
+                          mr: 1.5,
+                        }}
+                      >
+                        {review.avatar}
+                      </Avatar>
+                      <Box sx={{ flex: 1 }}>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontFamily: "'VNM Sans Std', sans-serif",
+                            fontWeight: 600,
+                            color: bronzeYellow,
+                          }}
+                        >
+                          {review.userName}
+                        </Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <Rating
+                            value={review.rating}
+                            readOnly
+                            size="small"
+                            sx={{
+                              '& .MuiRating-iconFilled': {
+                                color: americanYellow,
+                              },
+                            }}
+                          />
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: '#999',
+                              fontFamily: "'VNM Sans Std', sans-serif",
+                            }}
+                          >
+                            {review.date}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Box>
+
+                    {/* Review Comment */}
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontFamily: "'VNM Sans Std', sans-serif",
+                        color: '#444',
+                        lineHeight: 1.6,
+                        pl: 7,
+                      }}
+                    >
+                      {review.comment}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+
+              {/* Average Rating Summary */}
+              <Box
+                sx={{
+                  mt: 3,
+                  p: 2,
+                  backgroundColor: `${bronzeYellow}10`,
+                  borderRadius: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 2,
+                }}
+              >
+                <Box sx={{ textAlign: 'center' }}>
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontFamily: "'VNM Sans Std', sans-serif",
+                      fontWeight: 700,
+                      color: americanYellow,
+                    }}
+                  >
+                    {(
+                      productReviews[selectedProduct.id]?.reduce(
+                        (sum, r) => sum + r.rating,
+                        0
+                      ) / productReviews[selectedProduct.id]?.length || 0
+                    ).toFixed(1)}
+                  </Typography>
+                  <Rating
+                    value={
+                      productReviews[selectedProduct.id]?.reduce(
+                        (sum, r) => sum + r.rating,
+                        0
+                      ) / productReviews[selectedProduct.id]?.length || 0
+                    }
+                    readOnly
+                    precision={0.1}
+                    sx={{
+                      '& .MuiRating-iconFilled': {
+                        color: americanYellow,
+                      },
+                    }}
+                  />
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: '#666',
+                      fontFamily: "'VNM Sans Std', sans-serif",
+                      display: 'block',
+                      mt: 0.5,
+                    }}
+                  >
+                    {productReviews[selectedProduct.id]?.length || 0} đánh giá
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          </DialogContent>
+        )}
+      </Dialog>
+
+      {/* Snackbar for Add to Cart Confirmation */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{
+            width: '100%',
+            fontFamily: "'VNM Sans Std', sans-serif",
+            backgroundColor: bronzeYellow,
+            color: '#fff',
+          }}
+        >
+          Đã thêm "{addedProduct}" vào giỏ hàng!
+        </Alert>
+      </Snackbar>
+
+      {/* Cart Drawer */}
+      <CartDrawer />
+
+      <Footer />
+    </Box>
+  );
+}
+
+export default ProductPage;
+
