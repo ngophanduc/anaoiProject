@@ -9,8 +9,11 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
+# Copy public folder (required for build)
+COPY public ./public
+
 # Copy source code
-COPY . .
+COPY src ./src
 
 # Build the application
 RUN npm run build
