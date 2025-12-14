@@ -3,20 +3,20 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
+# Copy package files first
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
-# Copy public folder first (explicitly)
-COPY public/ ./public/
+# Copy public folder (must be copied before build)
+COPY public ./public
 
 # Copy source code
-COPY src/ ./src/
+COPY src ./src
 
-# Copy other necessary files (package.json already copied, but copy again to be sure)
-COPY package*.json ./
+# Verify public folder exists
+RUN ls -la public/ && test -f public/index.html || (echo "ERROR: index.html not found!" && exit 1)
 
 # Build the application
 RUN npm run build
