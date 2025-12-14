@@ -9,14 +9,12 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
-# Copy public folder (must be copied before build)
-COPY public ./public
+# Copy everything except what's in .dockerignore
+# This ensures public/ and src/ are copied
+COPY . .
 
-# Copy source code
-COPY src ./src
-
-# Verify public folder exists
-RUN ls -la public/ && test -f public/index.html || (echo "ERROR: index.html not found!" && exit 1)
+# Verify public folder and index.html exist
+RUN ls -la public/ && test -f public/index.html || (echo "ERROR: index.html not found in public/!" && ls -la && exit 1)
 
 # Build the application
 RUN npm run build
