@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Box,
   Container,
@@ -32,12 +33,20 @@ import CartDrawer from '../components/CartDrawer';
 // Import product images
 import sp1_100ml from '../assets/product/sp1_100ml.png';
 import sp1_250ml from '../assets/product/sp1_250ml.png';
+import sp1_image1 from '../assets/product/sp1_image1.png';
+import sp1_image2 from '../assets/product/sp1_image2.png';
 import sp2_500ml from '../assets/product/sp2_500ml.png';
 import sp2_1l from '../assets/product/sp2_1l.png';
+import sp2_image1 from '../assets/product/sp2_image1.png';
+import sp2_image2 from '../assets/product/sp2_image2.png';
 import sp3_500ml from '../assets/product/sp3_500ml.png';
 import sp3_1l from '../assets/product/sp3_1l.png';
+import sp3_image1 from '../assets/product/sp3_image1.png';
+import sp3_image2 from '../assets/product/sp3_image2.png';
 import sp4_500ml from '../assets/product/sp4_500ml.png';
 import sp4_1l from '../assets/product/sp4_1l.png';
+import sp4_image1 from '../assets/product/sp4_image1.png';
+import sp4_image2 from '../assets/product/sp4_image2.png';
 
 // Color scheme
 const primaryColor = '#F7F3CD';
@@ -49,13 +58,14 @@ const products = [
     id: 1,
     name: 'Dầu bơ ép lạnh AnaOi',
     category: null,
-    description:
-      'Dầu bơ ép lạnh 100% nguyên chất từ những quả bơ được trồng theo phương pháp organic trên vùng đất Dak Lak...',
+    description: 'Dầu bơ ép lạnh 100% nguyên chất từ những quả bơ trồng organic trên vùng đất bazan Dak Lak.',
+    fullDescription: 'Dầu bơ ép lạnh 100% nguyên chất từ những quả bơ trồng organic trên vùng đất bazan Dak Lak. Nhờ phương pháp ép lạnh, dầu giữ trọn vitamin E, omega và chất chống oxy hóa tự nhiên, mang hương vị thanh nhẹ, giúp món ăn thơm ngon và lành mạnh hơn mỗi ngày.',
     sizes: ['100ml', '250ml'],
     images: {
       '100ml': sp1_100ml,
       '250ml': sp1_250ml,
     },
+    additionalImages: [sp1_image1, sp1_image2],
     prices: {
       '100ml': 120000,
       '250ml': 280000,
@@ -65,13 +75,14 @@ const products = [
     id: 2,
     name: 'Dầu lạc ép lạnh AnaOi',
     category: null,
-    description:
-      'Từ những hạt lạc được canh tác chuẩn VietGap trên cao nguyên Tây Nguyên, dầu lạc AnaOi được ép lạnh hoàn toàn để giữ trọn hương thơm tự nhiên và hàm lượng chất béo tốt.',
+    description: 'Từ những hạt lạc được canh tác chuẩn VietGap trên cao nguyên Tây Nguyên, dầu lạc AnaOi được ép lạnh hoàn toàn.',
+    fullDescription: 'Từ những hạt lạc được canh tác chuẩn VietGap trên cao nguyên Tây Nguyên, dầu lạc AnaOi được ép lạnh hoàn toàn để giữ trọn hương thơm tự nhiên và hàm lượng chất béo tốt. Dầu có vị béo dịu, dễ tiêu hóa, mang đến nguồn năng lượng thuần khiết và phù hợp cho các món chiên, xào và bữa ăn gia đình hàng ngày.',
     sizes: ['500ml', '1l'],
     images: {
       '500ml': sp2_500ml,
       '1l': sp2_1l,
     },
+    additionalImages: [sp2_image1, sp2_image2],
     prices: {
       '500ml': 95000,
       '1l': 180000,
@@ -81,13 +92,14 @@ const products = [
     id: 3,
     name: 'Dầu blend đậu nành & cám gạo ép lạnh AnaOi',
     category: 'Dầu blend',
-    description:
-      'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa đậu nành và cám gạo được canh tác theo chuẩn VietGap trên cao nguyên Tây Nguyên...',
+    description: 'Là một trong những dầu blend ép lạnh đầu tiên tại Việt Nam, kết hợp tinh tế giữa đậu nành và cám gạo.',
+    fullDescription: 'Là một trong những dầu blend ép lạnh đầu tiên tại Việt Nam, sản phẩm kết hợp tinh tế giữa đậu nành và cám gạo được canh tác trên cao nguyên Tây Nguyên. Nhờ công nghệ ép lạnh, từng giọt dầu giữ trọn gamma-oryzanol, vitamin nhóm B và dưỡng chất tự nhiên. Kết cấu nhẹ, ít bám dính, giúp món ăn thanh hơn mà vẫn đậm vị. Đây là lựa chọn lý tưởng cho chế độ ăn lành mạnh, hỗ trợ tim mạch và kiểm soát cholesterol mỗi ngày.',
     sizes: ['500ml', '1l'],
     images: {
       '500ml': sp3_500ml,
       '1l': sp3_1l,
     },
+    additionalImages: [sp3_image1, sp3_image2],
     prices: {
       '500ml': 85000,
       '1l': 160000,
@@ -97,13 +109,14 @@ const products = [
     id: 4,
     name: 'Dầu blend mè đen & cám gạo ép lạnh AnaOi',
     category: 'Dầu blend',
-    description:
-      'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa mè đen và cám gạo được canh tác theo chuẩn VietGap trên cao nguyên Tây Nguyên...',
+    description: 'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa mè đen và cám gạo.',
+    fullDescription: 'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa mè đen và cám gạo được canh tác trên cao nguyên Tây Nguyên. Từng giọt dầu được ép lạnh ở nhiệt độ thấp để giữ nguyên gamma-oryzanol, vitamin nhóm B và các hợp chất chống oxy hoá tự nhiên. Kết cấu nhẹ, ít bám dính giúp món ăn thanh hơn mà vẫn tròn vị, đồng thời hỗ trợ tim mạch, kiểm soát cholesterol và phù hợp cho chế độ ăn lành mạnh mỗi ngày.',
     sizes: ['500ml', '1l'],
     images: {
       '500ml': sp4_500ml,
       '1l': sp4_1l,
     },
+    additionalImages: [sp4_image1, sp4_image2],
     prices: {
       '500ml': 90000,
       '1l': 170000,
@@ -220,6 +233,7 @@ const productReviews = {
 };
 
 function ProductPage() {
+  const location = useLocation();
   const { addToCart } = useCart();
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [addedProduct, setAddedProduct] = useState('');
@@ -239,6 +253,7 @@ function ProductPage() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [modalSize, setModalSize] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const handleAddToCart = (product, size, qty) => {
     addToCart(product, size, qty);
@@ -263,6 +278,7 @@ function ProductPage() {
     setSelectedProduct(product);
     setModalSize(product.sizes[0]); // Set dung tích đầu tiên
     setQuantity(1);
+    setSelectedImageIndex(0); // Reset về ảnh đầu tiên
     setModalOpen(true);
   };
 
@@ -270,10 +286,12 @@ function ProductPage() {
     setModalOpen(false);
     setSelectedProduct(null);
     setQuantity(1);
+    setSelectedImageIndex(0);
   };
 
   const handleModalSizeChange = (size) => {
     setModalSize(size);
+    setSelectedImageIndex(0); // Reset về ảnh chính khi đổi size
   };
 
   const handleQuantityChange = (change) => {
@@ -302,6 +320,22 @@ function ProductPage() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [lastScrollY]);
+
+  // Auto-open modal if productId is passed via navigation state
+  useEffect(() => {
+    if (location.state?.openProductId) {
+      const productId = location.state.openProductId;
+      const product = products.find((p) => p.id === productId);
+      if (product) {
+        setSelectedProduct(product);
+        setModalSize(product.sizes[0]);
+        setQuantity(1);
+        setModalOpen(true);
+        // Clear state to prevent reopening on refresh
+        window.history.replaceState({}, document.title);
+      }
+    }
+  }, [location.state]);
 
   return (
     <Box
@@ -416,30 +450,13 @@ function ProductPage() {
                   >
                     {/* Top Content */}
                     <Box>
-                      {/* Category Label */}
-                      {product.category && (
-                        <Typography
-                          variant="overline"
-                          sx={{
-                            color: americanYellow,
-                            fontFamily: "'VNM Sans Std', sans-serif",
-                            fontWeight: 600,
-                            fontSize: '0.75rem',
-                            letterSpacing: 1,
-                            mb: 1,
-                          }}
-                        >
-                          {product.category}
-                        </Typography>
-                      )}
-
                       {/* Product Name and Cart Icon */}
                       <Box
                         sx={{
                           display: 'flex',
                           justifyContent: 'space-between',
                           alignItems: 'flex-start',
-                          mb: 2,
+                          mb: product.category ? 1 : 2,
                         }}
                       >
                         <Typography
@@ -475,7 +492,25 @@ function ProductPage() {
                         </IconButton>
                       </Box>
 
-                      {/* Product Description */}
+                      {/* Category Label - Moved below product name */}
+                      {product.category && (
+                        <Typography
+                          variant="overline"
+                          sx={{
+                            color: americanYellow,
+                            fontFamily: "'VNM Sans Std', sans-serif",
+                            fontWeight: 600,
+                            fontSize: '0.75rem',
+                            letterSpacing: 1,
+                            mb: 2,
+                            display: 'block',
+                          }}
+                        >
+                          {product.category}
+                        </Typography>
+                      )}
+
+                      {/* Product Description - Fixed height for consistency */}
                       <Typography
                         variant="body2"
                         sx={{
@@ -483,6 +518,13 @@ function ProductPage() {
                           color: '#666',
                           lineHeight: 1.7,
                           fontSize: { xs: '0.9rem', md: '1rem' },
+                          display: '-webkit-box',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          minHeight: { xs: '4.5rem', md: '5.1rem' },
+                          mb: 0,
                         }}
                       >
                         {product.description}
@@ -594,23 +636,142 @@ function ProductPage() {
                 <Box
                   sx={{
                     height: '100%',
-                    minHeight: 400,
-                    backgroundColor: primaryColor,
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    p: 4,
+                    flexDirection: 'column',
                   }}
                 >
-                  <img
-                    src={selectedProduct.images[modalSize]}
-                    alt={selectedProduct.name}
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      objectFit: 'contain',
+                  {/* Main Image */}
+                  <Box
+                    sx={{
+                      flex: 1,
+                      minHeight: 400,
+                      backgroundColor: primaryColor,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      p: 4,
+                      mb: 2,
                     }}
-                  />
+                  >
+                    {(() => {
+                      // Tạo mảng tất cả ảnh: ảnh chính theo size + ảnh bổ sung
+                      const allImages = [
+                        selectedProduct.images[modalSize],
+                        ...(selectedProduct.additionalImages || []),
+                      ];
+                      const currentImage = allImages[selectedImageIndex] || allImages[0];
+                      
+                      return (
+                        <img
+                          src={currentImage}
+                          alt={selectedProduct.name}
+                          style={{
+                            width: '100%',
+                            height: 'auto',
+                            objectFit: 'contain',
+                          }}
+                        />
+                      );
+                    })()}
+                  </Box>
+                  
+                  {/* Image Gallery */}
+                  {selectedProduct.additionalImages && selectedProduct.additionalImages.length > 0 && (
+                    <Box sx={{ px: 2 }}>
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          fontFamily: "'VNM Sans Std', sans-serif",
+                          fontWeight: 600,
+                          color: bronzeYellow,
+                          mb: 1.5,
+                          fontSize: '0.95rem',
+                        }}
+                      >
+                        Ảnh liên quan
+                      </Typography>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          gap: 1.5,
+                          pb: 2,
+                          overflowX: 'auto',
+                          '&::-webkit-scrollbar': {
+                            height: 6,
+                          },
+                          '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: `${bronzeYellow}40`,
+                            borderRadius: 3,
+                          },
+                        }}
+                      >
+                      {/* Ảnh chính theo size */}
+                      <Box
+                        onClick={() => setSelectedImageIndex(0)}
+                        sx={{
+                          flexShrink: 0,
+                          width: 80,
+                          height: 80,
+                          backgroundColor: primaryColor,
+                          borderRadius: 1,
+                          overflow: 'hidden',
+                          cursor: 'pointer',
+                          border: selectedImageIndex === 0 ? `2px solid ${bronzeYellow}` : '2px solid transparent',
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            transform: 'scale(1.05)',
+                            border: `2px solid ${bronzeYellow}`,
+                          },
+                        }}
+                      >
+                        <img
+                          src={selectedProduct.images[modalSize]}
+                          alt={`${selectedProduct.name} - ${modalSize}`}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain',
+                            padding: 4,
+                          }}
+                        />
+                      </Box>
+                      
+                      {/* Ảnh bổ sung */}
+                      {selectedProduct.additionalImages.map((img, idx) => (
+                        <Box
+                          key={idx}
+                          onClick={() => setSelectedImageIndex(idx + 1)}
+                          sx={{
+                            flexShrink: 0,
+                            width: 80,
+                            height: 80,
+                            backgroundColor: primaryColor,
+                            borderRadius: 1,
+                            overflow: 'hidden',
+                            cursor: 'pointer',
+                            border: selectedImageIndex === idx + 1 ? `2px solid ${bronzeYellow}` : '2px solid transparent',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                              transform: 'scale(1.05)',
+                              border: `2px solid ${bronzeYellow}`,
+                            },
+                          }}
+                        >
+                          <img
+                            src={img}
+                            alt={`${selectedProduct.name} - Ảnh ${idx + 1}`}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'contain',
+                              padding: 4,
+                            }}
+                          />
+                        </Box>
+                      ))}
+                      </Box>
+                    </Box>
+                  )}
                 </Box>
               </Grid>
 
@@ -635,19 +796,70 @@ function ProductPage() {
                     </Typography>
                   )}
 
-                  {/* Product Name */}
-                  <Typography
-                    variant="h5"
+                  {/* Product Name with Cart Icon */}
+                  <Box
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
-                      fontWeight: 700,
-                      color: bronzeYellow,
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
                       mb: 2,
-                      lineHeight: 1.3,
                     }}
                   >
-                    {selectedProduct.name}
-                  </Typography>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        fontFamily: "'VNM Sans Std', sans-serif",
+                        fontWeight: 700,
+                        color: bronzeYellow,
+                        lineHeight: 1.3,
+                        flex: 1,
+                        pr: 2,
+                      }}
+                    >
+                      {selectedProduct.name}
+                    </Typography>
+                    <IconButton
+                      onClick={() => handleAddToCart(selectedProduct, modalSize, quantity)}
+                      sx={{
+                        backgroundColor: americanYellow,
+                        color: '#fff',
+                        mt: 3,
+                        '&:hover': {
+                          backgroundColor: bronzeYellow,
+                        },
+                        width: 48,
+                        height: 48,
+                        flexShrink: 0,
+                      }}
+                    >
+                      <AddShoppingCartIcon />
+                    </IconButton>
+                  </Box>
+
+                  {/* Description */}
+                  <Box sx={{ mb: 3 }}>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        fontFamily: "'VNM Sans Std', sans-serif",
+                        fontWeight: 600,
+                        color: bronzeYellow,
+                        mb: 1.5,
+                      }}
+                    >
+                      Phần mô tả:
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontFamily: "'VNM Sans Std', sans-serif",
+                        color: '#666',
+                        lineHeight: 1.8,
+                      }}
+                    >
+                      {selectedProduct.fullDescription || selectedProduct.description}
+                    </Typography>
+                  </Box>
 
                   {/* Price */}
                   <Typography
@@ -660,19 +872,6 @@ function ProductPage() {
                     }}
                   >
                     {selectedProduct.prices[modalSize].toLocaleString('vi-VN')}₫
-                  </Typography>
-
-                  {/* Description */}
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
-                      color: '#666',
-                      mb: 3,
-                      lineHeight: 1.8,
-                    }}
-                  >
-                    {selectedProduct.description}
                   </Typography>
 
                   {/* Size Selection */}

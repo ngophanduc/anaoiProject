@@ -113,64 +113,76 @@ function HeroSection() {
             color: '#FDFBF5',
           }}
         >
-          {/* TITLE */}
-          <Typography
-            variant="h2"
+          {/* TEXT CONTAINER WITH BORDER */}
+          <Box
             sx={{
-              fontFamily: "'VNM Sans Display', sans-serif",
-              fontWeight: 700,
-              color: '#FFF7E6',
-              textShadow: '0 4px 14px rgba(0,0,0,0.55)',
-              lineHeight: 1.1,
-              mb: 2,
-              fontSize: { xs: '2.4rem', sm: '3rem', md: '3.6rem' },
-              letterSpacing: '0.02em', // giảm cho chữ thẳng hàng, không bị kéo quá
-              width: '100%',
-              display: 'inline-block',
+              border: '2px solid rgba(255, 247, 230, 0.4)',
+              borderRadius: 2,
+              padding: { xs: 3, md: 4 },
+              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+              backdropFilter: 'blur(4px)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+              maxWidth: { xs: '100%', md: '90%' },
             }}
           >
-            <SplitText
-              text="Hạt nhỏ tới giọt, giọt lành tới bạn"
-              delay={50}
-              duration={0.6}
-              ease="ease-out"
-              splitType="words" // animate theo từ, giữ bố cục đẹp
-              from={{ opacity: 0, y: 30 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-              textAlign="left"
-              onLetterAnimationComplete={handleAnimationComplete}
-            />
-          </Typography>
+            {/* TITLE */}
+            <Typography
+              variant="h2"
+              sx={{
+                fontFamily: "'VNM Sans Display', sans-serif",
+                fontWeight: 700,
+                color: '#FFF7E6',
+                textShadow: '0 4px 14px rgba(0,0,0,0.55)',
+                lineHeight: 1.1,
+                mb: 2,
+                fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2.2rem' },
+                letterSpacing: '0.02em',
+                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                display: 'inline-block',
+              }}
+            >
+              <SplitText
+                text="Hạt nhỏ tới giọt, giọt lành tới bạn"
+                delay={50}
+                duration={0.6}
+                ease="ease-out"
+                splitType="words" // animate theo từ, giữ bố cục đẹp
+                from={{ opacity: 0, y: 30 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+                textAlign="left"
+                onLetterAnimationComplete={handleAnimationComplete}
+              />
+            </Typography>
 
-          {/* SUBTITLE */}
-          <Typography
-            variant="body1"
-            sx={{
-              mt: 3,
-              fontSize: { xs: '1.35rem', sm: '1.45rem', md: '1.55rem' },
-              lineHeight: 1.7,
-              color: '#FFF4D9',
-              textShadow: '0 3px 10px rgba(0,0,0,0.65)',
-              maxWidth: 520,
-              fontFamily: "'VNM Sans Std', sans-serif",
-              fontWeight: 400,
-            }}
-          >
-            <SplitText
-              text="Dưới nắng gió Tây Nguyên, mỗi hạt mầm được nuôi lớn bằng đất lành và tâm huyết người trồng. AnaOi chọn bước đầu tiên: giữ nguyên bản, ép lạnh để dưỡng chất được giữ trọn."
-              delay={20}
-              duration={0.5}
-              ease="ease-out"
-              splitType="words"
-              from={{ opacity: 0, y: 20 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1} 
-              rootMargin="-100px"
-              textAlign="left"
-            />
-          </Typography>
+            {/* SUBTITLE */}
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: '1.35rem', sm: '1.45rem', md: '1.55rem' },
+                lineHeight: 1.7,
+                color: '#FFF4D9',
+                textShadow: '0 3px 10px rgba(0,0,0,0.65)',
+                maxWidth: 520,
+                fontFamily: "'VNM Sans Std', sans-serif",
+                fontWeight: 400,
+              }}
+            >
+              <SplitText
+                text="Dưới nắng gió Tây Nguyên, mỗi hạt mầm được nuôi lớn bằng đất lành và tâm huyết người trồng. AnaOi chọn bước đầu tiên: giữ nguyên bản, ép lạnh để dưỡng chất được giữ trọn."
+                delay={20}
+                duration={0.5}
+                ease="ease-out"
+                splitType="words"
+                from={{ opacity: 0, y: 20 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1} 
+                rootMargin="-100px"
+                textAlign="left"
+              />
+            </Typography>
+          </Box>
         </Box>
       </Box>
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
@@ -6,19 +7,42 @@ import Footer from '../components/Footer';
 import usp1 from '../assets/homepage/usp/1.png';
 import usp2 from '../assets/homepage/usp/2.png';
 import usp3 from '../assets/homepage/usp/3.png';
+import footerSP from '../assets/homepage/linkSP/footerSP.png';
+import sp1Front from '../assets/homepage/linkSP/sp1truoc.png';
+import sp1Tilt from '../assets/homepage/linkSP/sp1nghieng.png';
+import sp2Front from '../assets/homepage/linkSP/sp2truoc.png';
+import sp2Tilt from '../assets/homepage/linkSP/sp2nghieng.png';
+import sp3Front from '../assets/homepage/linkSP/sp3truoc.png';
+import sp3Tilt from '../assets/homepage/linkSP/sp3nghieng.png';
+import sp4Front from '../assets/homepage/linkSP/sp4truoc.png';
+import sp4Tilt from '../assets/homepage/linkSP/sp4nghieng.png';
 
 function HomePage() {
+  const navigate = useNavigate();
   const contentRef = useRef(null);
   const [contentActive, setContentActive] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [headerHidden, setHeaderHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [hoveredSpotlight, setHoveredSpotlight] = useState(null);
   
   const uspImages = [usp1, usp2, usp3];
   const uspTexts = [
     'Chuẩn nguyên liệu bản địa, với tiêu chuẩn canh tác khắt khe.',
     'Chuẩn minh bạch nguồn gốc, với cam kết truy xuất nguồn gốc.',
     'Chuẩn tiên phong dầu ép lạnh, với dầu hỗn hợp dinh dưỡng cao.',
+  ];
+  const spotlightProducts = [
+    { front: sp1Front, tilt: sp1Tilt },
+    { front: sp2Front, tilt: sp2Tilt },
+    { front: sp3Front, tilt: sp3Tilt },
+    { front: sp4Front, tilt: sp4Tilt },
+  ];
+  const spotlightNames = [
+    'Dầu bơ ép lạnh',
+    'Dầu blend mè đen & cám gạo ép lạnh',
+    'Dầu lạc ép lạnh',
+    'Dầu blend đậu nành & cám gạo ép lạnh',
   ];
 
   useEffect(() => {
@@ -422,6 +446,172 @@ function HomePage() {
               },
             }}
           />
+        </Box>
+      </Box>
+
+      {/* SECTION SẢN PHẨM TRƯNG BÀY TRÊN NỀN FOOTER */}
+      <Box
+        sx={{
+          width: '100%',
+          position: 'relative',
+          backgroundImage: `url(${footerSP})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center bottom',
+          py: { xs: 8, md: 12 },
+          px: { xs: 3, md: 4 },
+          flexShrink: 0,
+          zIndex: 8,
+        }}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            maxWidth: '1200px',
+            margin: '0 auto',
+            px: { xs: 2, md: 0 },
+            mb: { xs: 4, md: 6 },
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 1,
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: '1.6rem', md: '2.1rem' },
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              color: '#B45309',
+              textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 0 2px rgba(255,255,255,0.5)',
+              fontFamily: "'VNM Sans Display', sans-serif",
+              lineHeight: 1.3,
+            }}
+          >
+            BỎ GIỎ XÁCH VỀ
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            width: '100%',
+            maxWidth: '1200px',
+            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(4, minmax(0, 1fr))' },
+            gap: { xs: 4, md: 6 },
+            justifyItems: 'center',
+            alignItems: 'end',
+          }}
+        >
+          {spotlightProducts.map((product, idx) => (
+            <Box
+              key={idx}
+              onClick={() => {
+                // Map idx to productId: idx 0->1, 1->2, 2->3, 3->4
+                const productId = idx + 1;
+                navigate('/san-pham', { state: { openProductId: productId } });
+              }}
+              onMouseEnter={() => setHoveredSpotlight(idx)}
+              onMouseLeave={() => setHoveredSpotlight(null)}
+              sx={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: { xs: 200, md: 260 },
+                aspectRatio: '3 / 4',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'transform 0.3s ease',
+                '&:hover .front': { opacity: 0 },
+                '&:hover .tilt': {
+                  opacity: 1,
+                  transform: 'translateY(-6px) scale(1.03)',
+                },
+                ...(idx === 0
+                  ? {
+                      '&:hover .tilt': {
+                        opacity: 1,
+                        transform: 'translateY(14px) scale(1.03)', // giữ offset 20px trừ 6px khi hover
+                      },
+                    }
+                  : {}),
+              }}
+            >
+              <Box
+                component="img"
+                src={product.front}
+                alt={`Sản phẩm ${idx + 1}`}
+                className="front"
+                width={260}
+                height={346}
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  transition: 'opacity 0.3s ease',
+                  ...(idx === 0 ? { transform: 'translateY(20px)' } : {}),
+                }}
+              />
+              <Box
+                component="img"
+                src={product.tilt}
+                alt={`Sản phẩm ${idx + 1} nghiêng`}
+                className="tilt"
+                width={260}
+                height={346}
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  opacity: 0,
+                  transition: 'opacity 0.3s ease, transform 0.3s ease',
+                  ...(idx === 0 ? { transform: 'translateY(20px)' } : {}),
+                }}
+              />
+              {/* Tên sản phẩm khi hover */}
+              <Box
+                className="product-name"
+                sx={{
+                  position: 'absolute',
+                  left: '50%',
+                  bottom: 0,
+                  transform: 'translateX(-50%)',
+                  px: 1.5,
+                  py: 0.5,
+                  borderRadius: 999,
+                  backgroundColor: 'transparent',
+                  opacity: hoveredSpotlight === idx ? 1 : 0,
+                  transition: 'opacity 0.3s ease',
+                  maxWidth: '120%',
+                  width: 'max-content',
+                  minWidth: '100%',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontFamily: "'VNM Sans Std', sans-serif",
+                    fontWeight: 600,
+                    fontSize: { xs: '0.95rem', md: '1.1rem' },
+                    color: '#1F2937',
+                    textAlign: 'center',
+                    whiteSpace: 'nowrap',
+                    textShadow: '0 1px 3px rgba(255,255,255,0.8), 0 0 1px rgba(255,255,255,0.9)',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {spotlightNames[idx]}
+                </Typography>
+              </Box>
+            </Box>
+          ))}
         </Box>
       </Box>
 
