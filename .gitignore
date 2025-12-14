@@ -62,7 +62,7 @@ out
 
 # Gatsby
 .cache/
-public
+# public - DO NOT IGNORE, needed for React build
 
 # Storybook build outputs
 .out
