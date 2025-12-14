@@ -9,9 +9,14 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
-# Copy all source files (public, src, and other config files)
-# .dockerignore will exclude node_modules, build, .git, etc.
-COPY . .
+# Copy public folder first (explicitly)
+COPY public/ ./public/
+
+# Copy source code
+COPY src/ ./src/
+
+# Copy other necessary files (package.json already copied, but copy again to be sure)
+COPY package*.json ./
 
 # Build the application
 RUN npm run build
