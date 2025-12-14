@@ -10,7 +10,6 @@ COPY package*.json ./
 RUN npm install --legacy-peer-deps
 
 # Copy everything except what's in .dockerignore
-# This ensures public/ and src/ are copied
 COPY . .
 
 # Verify public folder and index.html exist
@@ -25,11 +24,14 @@ FROM nginx:alpine
 # Copy built files from builder stage
 COPY --from=builder /app/build /usr/share/nginx/html
 
-# Copy nginx configuration
+# Copy nginx configuration (HTTPS version)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80
-EXPOSE 80
+# Create SSL directory
+RUN mkdir -p /etc/nginx/ssl
+
+# Expose ports 80 (HTTP redirect) and 443 (HTTPS)
+EXPOSE 80 443
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
