@@ -56,7 +56,14 @@ function Footer() {
         >
           {/* Phần 1: Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-            <img src={logo} alt="AnaOi Logo" style={{ height: 80 }} />
+            <Box
+              component="img"
+              src={logo}
+              alt="AnaOi Logo"
+              sx={{
+                height: { xs: 60, sm: 70, md: 80, lg: 90 },
+              }}
+            />
           </Box>
 
           {/* Phần 2: Công ty TNHH AnaOi */}
@@ -66,7 +73,7 @@ function Footer() {
               sx={{
                 color: '#EDB500',
                 fontWeight: 700,
-                fontSize: { xs: '1.25rem', md: '1.5rem' },
+                fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.4rem', lg: '1.5rem', xl: '1.6rem' },
                 mb: 1,
                 fontFamily: "'VNM Sans Display', sans-serif",
               }}
@@ -142,7 +149,7 @@ function Footer() {
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   mb: 2,
-                  fontSize: { xs: '1.1rem', md: '1.4rem' },
+                  fontSize: { xs: '1rem', sm: '1.15rem', md: '1.3rem', lg: '1.4rem', xl: '1.5rem' },
                   fontFamily: "'VNM Sans Display', sans-serif",
                 }}
               >

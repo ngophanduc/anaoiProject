@@ -44,7 +44,14 @@ function Header({ hidden = false }) {
             cursor: 'pointer',
           }}
         >
-          <img src={logo} alt="AnaOi Logo" style={{ height: 48 }} />
+          <Box
+            component="img"
+            src={logo}
+            alt="AnaOi Logo"
+            sx={{
+              height: { xs: 40, sm: 44, md: 48, lg: 52 },
+            }}
+          />
         </Box>
 
         {/* Navigation - Center */}
@@ -53,9 +60,10 @@ function Header({ hidden = false }) {
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
-            display: 'flex', 
+            display: { xs: 'none', sm: 'flex' }, // Ẩn navigation trên mobile
             justifyContent: 'center', 
-            alignItems: 'center' 
+            alignItems: 'center',
+            gap: { sm: 0.5, md: 1, lg: 1.5 },
           }}
         >
           {navItems.map((item) => (
@@ -66,13 +74,15 @@ function Header({ hidden = false }) {
               sx={{
                 color: bronzeYellow,
                 fontWeight: 400,
-                fontSize: 16,
-                mx: 1,
+                fontSize: { sm: 14, md: 15, lg: 16, xl: 17 },
+                mx: { sm: 0.5, md: 1, lg: 1.5 },
+                px: { sm: 1, md: 1.5, lg: 2 },
                 textDecoration: 'none',
                 borderBottom: location.pathname === item.path ? '2px solid' : 'none',
                 borderColor: bronzeYellow,
                 borderRadius: 0,
                 fontFamily: "'VNM Sans Std', sans-serif",
+                whiteSpace: 'nowrap',
                 '&:hover': {
                   backgroundColor: 'rgba(102, 123, 0, 0.1)',
                 },
@@ -84,11 +94,13 @@ function Header({ hidden = false }) {
         </Box>
 
         {/* Icons - Right */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1, md: 1.5 } }}>
           <IconButton
             onClick={openCart}
+            size="small"
             sx={{
               color: bronzeYellow,
+              padding: { xs: 0.75, sm: 1 },
               '&:hover': {
                 backgroundColor: 'rgba(102, 123, 0, 0.1)',
               },
@@ -103,23 +115,28 @@ function Header({ hidden = false }) {
                   color: '#fff',
                   fontFamily: "'VNM Sans Std', sans-serif",
                   fontWeight: 600,
+                  fontSize: { xs: '0.7rem', sm: '0.75rem', md: '0.875rem' },
+                  minWidth: { xs: 16, sm: 18, md: 20 },
+                  height: { xs: 16, sm: 18, md: 20 },
                 },
               }}
             >
-              <ShoppingCartOutlinedIcon sx={{ fontSize: 28 }} />
+              <ShoppingCartOutlinedIcon sx={{ fontSize: { xs: 24, sm: 26, md: 28, lg: 30 } }} />
             </Badge>
           </IconButton>
           <IconButton
             component={Link}
             to="/tai-khoan"
+            size="small"
             sx={{
               color: bronzeYellow,
+              padding: { xs: 0.75, sm: 1 },
               '&:hover': {
                 backgroundColor: 'rgba(102, 123, 0, 0.1)',
               },
             }}
           >
-            <PersonOutlineIcon sx={{ fontSize: 28 }} />
+            <PersonOutlineIcon sx={{ fontSize: { xs: 24, sm: 26, md: 28, lg: 30 } }} />
           </IconButton>
         </Box>
       </Toolbar>

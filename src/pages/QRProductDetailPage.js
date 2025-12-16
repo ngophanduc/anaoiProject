@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import SplitText from '../components/SplitText';
+import SixOSection from '../components/SixOSection';
 import elementbrg from '../assets/nguongoc/sp1/elementbrg.png';
 import chungnhan from '../assets/nguongoc/sp1/chungnhan.png';
 import anhsanpham from '../assets/nguongoc/sp1/anhsanpham.png';
@@ -108,17 +109,19 @@ function QRProductDetailPage() {
         }}
       >
         {/* Tiêu đề */}
-        <Box sx={{ textAlign: 'center' }}>
+        <Box sx={{ textAlign: 'center', px: { xs: 2, sm: 3, md: 4 }, width: '100%' }}>
           <Typography
             variant="h3"
             sx={{
               fontFamily: "'VNM Sans Display', sans-serif",
               fontWeight: 700,
               color: bronzeYellow,
-              mb: 1,
-              fontSize: { xs: '7.5rem', md: '10.5rem' },
+              mb: { xs: 0.5, md: 1 },
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '4rem', lg: '5rem', xl: '6rem' },
               textAlign: 'center',
-              display: 'inline-block',
+              display: 'block',
+              lineHeight: { xs: 1.1, md: 1.2 },
+              wordBreak: 'break-word',
             }}
           >
             <SplitText
@@ -141,12 +144,14 @@ function QRProductDetailPage() {
               fontWeight: 400,
               color: '#666',
               fontStyle: 'italic',
-              fontSize: { xs: '2.2rem', md: '3.2rem' },
+              fontSize: { xs: '0.9rem', sm: '1.2rem', md: '2rem', lg: '2.5rem', xl: '3.2rem' },
               textAlign: 'center',
-              display: 'inline-block',
-              whiteSpace: 'nowrap',
+              display: 'block',
+              whiteSpace: { xs: 'normal', md: 'nowrap' },
               width: '100%',
-              overflow: 'hidden',
+              px: { xs: 1, md: 0 },
+              lineHeight: { xs: 1.4, md: 1.5 },
+              wordBreak: 'break-word',
             }}
           >
             <SplitText
@@ -171,26 +176,29 @@ function QRProductDetailPage() {
           position: 'relative',
           zIndex: 1,
           width: '100%',
-          minHeight: '100vh',
+          minHeight: { xs: 'auto', md: '100vh' },
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: { xs: 'column', md: 'row' },
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
+          backgroundColor: { xs: '#FDFCF5', md: 'transparent' },
         }}
       >
-        {/* Ảnh sản phẩm - Full kích thước, làm background */}
+        {/* Ảnh sản phẩm - Full kích thước, làm background trên desktop */}
         <Box
           sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
+            position: { xs: 'relative', md: 'absolute' },
+            top: { md: 0 },
+            left: { md: 0 },
             width: '100%',
-            height: '100%',
+            height: { xs: 'auto', md: '100%' },
+            minHeight: { xs: '50vh', md: '100vh' },
             zIndex: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            order: { xs: 2, md: 0 },
           }}
         >
           <Box
@@ -199,31 +207,35 @@ function QRProductDetailPage() {
             alt="Ảnh sản phẩm"
             sx={{
               width: 'auto',
-              height: '100%',
+              height: { xs: 'auto', md: '100%' },
               maxWidth: '100%',
+              maxHeight: { xs: '60vh', md: '100%' },
               objectFit: 'contain',
               display: 'block',
             }}
           />
         </Box>
 
-        {/* Text overlay - Nằm trên ảnh */}
+        {/* Text - Tách biệt trên mobile, overlay trên desktop */}
         <Box
           sx={{
-            position: 'absolute',
-            left: 0,
-            top: 0,
+            position: { xs: 'relative', md: 'absolute' },
+            left: { md: 0 },
+            top: { md: 0 },
             zIndex: 1,
-            width: { xs: '100%', md: 'auto' },
-            px: { xs: 2, md: 4 },
-            py: { xs: 8, md: 12 },
+            width: '100%',
+            px: { xs: 2, sm: 3, md: 4 },
+            py: { xs: 4, sm: 6, md: 12 },
             display: 'flex',
             flexDirection: 'column',
-            gap: { xs: 3, md: 4 },
-            alignItems: 'flex-start',
+            gap: { xs: 2, sm: 2.5, md: 4 },
+            alignItems: { xs: 'flex-start', md: 'flex-start' },
             maxWidth: { xs: '100%', md: '600px' },
-            height: '100%',
-            justifyContent: 'center',
+            height: { xs: 'auto', md: '100%' },
+            justifyContent: { xs: 'flex-start', md: 'center' },
+            boxSizing: 'border-box',
+            order: { xs: 1, md: 0 },
+            backgroundColor: { xs: '#FDFCF5', md: 'transparent' },
           }}
         >
           {/* Tiêu đề: Thông tin sản phẩm */}
@@ -234,23 +246,13 @@ function QRProductDetailPage() {
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: bronzeYellow,
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                lineHeight: 1.2,
+                fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.3, md: 1.2 },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Thông tin sản phẩm"
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Thông tin sản phẩm
             </Typography>
           </Box>
 
@@ -262,23 +264,13 @@ function QRProductDetailPage() {
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                lineHeight: 1.2,
+                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.4, md: 1.2 },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Lô sản xuất : AVO-02"
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Lô sản xuất : AVO-02
             </Typography>
           </Box>
 
@@ -290,23 +282,13 @@ function QRProductDetailPage() {
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                lineHeight: 1.2,
+                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.4, md: 1.2 },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Ngày sản xuất : 20/09/2025"
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Ngày sản xuất : 20/09/2025
             </Typography>
           </Box>
 
@@ -318,25 +300,13 @@ function QRProductDetailPage() {
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
+                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.4, md: 1.2 },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Hạn dùng : 20/03/2027 "
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Hạn dùng : 20/03/2027
             </Typography>
           </Box>
 
@@ -348,23 +318,13 @@ function QRProductDetailPage() {
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                lineHeight: 1.2,
+                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.4, md: 1.2 },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Dung tích : 100ML/250ML"
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Dung tích : 100ML/250ML
             </Typography>
           </Box>
 
@@ -376,23 +336,13 @@ function QRProductDetailPage() {
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                lineHeight: 1.2,
+                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.4, md: 1.2 },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Chứng nhận & tiêu chuẩn:"
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Chứng nhận & tiêu chuẩn:
             </Typography>
             <Box
               component="img"
@@ -427,11 +377,12 @@ function QRProductDetailPage() {
         <Box
           sx={{
             position: 'absolute',
-            top: { xs: 40, md: 60 },
+            top: { xs: 8, sm: 10, md: 30 },
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 2,
             width: '100%',
+            px: { xs: 2, md: 0 },
             textAlign: 'center',
           }}
         >
@@ -441,7 +392,10 @@ function QRProductDetailPage() {
               fontFamily: "'VNM Sans Display', sans-serif",
               fontWeight: 700,
               color: bronzeYellow,
-              fontSize: { xs: '2rem', md: '3rem' },
+              fontSize: { xs: '1.3rem', sm: '1.6rem', md: '2.5rem', lg: '3rem' },
+              lineHeight: { xs: 1.2, md: 1.3 },
+              wordBreak: 'break-word',
+              px: { xs: 1, md: 0 },
             }}
           >
             Địa điểm trồng "Nông trại Đắk Lắk"
@@ -455,105 +409,74 @@ function QRProductDetailPage() {
             left: 0,
             top: 0,
             zIndex: 2,
-            width: { xs: '100%', md: 'auto' },
-            px: { xs: 2, md: 4 },
-            py: { xs: 8, md: 12 },
+            width: '100%',
+            px: { xs: 2, sm: 3, md: 4 },
+            py: { xs: 6, sm: 8, md: 12 },
             display: 'flex',
             flexDirection: 'column',
-            gap: { xs: 3, md: 4 },
-            alignItems: 'flex-start',
-            maxWidth: { xs: '100%', md: 'none' },
-            width: { xs: '100%', md: 'max-content' },
+            gap: { xs: 2, sm: 2.5, md: 4 },
+            alignItems: { xs: 'flex-start', md: 'flex-start' },
             height: '100%',
             justifyContent: 'center',
-            mt: { xs: 8, md: '135px' },
-            ml: { xs: 2, md: '502px' },
+            mt: { xs: 6, sm: 7, md: '135px' },
+            ml: { xs: 0, md: '502px' },
+            boxSizing: 'border-box',
           }}
         >
           {/* Thông tin nông trại */}
-          <Box sx={{ width: 'max-content' }}>
+          <Box sx={{ width: '100%' }}>
             <Typography
               variant="body1"
               sx={{
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                lineHeight: 1.2,
-                whiteSpace: 'nowrap',
+                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.4, md: 1.2 },
+                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Thông tin nông trại: Hợp tác xã Bơ Đại Hùng."
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Thông tin nông trại: Hợp tác xã Bơ Đại Hùng.
             </Typography>
           </Box>
 
           {/* Tên hộ gia đình/hợp tác xã cung cấp */}
-          <Box sx={{ width: 'max-content' }}>
+          <Box sx={{ width: '100%' }}>
             <Typography
               variant="body1"
               sx={{
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                lineHeight: 1.2,
-                whiteSpace: 'nowrap',
+                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.4, md: 1.2 },
+                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Tên hộ gia đình/hợp tác xã cung cấp: Ông Đặng Huy Hùng."
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Tên hộ gia đình/hợp tác xã cung cấp: Ông Đặng Huy Hùng.
             </Typography>
           </Box>
 
           {/* Quy trình */}
-          <Box sx={{ width: 'max-content' }}>
+          <Box sx={{ width: '100%' }}>
             <Typography
               variant="body1"
               sx={{
                 fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1.5rem', md: '2rem' },
-                mb: 1,
-                lineHeight: 1.2,
-                whiteSpace: 'nowrap',
+                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                mb: { xs: 0.5, md: 1 },
+                lineHeight: { xs: 1.4, md: 1.2 },
+                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                wordBreak: 'break-word',
               }}
             >
-              <SplitText
-                text="Quy trình: Hữu cơ, không sử dụng thuôc trừ sâu bị cấm."
-                delay={50}
-                duration={0.6}
-                ease="ease-out"
-                splitType="chars"
-                from={{ opacity: 0, y: -50 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="left"
-              />
+              Quy trình: Hữu cơ, không sử dụng thuốc trừ sâu bị cấm.
             </Typography>
           </Box>
         </Box>
@@ -564,8 +487,10 @@ function QRProductDetailPage() {
           alt="Địa điểm"
           sx={{
             width: '100%',
-            height: '100vh',
-            objectFit: 'cover',
+            height: { xs: 'auto', md: '100vh' },
+            minHeight: { xs: '100vh', md: '100vh' },
+            objectFit: { xs: 'contain', md: 'cover' },
+            objectPosition: { xs: 'center', md: 'center' },
             display: 'block',
           }}
         />
@@ -1009,6 +934,8 @@ function QRProductDetailPage() {
           </Box>
         </Box>
       </Box>
+
+      <SixOSection />
     </Box>
   );
 }

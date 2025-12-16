@@ -6,6 +6,9 @@ import background from '../assets/hanhtrinh/background.png';
 import human from '../assets/hanhtrinh/human.png';
 import map from '../assets/hanhtrinh/map.png';
 import routerImg from '../assets/hanhtrinh/router.png';
+import router2Img from '../assets/hanhtrinh/router2.png';
+import router3Img from '../assets/hanhtrinh/router3.png';
+import router4Img from '../assets/hanhtrinh/router4.png';
 import hatBackground from '../assets/hanhtrinh/hatbackground.png';
 
 const HEADER_HEIGHT = 64;
@@ -386,9 +389,56 @@ function NutritionJourneyPage() {
               bottom: 0,
               left: 0,
               width: '16%',
+              marginBottom: '402px',
+              marginLeft: '562px',
+              pointerEvents: 'none',
+              zIndex: 2,
+            }}
+          />
+          <Box
+            component="img"
+            src={router2Img}
+            alt="Lộ trình 2"
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: '16%',
               marginBottom: '251px',
               marginLeft: '650px',
               pointerEvents: 'none',
+              zIndex: 1,
+            }}
+          />
+          <Box
+            component="img"
+            src={router3Img}
+            alt="Lộ trình 3"
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: '16%',
+              marginBottom: '216px',
+              marginLeft: '653px',
+              marginTop: '40px',
+              pointerEvents: 'none',
+              zIndex: 5, // Đặt cao nhất để không bị đè
+            }}
+          />
+          <Box
+            component="img"
+            src={router4Img}
+            alt="Lộ trình 4"
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: '16%',
+              marginBottom: '166px',
+              marginLeft: '631px',
+              pointerEvents: 'none',
+              zIndex: 6, // Cao hơn các router khác
             }}
           />
         </Box>

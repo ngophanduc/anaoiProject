@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { CartProvider } from './context/CartContext';
+import theme from './theme/theme';
 import HomePage from './pages/HomePage';
 import NutritionJourneyPage from './pages/NutritionJourneyPage';
 import ProductPage from './pages/ProductPage';
@@ -13,21 +16,24 @@ import QRProductDetailPage4 from './pages/QRProductDetailPage4';
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/san-pham' element={<ProductPage />} />
-          <Route path='/hanh-trinh-dinh-duong' element={<NutritionJourneyPage />} />
-          <Route path='/luon-vui-khoe' element={<AlwaysHappyPage />} />
-          <Route path='/blog/:blogId' element={<BlogDetailPage />} />
-          <Route path='/qr-product/1' element={<QRProductDetailPage />} />
-          <Route path='/qr-product/2' element={<QRProductDetailPage2 />} />
-          <Route path='/qr-product/3' element={<QRProductDetailPage3 />} />
-          <Route path='/qr-product/4' element={<QRProductDetailPage4 />} />
-        </Routes>
-      </Router>
-    </CartProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <CartProvider>
+        <Router>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/san-pham' element={<ProductPage />} />
+            <Route path='/hanh-trinh-dinh-duong' element={<NutritionJourneyPage />} />
+            <Route path='/luon-vui-khoe' element={<AlwaysHappyPage />} />
+            <Route path='/blog/:blogId' element={<BlogDetailPage />} />
+            <Route path='/qr-product/1' element={<QRProductDetailPage />} />
+            <Route path='/qr-product/2' element={<QRProductDetailPage2 />} />
+            <Route path='/qr-product/3' element={<QRProductDetailPage3 />} />
+            <Route path='/qr-product/4' element={<QRProductDetailPage4 />} />
+          </Routes>
+        </Router>
+      </CartProvider>
+    </ThemeProvider>
   );
 }
 
