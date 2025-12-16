@@ -207,7 +207,6 @@ function AlwaysHappyPage() {
         <Typography
           variant="h3"
           sx={{
-            fontFamily: "'VNM Sans Std', sans-serif",
             fontWeight: 700,
             color: bronzeYellow,
             textAlign: 'center',
@@ -267,7 +266,6 @@ function AlwaysHappyPage() {
                     sx={{
                       backgroundColor: `${americanYellow}20`,
                       color: bronzeYellow,
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       fontSize: '0.75rem',
                       alignSelf: 'flex-start',
@@ -279,7 +277,6 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="h6"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       color: bronzeYellow,
                       mb: 2,
@@ -299,7 +296,6 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       color: '#999',
                       fontSize: '0.875rem',
                     }}
@@ -319,7 +315,6 @@ function AlwaysHappyPage() {
         <Typography
           variant="h3"
           sx={{
-            fontFamily: "'VNM Sans Std', sans-serif",
             fontWeight: 700,
             color: bronzeYellow,
             textAlign: 'center',
@@ -379,7 +374,6 @@ function AlwaysHappyPage() {
                     sx={{
                       backgroundColor: `${americanYellow}20`,
                       color: bronzeYellow,
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       fontSize: '0.75rem',
                       alignSelf: 'flex-start',
@@ -391,7 +385,6 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="h6"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       color: bronzeYellow,
                       mb: 2,
@@ -411,7 +404,6 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       color: '#999',
                       fontSize: '0.875rem',
                     }}
@@ -431,7 +423,6 @@ function AlwaysHappyPage() {
         <Typography
           variant="h3"
           sx={{
-            fontFamily: "'VNM Sans Std', sans-serif",
             fontWeight: 700,
             color: bronzeYellow,
             textAlign: 'center',
@@ -491,7 +482,6 @@ function AlwaysHappyPage() {
                     sx={{
                       backgroundColor: `${americanYellow}20`,
                       color: bronzeYellow,
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       fontSize: '0.75rem',
                       alignSelf: 'flex-start',
@@ -503,7 +493,6 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="h6"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       color: bronzeYellow,
                       mb: 2,
@@ -523,7 +512,6 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       color: '#999',
                       fontSize: '0.875rem',
                     }}
@@ -543,7 +531,6 @@ function AlwaysHappyPage() {
         <Typography
           variant="h3"
           sx={{
-            fontFamily: "'VNM Sans Std', sans-serif",
             fontWeight: 700,
             color: bronzeYellow,
             textAlign: 'center',
@@ -603,7 +590,6 @@ function AlwaysHappyPage() {
                     sx={{
                       backgroundColor: `${americanYellow}20`,
                       color: bronzeYellow,
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       fontSize: '0.75rem',
                       alignSelf: 'flex-start',
@@ -615,7 +601,6 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="h6"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       color: bronzeYellow,
                       mb: 2,
@@ -635,7 +620,6 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       color: '#999',
                       fontSize: '0.875rem',
                     }}

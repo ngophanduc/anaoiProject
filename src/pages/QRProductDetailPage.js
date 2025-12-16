@@ -113,7 +113,6 @@ function QRProductDetailPage() {
           <Typography
             variant="h3"
             sx={{
-              fontFamily: "'VNM Sans Display', sans-serif",
               fontWeight: 700,
               color: bronzeYellow,
               mb: { xs: 0.5, md: 1 },
@@ -140,7 +139,6 @@ function QRProductDetailPage() {
           <Typography
             variant="h5"
             sx={{
-              fontFamily: "'VNM Sans Std', sans-serif",
               fontWeight: 400,
               color: '#666',
               fontStyle: 'italic',
@@ -243,7 +241,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: bronzeYellow,
                 fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.6rem', lg: '2rem' },
@@ -261,7 +258,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
                 fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
@@ -279,7 +275,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
                 fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
@@ -297,7 +292,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
                 fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
@@ -315,7 +309,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
                 fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
@@ -333,7 +326,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
                 fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
@@ -389,7 +381,6 @@ function QRProductDetailPage() {
           <Typography
             variant="h2"
             sx={{
-              fontFamily: "'VNM Sans Display', sans-serif",
               fontWeight: 700,
               color: bronzeYellow,
               fontSize: { xs: '1.3rem', sm: '1.6rem', md: '2.5rem', lg: '3rem' },
@@ -428,7 +419,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
                 fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
@@ -447,7 +437,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
                 fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
@@ -466,7 +455,6 @@ function QRProductDetailPage() {
             <Typography
               variant="body1"
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 600,
                 color: '#000000',
                 fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
@@ -573,7 +561,6 @@ function QRProductDetailPage() {
               <Typography
                 variant="h5"
                 sx={{
-                  fontFamily: "'VNM Sans Display', sans-serif",
                   fontWeight: 700,
                   color: bronzeYellow,
                   fontSize: { xs: '1.2rem', md: '1.5rem' },
@@ -589,7 +576,6 @@ function QRProductDetailPage() {
                   gap: 0.5,
                   fontSize: { xs: '0.85rem', md: '1rem' },
                   lineHeight: 1.3,
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   color: '#333',
                 }}
               >
@@ -655,7 +641,6 @@ function QRProductDetailPage() {
               <Typography
                 variant="h5"
                 sx={{
-                  fontFamily: "'VNM Sans Display', sans-serif",
                   fontWeight: 700,
                   color: bronzeYellow,
                   fontSize: { xs: '1.2rem', md: '1.5rem' },
@@ -671,7 +656,6 @@ function QRProductDetailPage() {
                   gap: 0.5,
                   fontSize: { xs: '0.85rem', md: '1rem' },
                   lineHeight: 1.3,
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   color: '#333',
                 }}
               >
@@ -725,7 +709,6 @@ function QRProductDetailPage() {
               <Typography
                 variant="h5"
                 sx={{
-                  fontFamily: "'VNM Sans Display', sans-serif",
                   fontWeight: 700,
                   color: bronzeYellow,
                   fontSize: { xs: '1.2rem', md: '1.5rem' },
@@ -741,7 +724,6 @@ function QRProductDetailPage() {
                   gap: 0.5,
                   fontSize: { xs: '0.85rem', md: '1rem' },
                   lineHeight: 1.3,
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   color: '#333',
                 }}
               >
@@ -792,7 +774,6 @@ function QRProductDetailPage() {
               <Typography
                 variant="h5"
                 sx={{
-                  fontFamily: "'VNM Sans Display', sans-serif",
                   fontWeight: 700,
                   color: bronzeYellow,
                   fontSize: { xs: '1.2rem', md: '1.5rem' },
@@ -808,7 +789,6 @@ function QRProductDetailPage() {
                   gap: 0.5,
                   fontSize: { xs: '0.85rem', md: '1rem' },
                   lineHeight: 1.3,
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   color: '#333',
                 }}
               >
@@ -833,7 +813,6 @@ function QRProductDetailPage() {
             <Typography
               variant="h5"
               sx={{
-                fontFamily: "'VNM Sans Display', sans-serif",
                 fontWeight: 700,
                 color: bronzeYellow,
                 fontSize: { xs: '1.2rem', md: '1.5rem' },
@@ -849,7 +828,6 @@ function QRProductDetailPage() {
                 color: '#666',
                 fontStyle: 'italic',
                 mb: 3,
-                fontFamily: "'VNM Sans Std', sans-serif",
               }}
             >
             </Typography>
@@ -867,7 +845,6 @@ function QRProductDetailPage() {
               <Typography
                 variant="h6"
                 sx={{
-                  fontFamily: "'VNM Sans Display', sans-serif",
                   fontWeight: 700,
                   color: bronzeYellow,
                   fontSize: { xs: '1rem', md: '1.2rem' },
@@ -883,7 +860,6 @@ function QRProductDetailPage() {
                   gap: 1,
                   fontSize: { xs: '0.85rem', md: '1rem' },
                   lineHeight: 1.3,
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   color: '#333',
                 }}
               >

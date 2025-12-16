@@ -129,7 +129,6 @@ function HeroSection() {
             <Typography
               variant="h2"
               sx={{
-                fontFamily: "'VNM Sans Display', sans-serif",
                 fontWeight: 700,
                 color: '#FFF7E6',
                 textShadow: '0 4px 14px rgba(0,0,0,0.55)',
@@ -165,7 +164,6 @@ function HeroSection() {
                 color: '#FFF4D9',
                 textShadow: '0 3px 10px rgba(0,0,0,0.65)',
                 maxWidth: 520,
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 400,
               }}
             >

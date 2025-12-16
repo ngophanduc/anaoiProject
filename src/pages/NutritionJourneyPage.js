@@ -10,12 +10,19 @@ import router2Img from '../assets/hanhtrinh/2.png';
 import router3Img from '../assets/hanhtrinh/3.png';
 import hatBackground from '../assets/hanhtrinh/hatbackground.png';
 import hatBackground2 from '../assets/hanhtrinh/hatbackground2.png';
+import nuocBackground from '../assets/hanhtrinh/nuocbackground.png';
+import nuocBackground2 from '../assets/hanhtrinh/nuocbackground2.png';
+import nuoc from '../assets/hanhtrinh/nuoc.png';
 import hat1 from '../assets/hanhtrinh/hat1.png';
 import hat2 from '../assets/hanhtrinh/hat2.png';
 import hat3 from '../assets/hanhtrinh/hat3.png';
 import hat4 from '../assets/hanhtrinh/hat4.png';
 import hat5 from '../assets/hanhtrinh/hat5.png';
 import hat6 from '../assets/hanhtrinh/hat6.png';
+import chaidau from '../assets/hanhtrinh/chaidau.png';
+import use from '../assets/hanhtrinh/use.png';
+import use2 from '../assets/hanhtrinh/use1.png';
+import foot from '../assets/hanhtrinh/foot.png';
 
 const HEADER_HEIGHT = 64;
 
@@ -33,6 +40,10 @@ function NutritionJourneyPage() {
   // Virtual scroll depth cho hat background section
   const hatBgSectionRef = useRef(null);
   const [hatBgScrollProgress, setHatBgScrollProgress] = useState(0);
+
+  // Virtual scroll depth cho nuoc section
+  const nuocSectionRef = useRef(null);
+  const [nuocScrollProgress, setNuocScrollProgress] = useState(0);
 
   // Map section visibility (for entrance animations)
   const mapSectionRef = useRef(null);
@@ -69,6 +80,42 @@ function NutritionJourneyPage() {
       progress = Math.min(1, Math.max(0, progress));
       
       setHatBgScrollProgress(progress);
+    };
+
+    handleScroll(); // Sync lần đầu
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
+  // Track scroll progress của nuoc section - dừng ở 50% của 120vh thứ 2 (180vh từ đầu = 75% của section)
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = nuocSectionRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionHeight = rect.height; // 240vh
+
+      // Tính progress rơi nuoc.png:
+      //  - 0 khi section đã vào viewport một đoạn (~30% chiều cao màn hình)
+      //  - Dừng ở 75% (180vh / 240vh) = 50% của 120vh thứ 2
+      const totalScrollDistance = windowHeight + sectionHeight;
+      const scrolled = windowHeight - rect.top;
+
+      const startOffset = windowHeight * 0.3;
+      const stopPoint = 0.75; // 75% của section = 180vh
+      const effectiveDistance = (totalScrollDistance - startOffset) * stopPoint;
+
+      let progress = (scrolled - startOffset) / effectiveDistance;
+      progress = Math.min(stopPoint, Math.max(0, progress)); // Dừng ở 75%
+      
+      setNuocScrollProgress(progress);
     };
 
     handleScroll(); // Sync lần đầu
@@ -408,7 +455,6 @@ function NutritionJourneyPage() {
               top: 0,
               left: '50%',
               transform: 'translateX(-50%)',
-              fontFamily: "'VNM Sans Display', sans-serif",
               fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
               fontWeight: 700,
               color: '#FFF7E6',
@@ -435,7 +481,6 @@ function NutritionJourneyPage() {
               top: 0,
               left: '50%',
               transform: 'translateX(-50%)',
-              fontFamily: "'VNM Sans Display', sans-serif",
               fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
               fontWeight: 700,
               color: '#FFF7E6',
@@ -474,7 +519,6 @@ function NutritionJourneyPage() {
         {/* Text */}
         <Typography
           sx={{
-            fontFamily: "'VNM Sans Display', sans-serif",
             fontWeight: 700,
             fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
             color: '#667B00',
@@ -580,7 +624,6 @@ function NutritionJourneyPage() {
           >
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Display', sans-serif",
                 fontWeight: 700,
                 fontSize: { xs: '1.4rem', md: '1.8rem' },
                 color: '#667B00',
@@ -593,7 +636,6 @@ function NutritionJourneyPage() {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontSize: { xs: '1rem', md: '1.1rem' },
                 lineHeight: 1.6,
                 color: '#667B00',
@@ -604,7 +646,6 @@ function NutritionJourneyPage() {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontSize: { xs: '1rem', md: '1.1rem' },
                 lineHeight: 1.6,
                 color: '#667B00',
@@ -616,7 +657,6 @@ function NutritionJourneyPage() {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontSize: { xs: '1rem', md: '1.1rem' },
                 lineHeight: 1.6,
                 color: '#667B00',
@@ -643,7 +683,6 @@ function NutritionJourneyPage() {
             {/* Vùng trồng bơ */}
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Display', sans-serif",
                 fontWeight: 700,
                 fontSize: { xs: '1.1rem', md: '1.3rem' },
                 color: '#667B00',
@@ -655,7 +694,6 @@ function NutritionJourneyPage() {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontSize: { xs: '0.95rem', md: '1.05rem' },
                 lineHeight: 1.5,
                 color: '#667B00',
@@ -672,7 +710,6 @@ function NutritionJourneyPage() {
             {/* Vùng trồng lúa */}
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Display', sans-serif",
                 fontWeight: 700,
                 fontSize: { xs: '1.1rem', md: '1.3rem' },
                 color: '#667B00',
@@ -684,7 +721,6 @@ function NutritionJourneyPage() {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontSize: { xs: '0.95rem', md: '1.05rem' },
                 lineHeight: 1.5,
                 color: '#667B00',
@@ -703,7 +739,6 @@ function NutritionJourneyPage() {
             {/* Vùng trồng lạc */}
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Display', sans-serif",
                 fontWeight: 700,
                 fontSize: { xs: '1.1rem', md: '1.3rem' },
                 color: '#667B00',
@@ -715,7 +750,6 @@ function NutritionJourneyPage() {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontSize: { xs: '0.95rem', md: '1.05rem' },
                 lineHeight: 1.5,
                 color: '#667B00',
@@ -743,7 +777,6 @@ function NutritionJourneyPage() {
             {/* Vùng trồng đậu nành */}
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Display', sans-serif",
                 fontWeight: 700,
                 fontSize: { xs: '1.1rem', md: '1.3rem' },
                 color: '#667B00',
@@ -755,7 +788,6 @@ function NutritionJourneyPage() {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontSize: { xs: '0.95rem', md: '1.05rem' },
                 lineHeight: 1.5,
                 color: '#667B00',
@@ -820,7 +852,6 @@ function NutritionJourneyPage() {
             position: 'absolute',
             top: '50vh',
             left: '50%',
-            fontFamily: "'VNM Sans Display', sans-serif",
             fontWeight: 700,
             fontSize: { xs: '2rem', sm: '2.8rem', md: '3.8rem', lg: '4.4rem' },
             color: '#D7E9A0', // xanh nhạt, giữ stroke xanh đậm bên ngoài
@@ -851,7 +882,6 @@ function NutritionJourneyPage() {
             position: 'absolute',
             top: '170vh',
             left: '50%',
-            fontFamily: "'VNM Sans Display', sans-serif",
             fontWeight: 700,
             fontSize: { xs: '2rem', sm: '2.8rem', md: '3.8rem', lg: '4.4rem' },
             color: '#D7E9A0', // xanh nhạt, giữ stroke xanh đậm bên ngoài
@@ -905,11 +935,398 @@ function NutritionJourneyPage() {
               height: 'auto',
               pointerEvents: 'none',
               zIndex: 3,
-              transform: `translateY(${hatBgScrollProgress * 3000 * speed}%)`,
+              transform: `translateY(${hatBgScrollProgress * 2000 * speed}%)`,
               transition: 'transform 0.03s linear',
             }}
           />
         ))}
+      </Box>
+
+      {/* NEW SECTION - Water/Step Background (240vh) */}
+      <Box
+        ref={nuocSectionRef}
+        sx={{
+          position: 'relative',
+          width: '100%',
+          height: '240vh',
+          overflow: 'hidden',
+          backgroundColor: '#020617',
+        }}
+      >
+        {/* Background ghép từ nuocbackground + nuocbackground2 để phủ hết 240vh */}
+        <Box
+          component="img"
+          src={nuocBackground}
+          alt="Nuoc background top"
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '120vh',
+            objectFit: 'cover',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }}
+        />
+        <Box
+          component="img"
+          src={nuocBackground2}
+          alt="Nuoc background bottom"
+          sx={{
+            position: 'absolute',
+            top: '120vh',
+            left: 0,
+            width: '100%',
+            height: '120vh',
+            objectFit: 'cover',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Ảnh nuoc.png - rơi xuống khi scroll, dừng ở 50% của 120vh thứ 2 */}
+        <Box
+          component="img"
+          src={nuoc}
+          alt="Nuoc"
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: `translateX(-50%) translateY(${(nuocScrollProgress / 0.75) * 180}vh)`,
+            width: { xs: '60%', md: '50%' },
+            maxWidth: '400px',
+            height: 'auto',
+            objectFit: 'contain',
+            zIndex: 1,
+            pointerEvents: 'none',
+            transition: 'transform 0.03s linear',
+          }}
+        />
+
+        {/* Text "Anaoi ra đời" - hiện ra khi nuoc.png dừng lại (ở giữa 120vh dưới) */}
+        <Typography
+          sx={{
+            position: 'absolute',
+            top: '150vh', // Giữa 120vh dưới (120vh + 30vh = 150vh)
+            left: '50%',
+            transform: `translateX(-50%) translateY(${nuocScrollProgress >= 0.75 ? 0 : 20}px)`,
+            fontWeight: 700,
+            fontSize: { xs: '2rem', sm: '2.8rem', md: '3.8rem', lg: '4.4rem' },
+            color: '#D7E9A0', // xanh nhạt, giữ stroke xanh đậm bên ngoài
+            textAlign: 'center',
+            // Tạo viền 3D bằng nhiều lớp shadow + stroke nhẹ
+            textShadow: `
+              0 2px 0 rgba(15,23,42,0.8),
+              0 4px 8px rgba(15,23,42,0.8),
+              0 8px 24px rgba(0,0,0,0.7)
+            `,
+            WebkitTextStroke: '2px rgba(102, 123, 0, 0.95)',
+            textStroke: '2px rgba(102, 123, 0, 0.95)',
+            zIndex: 2,
+            pointerEvents: 'none',
+            px: { xs: 2, md: 4 },
+            maxWidth: '90%',
+            lineHeight: 1.3,
+            opacity: nuocScrollProgress >= 0.75 ? 1 : 0,
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+          }}
+        >
+          Anaoi ra đời
+        </Typography>
+      </Box>
+
+      {/* NEW SECTION - Chaidau (120vh) */}
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          height: '120vh',
+          overflow: 'hidden',
+          backgroundColor: '#020617',
+        }}
+      >
+        {/* Ảnh chaidau.png */}
+        <Box
+          component="img"
+          src={chaidau}
+          alt="Chaidau"
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 1,
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Text overlay ở top của section */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '1%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 2,
+            width: '90%',
+            maxWidth: '800px',
+            textAlign: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          <Typography
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+              color: '#D7E9A0',
+              textShadow: `
+                0 2px 0 rgba(15,23,42,0.8),
+                0 4px 8px rgba(15,23,42,0.8),
+                0 8px 24px rgba(0,0,0,0.7)
+              `,
+              WebkitTextStroke: '2px rgba(102, 123, 0, 0.95)',
+              textStroke: '2px rgba(102, 123, 0, 0.95)',
+              lineHeight: 1.3,
+            }}
+          >
+            Mỗi giọt dầu là tinh hoa của hạt và sự tử tế của người làm.
+          </Typography>       
+        </Box>
+
+        {/* Text overlay ở bottom của section */}
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '1%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 2,
+            width: '90%',
+            maxWidth: '1572px',
+            textAlign: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          <Typography
+            component="div"
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+              color: '#D7E9A0',
+              textShadow: `
+                0 2px 0 rgba(15,23,42,0.8),
+                0 4px 8px rgba(15,23,42,0.8),
+                0 8px 24px rgba(0,0,0,0.7)
+              `,
+              WebkitTextStroke: '2px rgba(102, 123, 0, 0.95)',
+              textStroke: '2px rgba(102, 123, 0, 0.95)',
+              lineHeight: 1.3,
+            }}
+            dangerouslySetInnerHTML={{
+              __html: 'Một loại dầu nhẹ lành, nguyên bản, <br />giúp bữa ăn của bạn vui hơn, ngon hơn và hạnh phúc hơn mỗi ngày.'
+            }}
+          />
+        </Box>
+      </Box>
+
+      {/* NEW SECTION - Text section */}
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          minHeight: '100vh',
+          backgroundColor: '#D7E9A0',
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+        }}
+      >
+        {/* Nửa trái - Ảnh use.png */}
+        <Box
+          sx={{
+            width: { xs: '100%', md: '50%' },
+            height: { xs: '50vh', md: '100vh' },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            px: { xs: 2, md: 4 },
+          }}
+        >
+          <Box
+            component="img"
+            src={use}
+            alt="Use"
+            sx={{
+              width: '100%',
+              maxWidth: '600px',
+              height: 'auto',
+              objectFit: 'contain',
+              pointerEvents: 'none',
+            }}
+          />
+        </Box>
+
+        {/* Nửa phải - Text */}
+        <Box
+          sx={{
+            width: { xs: '100%', md: '50%' },
+            height: { xs: '50vh', md: '100vh' },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            px: { xs: 2, md: 4 },
+          }}
+        >
+          <Typography
+            component="div"
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+              color: '#ffffff', // Màu trắng để tương phản với background xanh nhạt
+              textShadow: `
+                0 2px 4px rgba(0, 0, 0, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(102, 123, 0, 0.4)
+              `,
+              WebkitTextStroke: '2px #667B00', // Viền màu xanh đậm để tạo độ tương phản
+              textStroke: '2px #667B00',
+              lineHeight: 1.3,
+              textAlign: 'center',
+              maxWidth: '100%',
+              width: '100%',
+            }}
+            dangerouslySetInnerHTML={{
+              __html: 'Hạnh phúc đôi khi bắt đầu rất giản dị <br />như một bữa ăn ngon được làm từ những giọt dầu bạn tin tưởng.'
+            }}
+          />
+        </Box>
+      </Box>
+
+      {/* NEW SECTION - Text và ảnh use2 (ngược lại) */}
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          minHeight: '100vh',
+          backgroundColor: '#FFF8DC', // Màu kem
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+        }}
+      >
+        {/* Nửa trái - Text */}
+        <Box
+          sx={{
+            width: { xs: '100%', md: '50%' },
+            height: { xs: '50vh', md: '100vh' },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            px: { xs: 2, md: 4 },
+          }}
+        >
+          <Typography
+            component="div"
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+              color: '#667B00', // Màu xanh đậm (ngược với trắng của section trước)
+              textShadow: `
+                0 2px 4px rgba(255, 255, 255, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.1),
+                0 0 20px rgba(255, 255, 255, 0.3)
+              `,
+              WebkitTextStroke: '2px #ffffff', // Viền màu trắng (ngược với xanh đậm của section trước)
+              textStroke: '2px #ffffff',
+              lineHeight: 1.3,
+              textAlign: 'center',
+              maxWidth: '100%',
+              width: '100%',
+            }}
+          >
+            Một chai dầu lành để mỗi bữa cơm trở thành khoảnh khắc cả nhà quây quần, ấm áp và an yên.
+          </Typography>
+        </Box>
+
+        {/* Nửa phải - Ảnh use2.png */}
+        <Box
+          sx={{
+            width: { xs: '100%', md: '50%' },
+            height: { xs: '50vh', md: '100vh' },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            px: { xs: 2, md: 4 },
+          }}
+        >
+          <Box
+            component="img"
+            src={use2}
+            alt="Use 2"
+            sx={{
+              width: '100%',
+              maxWidth: '600px',
+              height: 'auto',
+              objectFit: 'contain',
+              pointerEvents: 'none',
+            }}
+          />
+        </Box>
+      </Box>
+
+      {/* NEW SECTION - Foot image với text overlay */}
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          minHeight: '100vh',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Ảnh foot.png */}
+        <Box
+          component="img"
+          src={foot}
+          alt="Foot"
+          sx={{
+            width: '100%',
+            height: '100vh',
+            objectFit: 'cover',
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Text overlay ở bottom */}
+        <Typography
+          sx={{
+            position: 'absolute',
+            bottom: '1%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontWeight: 700,
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+            color: '#ffffff',
+            textShadow: `
+              0 2px 4px rgba(0, 0, 0, 0.5),
+              0 4px 8px rgba(0, 0, 0, 0.3),
+              0 0 20px rgba(0, 0, 0, 0.4)
+            `,
+            WebkitTextStroke: '2px rgba(102, 123, 0, 0.8)',
+            textStroke: '2px rgba(102, 123, 0, 0.8)',
+            lineHeight: 1.3,
+            textAlign: 'center',
+            whiteSpace: 'nowrap',
+            maxWidth: '100%',
+            width: '100%',
+            px: { xs: 2, md: 4 },
+            zIndex: 2,
+            pointerEvents: 'none',
+          }}
+        >
+          AnaOi - Hành trình lan tỏa dinh dưỡng và hạnh phúc vào từng gian bếp Việt.
+        </Typography>
       </Box>
 
       <Footer />

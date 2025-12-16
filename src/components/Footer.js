@@ -75,7 +75,6 @@ function Footer() {
                 fontWeight: 700,
                 fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.4rem', lg: '1.5rem', xl: '1.6rem' },
                 mb: 1,
-                fontFamily: "'VNM Sans Display', sans-serif",
               }}
             >
               Công ty TNHH AnaOi
@@ -85,21 +84,21 @@ function Footer() {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <LocationOn sx={{ color: '#EDB500', fontSize: 20 }} />
-                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontFamily: "'VNM Sans Std', sans-serif", fontWeight: 400 }}>
+                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontWeight: 400 }}>
                   Thôn 6, xã Ia Lé, tỉnh Gia Lai, Việt Nam
                 </Typography>
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Phone sx={{ color: '#EDB500', fontSize: 20 }} />
-                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontFamily: "'VNM Sans Std', sans-serif", fontWeight: 400 }}>
+                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontWeight: 400 }}>
                   0901949426
                 </Typography>
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Email sx={{ color: '#EDB500', fontSize: 20 }} />
-                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontFamily: "'VNM Sans Std', sans-serif", fontWeight: 400 }}>
+                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontWeight: 400 }}>
                   anaoi.tn@gmail.com
                 </Typography>
               </Box>
@@ -107,7 +106,7 @@ function Footer() {
 
             {/* Social media */}
             <Box sx={{ mt: 1 }}>
-              <Typography sx={{ color: bronzeYellow, mb: 1, fontSize: '0.9rem', fontFamily: "'VNM Sans Std', sans-serif", fontWeight: 400 }}>
+              <Typography sx={{ color: bronzeYellow, mb: 1, fontSize: '0.9rem', fontWeight: 400 }}>
                 Liên hệ qua facebook, tiktok
               </Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>
@@ -150,7 +149,6 @@ function Footer() {
                   textTransform: 'uppercase',
                   mb: 2,
                   fontSize: { xs: '1rem', sm: '1.15rem', md: '1.3rem', lg: '1.4rem', xl: '1.5rem' },
-                  fontFamily: "'VNM Sans Display', sans-serif",
                 }}
               >
                 Cập nhật thông tin từ AnaOi
@@ -167,9 +165,7 @@ function Footer() {
                 sx={{
                   backgroundColor: '#fff',
                   borderRadius: 1,
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   '& .MuiOutlinedInput-root': {
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     '& fieldset': {
                       borderColor: 'transparent',
                     },
@@ -181,7 +177,6 @@ function Footer() {
                     },
                   },
                   '& .MuiInputLabel-root': {
-                    fontFamily: "'VNM Sans Std', sans-serif",
                   },
                 }}
               />
@@ -199,9 +194,7 @@ function Footer() {
                     flex: 1,
                     backgroundColor: '#fff',
                     borderRadius: 1,
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     '& .MuiOutlinedInput-root': {
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       '& fieldset': {
                         borderColor: 'transparent',
                       },
@@ -213,7 +206,6 @@ function Footer() {
                       },
                     },
                     '& .MuiInputLabel-root': {
-                      fontFamily: "'VNM Sans Std', sans-serif",
                     },
                   }}
                 />
@@ -227,9 +219,7 @@ function Footer() {
                     flex: 1,
                     backgroundColor: '#fff',
                     borderRadius: 1,
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     '& .MuiOutlinedInput-root': {
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       '& fieldset': {
                         borderColor: 'transparent',
                       },
@@ -241,7 +231,6 @@ function Footer() {
                       },
                     },
                     '& .MuiInputLabel-root': {
-                      fontFamily: "'VNM Sans Std', sans-serif",
                     },
                   }}
                 />
@@ -268,11 +257,9 @@ function Footer() {
                   sx={{
                     flex: 1,
                     backgroundColor: 'transparent',
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     '& .MuiOutlinedInput-root': {
                       backgroundColor: '#f5f5f5',
                       borderRadius: 1,
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       '& fieldset': {
                         borderColor: 'transparent',
                       },
@@ -284,7 +271,6 @@ function Footer() {
                       },
                     },
                     '& .MuiInputLabel-root': {
-                      fontFamily: "'VNM Sans Std', sans-serif",
                     },
                   }}
                 />
@@ -300,7 +286,6 @@ function Footer() {
                     minWidth: '100px',
                     height: 'fit-content',
                     borderRadius: 1,
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     '&:hover': {
                       backgroundColor: '#d4a000',
                     },

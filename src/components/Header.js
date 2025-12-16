@@ -81,7 +81,6 @@ function Header({ hidden = false }) {
                 borderBottom: location.pathname === item.path ? '2px solid' : 'none',
                 borderColor: bronzeYellow,
                 borderRadius: 0,
-                fontFamily: "'VNM Sans Std', sans-serif",
                 whiteSpace: 'nowrap',
                 '&:hover': {
                   backgroundColor: 'rgba(102, 123, 0, 0.1)',
@@ -113,7 +112,6 @@ function Header({ hidden = false }) {
                 '& .MuiBadge-badge': {
                   backgroundColor: americanYellow,
                   color: '#fff',
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   fontWeight: 600,
                   fontSize: { xs: '0.7rem', sm: '0.75rem', md: '0.875rem' },
                   minWidth: { xs: 16, sm: 18, md: 20 },

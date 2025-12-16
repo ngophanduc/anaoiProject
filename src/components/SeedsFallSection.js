@@ -262,7 +262,6 @@ function SeedsFallSection() {
           {/* Dòng 1: Hiện khi scroll đến 50vh (scrollProgress >= 0.25) */}
           <Typography
             sx={{
-              fontFamily: "'VNM Sans Display', sans-serif",
               fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2.2rem' },
               fontWeight: 700,
               color: '#FFF7E6',
@@ -283,7 +282,6 @@ function SeedsFallSection() {
           {/* Dòng 2: Hiện khi scroll đến 100vh (scrollProgress >= 0.5) */}
           <Typography
             sx={{
-              fontFamily: "'VNM Sans Display', sans-serif",
               fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2.2rem' },
               fontWeight: 700,
               color: '#FFF7E6',

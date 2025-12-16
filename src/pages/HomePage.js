@@ -182,7 +182,6 @@ function HomePage() {
                 fontSize: { xs: '1.6rem', md: '2.1rem' },
                 lineHeight: 1.3,
                 color: '#B45309',
-                fontFamily: "'VNM Sans Display', sans-serif",
                 whiteSpace: 'nowrap',
               }}
             >
@@ -196,7 +195,6 @@ function HomePage() {
                 fontSize: { xs: '0.98rem', md: '1.05rem' },
                 lineHeight: 1.8,
                 color: '#4B5563',
-                fontFamily: "'VNM Sans Std', sans-serif",
                 fontWeight: 400,
               }}
             >
@@ -374,7 +372,6 @@ function HomePage() {
                         lineHeight: 1.6,
                         fontWeight: 400,
                         color: '#4B5563',
-                        fontFamily: "'VNM Sans Std', sans-serif",
                       }}
                     >
                       {uspTexts[index]}
@@ -485,7 +482,6 @@ function HomePage() {
               textTransform: 'uppercase',
               color: '#B45309',
               textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 0 2px rgba(255,255,255,0.5)',
-              fontFamily: "'VNM Sans Display', sans-serif",
               lineHeight: 1.3,
             }}
           >
@@ -597,7 +593,6 @@ function HomePage() {
                 <Typography
                   variant="body2"
                   sx={{
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     fontWeight: 600,
                     fontSize: { xs: '0.95rem', md: '1.1rem' },
                     color: '#1F2937',

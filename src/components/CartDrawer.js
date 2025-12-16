@@ -54,7 +54,6 @@ function CartDrawer() {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "'VNM Sans Std', sans-serif",
               fontWeight: 700,
               color: bronzeYellow,
             }}
@@ -82,7 +81,6 @@ function CartDrawer() {
               <Typography
                 variant="body1"
                 sx={{
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   color: '#999',
                   mb: 2,
                 }}
@@ -92,7 +90,6 @@ function CartDrawer() {
               <Typography
                 variant="body2"
                 sx={{
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   color: '#999',
                 }}
               >
@@ -145,7 +142,6 @@ function CartDrawer() {
                           variant="caption"
                           sx={{
                             color: americanYellow,
-                            fontFamily: "'VNM Sans Std', sans-serif",
                             fontWeight: 600,
                             display: 'block',
                             mb: 0.5,
@@ -159,7 +155,6 @@ function CartDrawer() {
                       <Typography
                         variant="body2"
                         sx={{
-                          fontFamily: "'VNM Sans Std', sans-serif",
                           fontWeight: 600,
                           color: bronzeYellow,
                           mb: 0.5,
@@ -177,7 +172,6 @@ function CartDrawer() {
                       <Typography
                         variant="caption"
                         sx={{
-                          fontFamily: "'VNM Sans Std', sans-serif",
                           color: '#666',
                           display: 'block',
                           mb: 1,
@@ -190,7 +184,6 @@ function CartDrawer() {
                       <Typography
                         variant="body2"
                         sx={{
-                          fontFamily: "'VNM Sans Std', sans-serif",
                           fontWeight: 700,
                           color: americanYellow,
                         }}
@@ -256,7 +249,6 @@ function CartDrawer() {
                       </IconButton>
                       <Typography
                         sx={{
-                          fontFamily: "'VNM Sans Std', sans-serif",
                           fontWeight: 600,
                           color: bronzeYellow,
                           px: 2,
@@ -289,7 +281,6 @@ function CartDrawer() {
                     <Typography
                       variant="body2"
                       sx={{
-                        fontFamily: "'VNM Sans Std', sans-serif",
                         fontWeight: 600,
                         color: bronzeYellow,
                       }}
@@ -319,7 +310,6 @@ function CartDrawer() {
                 <Typography
                   variant="body2"
                   sx={{
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     color: bronzeYellow,
                   }}
                 >
@@ -328,7 +318,6 @@ function CartDrawer() {
                 <Typography
                   variant="body2"
                   sx={{
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     fontWeight: 600,
                     color: bronzeYellow,
                   }}
@@ -348,7 +337,6 @@ function CartDrawer() {
                 <Typography
                   variant="h6"
                   sx={{
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     fontWeight: 700,
                     color: bronzeYellow,
                   }}
@@ -358,7 +346,6 @@ function CartDrawer() {
                 <Typography
                   variant="h6"
                   sx={{
-                    fontFamily: "'VNM Sans Std', sans-serif",
                     fontWeight: 700,
                     color: americanYellow,
                   }}
@@ -374,7 +361,6 @@ function CartDrawer() {
                 sx={{
                   backgroundColor: americanYellow,
                   color: '#fff',
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   fontWeight: 600,
                   fontSize: '1rem',
                   py: 1.5,

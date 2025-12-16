@@ -360,7 +360,6 @@ function ProductPage() {
               <Typography
                 variant="h2"
                 sx={{
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   fontWeight: 700,
                   color: bronzeYellow,
                   textAlign: 'center',
@@ -373,7 +372,6 @@ function ProductPage() {
               <Typography
                 variant="h6"
                 sx={{
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   color: bronzeYellow,
                   textAlign: 'center',
                   maxWidth: 800,
@@ -462,7 +460,6 @@ function ProductPage() {
                         <Typography
                           variant="h6"
                           sx={{
-                            fontFamily: "'VNM Sans Std', sans-serif",
                             fontWeight: 700,
                             color: bronzeYellow,
                             fontSize: { xs: '1.1rem', md: '1.25rem' },
@@ -498,7 +495,6 @@ function ProductPage() {
                           variant="overline"
                           sx={{
                             color: americanYellow,
-                            fontFamily: "'VNM Sans Std', sans-serif",
                             fontWeight: 600,
                             fontSize: '0.75rem',
                             letterSpacing: 1,
@@ -514,7 +510,6 @@ function ProductPage() {
                       <Typography
                         variant="body2"
                         sx={{
-                          fontFamily: "'VNM Sans Std', sans-serif",
                           color: '#666',
                           lineHeight: 1.7,
                           fontSize: { xs: '0.9rem', md: '1rem' },
@@ -557,7 +552,6 @@ function ProductPage() {
                                   ? bronzeYellow
                                   : `${bronzeYellow}15`,
                                 color: isSelected ? '#fff' : bronzeYellow,
-                                fontFamily: "'VNM Sans Std', sans-serif",
                                 fontWeight: 600,
                                 fontSize: '0.875rem',
                                 cursor: 'pointer',
@@ -578,7 +572,6 @@ function ProductPage() {
                       <Typography
                         variant="h6"
                         sx={{
-                          fontFamily: "'VNM Sans Std', sans-serif",
                           fontWeight: 700,
                           color: americanYellow,
                           fontSize: { xs: '1.1rem', md: '1.25rem' },
@@ -681,7 +674,6 @@ function ProductPage() {
                       <Typography
                         variant="subtitle2"
                         sx={{
-                          fontFamily: "'VNM Sans Std', sans-serif",
                           fontWeight: 600,
                           color: bronzeYellow,
                           mb: 1.5,
@@ -784,7 +776,6 @@ function ProductPage() {
                       variant="overline"
                       sx={{
                         color: americanYellow,
-                        fontFamily: "'VNM Sans Std', sans-serif",
                         fontWeight: 600,
                         fontSize: '0.75rem',
                         letterSpacing: 1,
@@ -808,7 +799,6 @@ function ProductPage() {
                     <Typography
                       variant="h5"
                       sx={{
-                        fontFamily: "'VNM Sans Std', sans-serif",
                         fontWeight: 700,
                         color: bronzeYellow,
                         lineHeight: 1.3,
@@ -841,7 +831,6 @@ function ProductPage() {
                     <Typography
                       variant="subtitle2"
                       sx={{
-                        fontFamily: "'VNM Sans Std', sans-serif",
                         fontWeight: 600,
                         color: bronzeYellow,
                         mb: 1.5,
@@ -852,7 +841,6 @@ function ProductPage() {
                     <Typography
                       variant="body1"
                       sx={{
-                        fontFamily: "'VNM Sans Std', sans-serif",
                         color: '#666',
                         lineHeight: 1.8,
                       }}
@@ -865,7 +853,6 @@ function ProductPage() {
                   <Typography
                     variant="h4"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 700,
                       color: americanYellow,
                       mb: 3,
@@ -879,7 +866,6 @@ function ProductPage() {
                     <Typography
                       variant="subtitle2"
                       sx={{
-                        fontFamily: "'VNM Sans Std', sans-serif",
                         fontWeight: 600,
                         color: bronzeYellow,
                         mb: 1.5,
@@ -897,7 +883,6 @@ function ProductPage() {
                             backgroundColor:
                               modalSize === size ? bronzeYellow : `${bronzeYellow}15`,
                             color: modalSize === size ? '#fff' : bronzeYellow,
-                            fontFamily: "'VNM Sans Std', sans-serif",
                             fontWeight: 600,
                             fontSize: '1rem',
                             cursor: 'pointer',
@@ -920,7 +905,6 @@ function ProductPage() {
                     <Typography
                       variant="subtitle2"
                       sx={{
-                        fontFamily: "'VNM Sans Std', sans-serif",
                         fontWeight: 600,
                         color: bronzeYellow,
                         mb: 1.5,
@@ -957,7 +941,6 @@ function ProductPage() {
                       </IconButton>
                       <Typography
                         sx={{
-                          fontFamily: "'VNM Sans Std', sans-serif",
                           fontWeight: 600,
                           color: bronzeYellow,
                           px: 4,
@@ -993,7 +976,6 @@ function ProductPage() {
                     sx={{
                       backgroundColor: americanYellow,
                       color: '#fff',
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 600,
                       fontSize: '1.1rem',
                       py: 1.5,
@@ -1017,7 +999,6 @@ function ProductPage() {
               <Typography
                 variant="h6"
                 sx={{
-                  fontFamily: "'VNM Sans Std', sans-serif",
                   fontWeight: 700,
                   color: bronzeYellow,
                   mb: 2,
@@ -1061,7 +1042,6 @@ function ProductPage() {
                         <Typography
                           variant="body1"
                           sx={{
-                            fontFamily: "'VNM Sans Std', sans-serif",
                             fontWeight: 600,
                             color: bronzeYellow,
                           }}
@@ -1083,7 +1063,6 @@ function ProductPage() {
                             variant="caption"
                             sx={{
                               color: '#999',
-                              fontFamily: "'VNM Sans Std', sans-serif",
                             }}
                           >
                             {review.date}
@@ -1096,7 +1075,6 @@ function ProductPage() {
                     <Typography
                       variant="body2"
                       sx={{
-                        fontFamily: "'VNM Sans Std', sans-serif",
                         color: '#444',
                         lineHeight: 1.6,
                         pl: 7,
@@ -1125,7 +1103,6 @@ function ProductPage() {
                   <Typography
                     variant="h4"
                     sx={{
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       fontWeight: 700,
                       color: americanYellow,
                     }}
@@ -1156,7 +1133,6 @@ function ProductPage() {
                     variant="caption"
                     sx={{
                       color: '#666',
-                      fontFamily: "'VNM Sans Std', sans-serif",
                       display: 'block',
                       mt: 0.5,
                     }}
@@ -1182,7 +1158,6 @@ function ProductPage() {
           severity="success"
           sx={{
             width: '100%',
-            fontFamily: "'VNM Sans Std', sans-serif",
             backgroundColor: bronzeYellow,
             color: '#fff',
           }}

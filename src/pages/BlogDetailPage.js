@@ -297,21 +297,21 @@ function BlogDetailPage() {
       // Headings
       if (line.startsWith('# ')) {
         return (
-          <Typography key={index} variant="h3" sx={{ fontFamily: "'VNM Sans Std', sans-serif", fontWeight: 700, color: bronzeYellow, mt: 4, mb: 2 }}>
+          <Typography key={index} variant="h3" sx={{ fontWeight: 700, color: bronzeYellow, mt: 4, mb: 2 }}>
             {line.substring(2)}
           </Typography>
         );
       }
       if (line.startsWith('## ')) {
         return (
-          <Typography key={index} variant="h4" sx={{ fontFamily: "'VNM Sans Std', sans-serif", fontWeight: 600, color: bronzeYellow, mt: 3, mb: 2 }}>
+          <Typography key={index} variant="h4" sx={{ fontWeight: 600, color: bronzeYellow, mt: 3, mb: 2 }}>
             {line.substring(3)}
           </Typography>
         );
       }
       if (line.startsWith('### ')) {
         return (
-          <Typography key={index} variant="h5" sx={{ fontFamily: "'VNM Sans Std', sans-serif", fontWeight: 600, color: bronzeYellow, mt: 2, mb: 1.5 }}>
+          <Typography key={index} variant="h5" sx={{ fontWeight: 600, color: bronzeYellow, mt: 2, mb: 1.5 }}>
             {line.substring(4)}
           </Typography>
         );
@@ -320,7 +320,7 @@ function BlogDetailPage() {
       // Bold text
       if (line.startsWith('**') && line.endsWith('**')) {
         return (
-          <Typography key={index} variant="body1" sx={{ fontFamily: "'VNM Sans Std', sans-serif", fontWeight: 700, color: bronzeYellow, mb: 1 }}>
+          <Typography key={index} variant="body1" sx={{ fontWeight: 700, color: bronzeYellow, mb: 1 }}>
             {line.substring(2, line.length - 2)}
           </Typography>
         );
@@ -331,7 +331,7 @@ function BlogDetailPage() {
         return (
           <Box key={index} sx={{ display: 'flex', mb: 1, ml: 2 }}>
             <Typography sx={{ mr: 1, color: americanYellow }}>•</Typography>
-            <Typography variant="body1" sx={{ fontFamily: "'VNM Sans Std', sans-serif", color: '#444', lineHeight: 1.8 }}>
+            <Typography variant="body1" sx={{ color: '#444', lineHeight: 1.8 }}>
               {line.substring(2)}
             </Typography>
           </Box>
@@ -340,7 +340,7 @@ function BlogDetailPage() {
       
       // Normal paragraph
       return (
-        <Typography key={index} variant="body1" sx={{ fontFamily: "'VNM Sans Std', sans-serif", color: '#444', mb: 2, lineHeight: 1.8, textAlign: 'justify' }}>
+        <Typography key={index} variant="body1" sx={{ color: '#444', mb: 2, lineHeight: 1.8, textAlign: 'justify' }}>
           {line}
         </Typography>
       );
@@ -362,7 +362,7 @@ function BlogDetailPage() {
           }}
         >
           <ArrowBackIcon /> 
-          <Typography sx={{ ml: 1, fontFamily: "'VNM Sans Std', sans-serif" }}>Quay lại</Typography>
+          <Typography sx={{ ml: 1 }}>Quay lại</Typography>
         </IconButton>
 
         {/* Category Chip */}
@@ -371,7 +371,6 @@ function BlogDetailPage() {
           sx={{
             backgroundColor: `${americanYellow}20`,
             color: bronzeYellow,
-            fontFamily: "'VNM Sans Std', sans-serif",
             fontWeight: 600,
             mb: 2,
           }}
@@ -381,7 +380,6 @@ function BlogDetailPage() {
         <Typography
           variant="h3"
           sx={{
-            fontFamily: "'VNM Sans Std', sans-serif",
             fontWeight: 700,
             color: bronzeYellow,
             mb: 3,
@@ -396,13 +394,13 @@ function BlogDetailPage() {
         <Box sx={{ display: 'flex', gap: 3, mb: 2, flexWrap: 'wrap', alignItems: 'center' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <AccessTimeIcon sx={{ fontSize: 18, color: '#999' }} />
-            <Typography variant="body2" sx={{ color: '#999', fontFamily: "'VNM Sans Std', sans-serif" }}>
+            <Typography variant="body2" sx={{ color: '#999' }}>
               {blog.date}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <VisibilityIcon sx={{ fontSize: 18, color: '#999' }} />
-            <Typography variant="body2" sx={{ color: '#999', fontFamily: "'VNM Sans Std', sans-serif" }}>
+            <Typography variant="body2" sx={{ color: '#999' }}>
               {blog.views.toLocaleString()} lượt xem
             </Typography>
           </Box>
@@ -421,14 +419,14 @@ function BlogDetailPage() {
             >
               {liked ? <FavoriteIcon sx={{ fontSize: 20 }} /> : <FavoriteBorderIcon sx={{ fontSize: 20 }} />}
             </IconButton>
-            <Typography variant="body2" sx={{ color: liked ? '#f44336' : '#999', fontFamily: "'VNM Sans Std', sans-serif", fontWeight: liked ? 600 : 400 }}>
+            <Typography variant="body2" sx={{ color: liked ? '#f44336' : '#999', fontWeight: liked ? 600 : 400 }}>
               {likeCount.toLocaleString()}
             </Typography>
           </Box>
         </Box>
 
         {/* Author */}
-        <Typography variant="body2" sx={{ color: '#666', fontFamily: "'VNM Sans Std', sans-serif", fontStyle: 'italic', mb: 4 }}>
+        <Typography variant="body2" sx={{ color: '#666', fontStyle: 'italic', mb: 4 }}>
           Tác giả: {blog.author}
         </Typography>
 
@@ -443,7 +441,7 @@ function BlogDetailPage() {
 
         {/* Like Section at Bottom */}
         <Box sx={{ textAlign: 'center', py: 4, backgroundColor: `${primaryColor}40`, borderRadius: 2 }}>
-          <Typography variant="h6" sx={{ fontFamily: "'VNM Sans Std', sans-serif", color: bronzeYellow, mb: 2 }}>
+          <Typography variant="h6" sx={{ color: bronzeYellow, mb: 2 }}>
             Bạn thấy bài viết này hữu ích?
           </Typography>
           <IconButton
@@ -463,7 +461,7 @@ function BlogDetailPage() {
           >
             {liked ? <FavoriteIcon sx={{ fontSize: 32 }} /> : <FavoriteBorderIcon sx={{ fontSize: 32 }} />}
           </IconButton>
-          <Typography variant="body1" sx={{ fontFamily: "'VNM Sans Std', sans-serif", color: '#666', mt: 1 }}>
+          <Typography variant="body1" sx={{ color: '#666', mt: 1 }}>
             {likeCount} người đã thích bài viết này
           </Typography>
         </Box>

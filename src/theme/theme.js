@@ -27,30 +27,6 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "'VNM Sans Std', sans-serif",
-    h1: {
-      fontFamily: "'VNM Sans Display', sans-serif",
-      fontWeight: 700,
-    },
-    h2: {
-      fontFamily: "'VNM Sans Display', sans-serif",
-      fontWeight: 700,
-    },
-    h3: {
-      fontFamily: "'VNM Sans Display', sans-serif",
-      fontWeight: 700,
-    },
-    h4: {
-      fontFamily: "'VNM Sans Display', sans-serif",
-      fontWeight: 700,
-    },
-    h5: {
-      fontFamily: "'VNM Sans Display', sans-serif",
-      fontWeight: 700,
-    },
-    h6: {
-      fontFamily: "'VNM Sans Display', sans-serif",
-      fontWeight: 700,
-    },
   },
 });
 

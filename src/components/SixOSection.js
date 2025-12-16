@@ -88,7 +88,6 @@ function SixOSection() {
           <Typography
             variant="h5"
             sx={{
-              fontFamily: "'VNM Sans Display', sans-serif",
               fontWeight: 700,
               color: '#667B00',
               fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2.5rem', lg: '3rem', xl: '3.5rem' },
