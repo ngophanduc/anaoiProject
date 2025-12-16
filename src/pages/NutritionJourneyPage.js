@@ -5,10 +5,9 @@ import Footer from '../components/Footer';
 import background from '../assets/hanhtrinh/background.png';
 import human from '../assets/hanhtrinh/human.png';
 import map from '../assets/hanhtrinh/map.png';
-import routerImg from '../assets/hanhtrinh/router.png';
-import router2Img from '../assets/hanhtrinh/router2.png';
-import router3Img from '../assets/hanhtrinh/router3.png';
-import router4Img from '../assets/hanhtrinh/router4.png';
+import routerImg from '../assets/hanhtrinh/1.png';
+import router2Img from '../assets/hanhtrinh/2.png';
+import router3Img from '../assets/hanhtrinh/3.png';
 import hatBackground from '../assets/hanhtrinh/hatbackground.png';
 
 const HEADER_HEIGHT = 64;
@@ -329,7 +328,7 @@ function NutritionJourneyPage() {
         sx={{
           width: '100%',
           backgroundColor: '#FFF9E0',
-          color: '#111827',
+          color: '#667B00',
           padding: { xs: '48px 16px', md: '64px 32px' },
           display: 'flex',
           flexDirection: 'column',
@@ -388,9 +387,9 @@ function NutritionJourneyPage() {
               position: 'absolute',
               bottom: 0,
               left: 0,
-              width: '16%',
-              marginBottom: '402px',
-              marginLeft: '562px',
+              width: 'calc(24% + 8px)', // kích thước lộ trình 1
+              marginBottom: '329px',
+              marginLeft: '497px',
               pointerEvents: 'none',
               zIndex: 2,
             }}
@@ -403,9 +402,9 @@ function NutritionJourneyPage() {
               position: 'absolute',
               bottom: 0,
               left: 0,
-              width: '16%',
-              marginBottom: '251px',
-              marginLeft: '650px',
+              width: 'calc(24% + 8px)', // kích thước lộ trình 2
+              marginBottom: '163px',
+              marginLeft: '432px',
               pointerEvents: 'none',
               zIndex: 1,
             }}
@@ -418,29 +417,61 @@ function NutritionJourneyPage() {
               position: 'absolute',
               bottom: 0,
               left: 0,
-              width: '16%',
-              marginBottom: '216px',
-              marginLeft: '653px',
-              marginTop: '40px',
+              width: 'calc(24% + 8px)', // kích thước lộ trình 3
+              marginBottom: '104px',
+              marginLeft: '571px',
               pointerEvents: 'none',
-              zIndex: 5, // Đặt cao nhất để không bị đè
+              zIndex: 3,
             }}
           />
-          <Box
-            component="img"
-            src={router4Img}
-            alt="Lộ trình 4"
+        </Box>
+      </Box>
+
+      {/* MAP DETAIL TEXT */}
+      <Box
+        sx={{
+          width: '100%',
+          backgroundColor: '#FFF9E0',
+          color: '#111827',
+          px: { xs: 3, md: 6 },
+          pb: { xs: 4, md: 6 },
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            maxWidth: '960px',
+          }}
+        >
+          <Typography
             sx={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: '16%',
-              marginBottom: '166px',
-              marginLeft: '631px',
-              pointerEvents: 'none',
-              zIndex: 6, // Cao hơn các router khác
+              fontFamily: "'VNM Sans Display', sans-serif",
+              fontWeight: 700,
+              fontSize: { xs: '1.4rem', md: '1.8rem' },
+              color: '#667B00',
+              mb: 1.5,
             }}
-          />
+          >
+            Vùng trồng mè tại Quảng Trị
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "'VNM Sans Std', sans-serif",
+              fontSize: { xs: '1rem', md: '1.1rem' },
+              lineHeight: 1.6,
+              color: '#667B00',
+            }}
+          >
+            Diện tích canh tác: <strong>12 ha</strong>
+            <br />
+            Giống: <strong>Mè đen truyền thống vùng Trường Sơn</strong>
+            <br />
+            Đặc điểm: Trồng theo <strong>VietGAP</strong>, phơi - sàng - làm sạch hoàn toàn thủ công, 
+            <br /> giữ nguyên
+            độ thơm bùi đặc trưng.
+          </Typography>
         </Box>
       </Box>
 

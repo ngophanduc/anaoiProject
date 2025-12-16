@@ -99,7 +99,7 @@ function SixOSection() {
               maxWidth: '100%',
             }}
           >
-            6O An Toàn Dinh Dưỡng
+            6 - 0 an toàn dinh dưỡng
           </Typography>
         </Box>
       </Box>
