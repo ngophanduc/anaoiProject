@@ -1298,6 +1298,20 @@ function NutritionJourneyPage() {
           }}
         />
 
+        {/* Gradient overlay để ảnh trắng dần từ trên xuống */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(255, 255, 255, 0.4) 70%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.95) 100%)',
+            pointerEvents: 'none',
+            zIndex: 1,
+          }}
+        />
+
         {/* Text overlay ở bottom */}
         <Typography
           sx={{
