@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import background from '../assets/hanhtrinh/background.png';
 import human from '../assets/hanhtrinh/human.png';
 import map from '../assets/hanhtrinh/map.png';
-import routerImg from '../assets/hanhtrinh/1.png';
-import router2Img from '../assets/hanhtrinh/2.png';
-import router3Img from '../assets/hanhtrinh/3.png';
 import hatBackground from '../assets/hanhtrinh/hatbackground.png';
 import hatBackground2 from '../assets/hanhtrinh/hatbackground2.png';
 import nuocBackground from '../assets/hanhtrinh/nuocbackground.png';
@@ -44,6 +40,11 @@ function NutritionJourneyPage() {
   // Virtual scroll depth cho nuoc section
   const nuocSectionRef = useRef(null);
   const [nuocScrollProgress, setNuocScrollProgress] = useState(0);
+
+  // Virtual scroll depth cho foot section (zoom từ 50x về 1x)
+  const footSectionRef = useRef(null);
+  const [footScrollProgress, setFootScrollProgress] = useState(0);
+  const footScrollLocked = useRef(false);
 
   // Map section visibility (for entrance animations)
   const mapSectionRef = useRef(null);
@@ -116,6 +117,49 @@ function NutritionJourneyPage() {
       progress = Math.min(stopPoint, Math.max(0, progress)); // Dừng ở 75%
       
       setNuocScrollProgress(progress);
+    };
+
+    handleScroll(); // Sync lần đầu
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
+  // Track scroll progress của foot section - zoom từ 30x về 1x
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = footSectionRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionHeight = rect.height; // 120vh
+
+      // Kiểm tra xem section có đang trong viewport không
+      const isInViewport = rect.top < windowHeight && rect.bottom > 0;
+      
+      // Chỉ cập nhật progress nếu không đang trong trạng thái locked (để tránh override animation khi scroll bằng wheel)
+      if (isInViewport && !footScrollLocked.current) {
+        // Tính progress zoom:
+        //  - 0 khi section bắt đầu vào viewport (top của section = bottom của viewport)
+        //  - 1 khi section đi hết (bottom của section = top của viewport)
+        const totalScrollDistance = windowHeight + sectionHeight;
+        const scrolled = windowHeight - rect.top; // 0 → totalScrollDistance
+
+        let progress = scrolled / totalScrollDistance;
+        progress = Math.min(1, Math.max(0, progress));
+        
+        setFootScrollProgress(progress);
+        
+        // Lock scroll nếu progress trong khoảng 0-1 (để có thể control bằng wheel)
+        footScrollLocked.current = progress > 0 && progress < 1;
+      } else if (!isInViewport) {
+        footScrollLocked.current = false;
+      }
     };
 
     handleScroll(); // Sync lần đầu
@@ -218,6 +262,75 @@ function NutritionJourneyPage() {
   // ==============================
   useEffect(() => {
     const handleWheel = (e) => {
+      // Lock scroll khi foot section đang zoom (progress < 1) hoặc đã đạt progress = 1
+      if (footScrollLocked.current) {
+        const el = footSectionRef.current;
+        if (!el) return;
+
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const sectionHeight = rect.height;
+        const totalScrollDistance = windowHeight + sectionHeight;
+        
+        // Lấy progress hiện tại
+        const scrolled = windowHeight - rect.top;
+        const currentProgress = Math.min(1, Math.max(0, scrolled / totalScrollDistance));
+        
+        // Nếu đã đạt progress = 1 và user scroll xuống, unlock để scroll tiếp
+        if (currentProgress >= 1 && e.deltaY > 0) {
+          footScrollLocked.current = false;
+          return; // Cho phép scroll tiếp
+        }
+        
+        // Nếu đã đạt progress = 0 và user scroll lên, unlock để scroll tiếp lên trên
+        if (currentProgress <= 0 && e.deltaY < 0) {
+          footScrollLocked.current = false;
+          return; // Cho phép scroll tiếp lên trên
+        }
+        
+        // Lock scroll và zoom (cả khi scroll xuống và scroll lên)
+        e.preventDefault();
+        
+        // Tính progress mới dựa trên scroll delta
+        const scrollSpeed = 0.2; // Giảm tốc độ scroll (từ 0.8 xuống 0.2)
+        const deltaProgress = (e.deltaY * scrollSpeed) / totalScrollDistance;
+        
+        setFootScrollProgress((prev) => {
+          let next = prev + deltaProgress;
+          next = Math.min(1, Math.max(0, next));
+          
+          // Khi đạt progress = 1, giữ lock để dừng lại
+          if (next >= 1) {
+            footScrollLocked.current = true; // Giữ lock để dừng lại
+            return 1;
+          }
+          
+          // Khi đạt progress = 0, giữ lock để có thể scroll tiếp lên trên
+          if (next <= 0) {
+            footScrollLocked.current = true; // Giữ lock để có thể scroll tiếp
+            return 0;
+          }
+          
+          return next;
+        });
+        
+        // Giữ scroll position ở section này bằng cách tính toán lại scroll position dựa trên progress
+        const currentScrollY = window.scrollY;
+        const sectionTop = el.offsetTop;
+        const scrolled2 = windowHeight - rect.top;
+        const newScrolled = scrolled2 + (e.deltaY * scrollSpeed);
+        const targetScrollY = sectionTop - windowHeight + newScrolled;
+        
+        // Clamp scroll position trong phạm vi section
+        const minScroll = sectionTop - windowHeight;
+        const maxScroll = sectionTop + sectionHeight - windowHeight;
+        const clampedScrollY = Math.max(minScroll, Math.min(maxScroll, targetScrollY));
+        
+        window.scrollTo({ top: Math.max(0, clampedScrollY), behavior: 'auto' });
+        
+        return;
+      }
+
       // During hero animation phase: lock scroll and animate human
       if (!animationDone) {
         // Prevent actual page scrolling
@@ -438,14 +551,15 @@ function NutritionJourneyPage() {
         <Box
           sx={{
             position: 'absolute',
-            top: 'calc(50% - 250px)',
+            top: { xs: 'calc(50% - 120px)', sm: 'calc(50% - 150px)', md: 'calc(50% - 200px)', lg: 'calc(50% - 250px)' },
             left: '50%',
             transform: 'translate(-50%, -50%)',
             zIndex: 2,
             textAlign: 'center',
             pointerEvents: 'none',
             width: '100%',
-            maxWidth: '90%',
+            maxWidth: { xs: '95%', md: '90%' },
+            px: { xs: 2, sm: 3, md: 0 },
           }}
         >
           {/* Dòng 1: Biến mất khi humanProgress >= 0.3 */}
@@ -455,14 +569,11 @@ function NutritionJourneyPage() {
               top: 0,
               left: '50%',
               transform: 'translateX(-50%)',
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              fontSize: { xs: '1.8rem', sm: '2.3rem', md: '3rem', lg: '3.6rem', xl: '4.3rem' },
               fontWeight: 700,
-              color: '#FFF7E6',
-              textShadow: '0 2px 4px rgba(0,0,0,0.9), 0 4px 8px rgba(0,0,0,0.8), 0 8px 16px rgba(0,0,0,0.7), 0 12px 24px rgba(0,0,0,0.6)',
-              lineHeight: 1.3,
-              whiteSpace: 'nowrap',
-              WebkitTextStroke: '0.5px rgba(255,255,255,0.3)',
-              textStroke: '0.5px rgba(255,255,255,0.3)',
+              color: 'rgb(52, 46, 36)',
+              lineHeight: { xs: 1.2, md: 1.3 },
+              whiteSpace: { xs: 'normal', sm: 'nowrap' },
               opacity: humanProgress >= 0.3 ? 0 : 1,
               transform: humanProgress >= 0.3 
                 ? 'translateX(-50%) translateY(-10px) scale(0.95)' 
@@ -481,14 +592,11 @@ function NutritionJourneyPage() {
               top: 0,
               left: '50%',
               transform: 'translateX(-50%)',
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              fontSize: { xs: '1.8rem', sm: '2.3rem', md: '3rem', lg: '3.6rem', xl: '4.3rem' },
               fontWeight: 700,
-              color: '#FFF7E6',
-              textShadow: '0 2px 4px rgba(0,0,0,0.9), 0 4px 8px rgba(0,0,0,0.8), 0 8px 16px rgba(0,0,0,0.7), 0 12px 24px rgba(0,0,0,0.6)',
-              lineHeight: 1.3,
-              whiteSpace: 'nowrap',
-              WebkitTextStroke: '0.5px rgba(255,255,255,0.3)',
-              textStroke: '0.5px rgba(255,255,255,0.3)',
+              color: 'rgb(52, 46, 36)',
+              lineHeight: { xs: 1.2, md: 1.3 },
+              whiteSpace: { xs: 'normal', sm: 'nowrap' },
               opacity: humanProgress >= 0.3 ? 1 : 0,
               transform: humanProgress >= 0.3 
                 ? 'translateX(-50%) translateY(0) scale(1)' 
@@ -508,7 +616,7 @@ function NutritionJourneyPage() {
         sx={{
           width: '100%',
           backgroundColor: '#FFF9E0',
-          color: '#667B00',
+          color: 'rgb(52, 46, 36)',
           padding: { xs: '48px 16px', md: '64px 32px' },
           display: 'flex',
           flexDirection: 'column',
@@ -520,10 +628,9 @@ function NutritionJourneyPage() {
         <Typography
           sx={{
             fontWeight: 700,
-            fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
-            color: '#667B00',
+            fontSize: { xs: '2.2rem', sm: '2.6rem', md: '3rem' },
+            color: 'rgb(52, 46, 36)',
             textAlign: 'center',
-            textShadow: '0 1px 2px rgba(0,0,0,0.15)',
             ...getMapFadeStyle(0.05),
           }}
         >
@@ -534,14 +641,13 @@ function NutritionJourneyPage() {
         <Box
           sx={{
             width: '100%',
-            maxWidth: '1200px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             overflow: 'hidden',
             position: 'relative',
-            height: 'auto',
-            minHeight: '500px', // Đảm bảo có chiều cao tối thiểu để zoom
+            height: '100vh',
+            minHeight: '100vh',
             perspective: '1000px', // Thêm perspective để tạo hiệu ứng 3D
             perspectiveOrigin: 'center center',
             ...getMapFadeStyle(0.1),
@@ -553,70 +659,20 @@ function NutritionJourneyPage() {
             alt="Map"
             sx={{
               width: '100%',
-              height: 'auto',
-              minHeight: '500px',
-              objectFit: 'contain',
-              objectPosition: 'center bottom',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center center',
               display: 'block',
               ...getMapFadeStyle(0.1),
             }}
           />
-          <Box
-            component="img"
-            src={routerImg}
-            alt="Lộ trình"
-            sx={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: 'calc(24% + 8px)', // kích thước lộ trình 1
-              marginBottom: '329px',
-              marginLeft: '497px',
-              pointerEvents: 'none',
-              zIndex: 2,
-              ...getMapFadeStyle(0.18),
-            }}
-          />
-          <Box
-            component="img"
-            src={router2Img}
-            alt="Lộ trình 2"
-            sx={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: 'calc(24% + 8px)', // kích thước lộ trình 2
-              marginBottom: '163px',
-              marginLeft: '432px',
-              pointerEvents: 'none',
-              zIndex: 1,
-              ...getMapFadeStyle(0.22),
-            }}
-          />
-          <Box
-            component="img"
-            src={router3Img}
-            alt="Lộ trình 3"
-            sx={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: 'calc(24% + 8px)', // kích thước lộ trình 3
-              marginBottom: '104px',
-              marginLeft: '571px',
-              pointerEvents: 'none',
-              zIndex: 3,
-              ...getMapFadeStyle(0.26),
-            }}
-          />
-
           {/* MAP DETAIL TEXT OVERLAY - Vùng trồng mè */}
           <Box
             sx={{
               position: 'absolute',
-              right: '11%',
-              top: '11%',
-              maxWidth: { xs: '70%', md: '360px' },
+              right: { xs: '2%', sm: '5%', md: '10%' },
+              top: { xs: '5%', sm: '8%', md: '11%' },
+              maxWidth: { xs: '45%', sm: '50%', md: '360px' },
               textAlign: 'left',
               pointerEvents: 'none',
               ...getMapFadeStyle(0.2),
@@ -625,42 +681,38 @@ function NutritionJourneyPage() {
             <Typography
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: '1.4rem', md: '1.8rem' },
-                color: '#667B00',
-                textShadow: '0 2px 6px rgba(0,0,0,0.35)',
-                mb: 1.5,
-                whiteSpace: 'nowrap',
+                fontSize: { xs: '1.3rem', sm: '1.5rem', md: '1.7rem', lg: '2.2rem' },
+                color: 'rgb(52, 46, 36)',
+                mb: { xs: 1, md: 1.5 },
+                whiteSpace: { xs: 'normal', sm: 'nowrap' },
               }}
             >
               Vùng trồng mè tại Quảng Trị
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: '1rem', md: '1.1rem' },
-                lineHeight: 1.6,
-                color: '#667B00',
-                textShadow: '0 2px 4px rgba(255,255,255,0.4)',
+                fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem', lg: '1.4rem' },
+                lineHeight: { xs: 1.4, md: 1.6 },
+                color: 'rgb(52, 46, 36)',
               }}
             >
               Diện tích canh tác: <strong>12 ha</strong>
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: '1rem', md: '1.1rem' },
-                lineHeight: 1.6,
-                color: '#667B00',
-                textShadow: '0 2px 4px rgba(255,255,255,0.4)',
-                whiteSpace: 'nowrap',
+                fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem', lg: '1.4rem' },
+                lineHeight: { xs: 1.4, md: 1.6 },
+                color: 'rgb(52, 46, 36)',
+                whiteSpace: { xs: 'normal', sm: 'nowrap' },
               }}
             >
               Giống: <strong>Mè đen truyền thống vùng Trường Sơn</strong>
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: '1rem', md: '1.1rem' },
-                lineHeight: 1.6,
-                color: '#667B00',
-                textShadow: '0 2px 4px rgba(255,255,255,0.4)',
+                fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem', lg: '1.4rem' },
+                lineHeight: { xs: 1.4, md: 1.6 },
+                color: 'rgb(52, 46, 36)',
               }}
             >
               Đặc điểm: Trồng theo <strong>VietGAP</strong>, phơi - sàng - làm sạch hoàn toàn thủ công, 
@@ -684,20 +736,19 @@ function NutritionJourneyPage() {
             <Typography
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: '1.1rem', md: '1.3rem' },
-                color: '#667B00',
-                textShadow: '0 2px 6px rgba(0,0,0,0.35)',
+                fontSize: { xs: '1.4rem', md: '1.6rem' },
+                color: 'rgb(52, 46, 36)',
                 mb: 0.5,
+                maxWidth: '479px',
               }}
             >
               Vùng trồng bơ tại Đắk Lắk
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: '0.95rem', md: '1.05rem' },
+                fontSize: { xs: '1.2rem', md: '1.3rem' },
                 lineHeight: 1.5,
-                color: '#667B00',
-                textShadow: '0 2px 4px rgba(255,255,255,0.4)',
+                color: 'rgb(52, 46, 36)',
               }}
             >
               Diện tích: <strong>20 ha</strong> • Giống: <strong>Booth, Tứ Quý, 034</strong>
@@ -711,24 +762,22 @@ function NutritionJourneyPage() {
             <Typography
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: '1.1rem', md: '1.3rem' },
-                color: '#667B00',
-                textShadow: '0 2px 6px rgba(0,0,0,0.35)',
-                mb: 0.5,
+                fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.4rem', lg: '1.6rem' },
+                color: 'rgb(52, 46, 36)',
+                mb: { xs: 0.25, md: 0.5 },
               }}
             >
               Vùng trồng lúa tại xã Ea Súp, Đắk Lắk
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: '0.95rem', md: '1.05rem' },
-                lineHeight: 1.5,
-                color: '#667B00',
-                textShadow: '0 2px 4px rgba(255,255,255,0.4)',
+                fontSize: { xs: '0.9rem', sm: '1rem', md: '1.2rem', lg: '1.3rem' },
+                lineHeight: { xs: 1.3, md: 1.5 },
+                color: 'rgb(52, 46, 36)',
               }}
             >
-              Diện tích: <strong>25 ha</strong> • Giống: <strong>ST25</strong> (gạo thơm đạt giải “Gạo ngon nhất thế
-              giới”)
+              Diện tích: <strong>25 ha</strong> • Giống: <strong>ST25</strong> (gạo thơm đạt giải "Gạo ngon nhất thế
+              giới")
               <br />
               Đặc điểm: canh tác <strong>100% hữu cơ</strong> theo chuẩn JAS Nhật Bản & Việt Nam, không thuốc trừ cỏ,
               quản lý nước và đất an toàn
@@ -740,20 +789,18 @@ function NutritionJourneyPage() {
             <Typography
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: '1.1rem', md: '1.3rem' },
-                color: '#667B00',
-                textShadow: '0 2px 6px rgba(0,0,0,0.35)',
-                mb: 0.5,
+                fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.4rem', lg: '1.6rem' },
+                color: 'rgb(52, 46, 36)',
+                mb: { xs: 0.25, md: 0.5 },
               }}
             >
               Vùng trồng lạc tại xã Hoà Sơn, Đắk Lắk
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: '0.95rem', md: '1.05rem' },
-                lineHeight: 1.5,
-                color: '#667B00',
-                textShadow: '0 2px 4px rgba(255,255,255,0.4)',
+                fontSize: { xs: '0.9rem', sm: '1rem', md: '1.2rem', lg: '1.3rem' },
+                lineHeight: { xs: 1.3, md: 1.5 },
+                color: 'rgb(52, 46, 36)',
               }}
             >
               Diện tích: <strong>10 ha</strong> • Giống: <strong>L14, L23</strong> (năng suất cao, thu hoạch ổn định)
@@ -766,9 +813,9 @@ function NutritionJourneyPage() {
           <Box
             sx={{
               position: 'absolute',
-              right: '-2%',
-              bottom: '17%',
-              maxWidth: { xs: '75%', md: '420px' },
+              right: { xs: '0%', sm: '0%', md: '0%' },
+              bottom: { xs: '12%', sm: '14%', md: '16%' },
+              maxWidth: { xs: '48%', sm: '50%', md: '420px' },
               textAlign: 'left',
               pointerEvents: 'none',
               ...getMapFadeStyle(0.3),
@@ -778,20 +825,18 @@ function NutritionJourneyPage() {
             <Typography
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: '1.1rem', md: '1.3rem' },
-                color: '#667B00',
-                textShadow: '0 2px 6px rgba(0,0,0,0.35)',
-                mb: 0.5,
+                fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.4rem', lg: '1.6rem' },
+                color: 'rgb(52, 46, 36)',
+                mb: { xs: 0.25, md: 0.5 },
               }}
             >
               Vùng trồng đậu nành tại xã Nam Dong, Lâm Đồng
             </Typography>
             <Typography
               sx={{
-                fontSize: { xs: '0.95rem', md: '1.05rem' },
-                lineHeight: 1.5,
-                color: '#667B00',
-                textShadow: '0 2px 4px rgba(255,255,255,0.4)',
+                fontSize: { xs: '0.9rem', sm: '1rem', md: '1.2rem', lg: '1.3rem' },
+                lineHeight: { xs: 1.3, md: 1.5 },
+                color: 'rgb(52, 46, 36)',
               }}
             >
               Diện tích: <strong>18 ha</strong> • Giống: <strong>đậu nành không biến đổi gen (Non-GMO)</strong>
@@ -853,17 +898,9 @@ function NutritionJourneyPage() {
             top: '50vh',
             left: '50%',
             fontWeight: 700,
-            fontSize: { xs: '2rem', sm: '2.8rem', md: '3.8rem', lg: '4.4rem' },
-            color: '#D7E9A0', // xanh nhạt, giữ stroke xanh đậm bên ngoài
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.8rem', lg: '3.8rem', xl: '4.4rem' },
+            color: 'rgb(52, 46, 36)', // màu cola
             textAlign: 'center',
-            // Tạo viền 3D bằng nhiều lớp shadow + stroke nhẹ
-            textShadow: `
-              0 2px 0 rgba(15,23,42,0.8),
-              0 4px 8px rgba(15,23,42,0.8),
-              0 8px 24px rgba(0,0,0,0.7)
-            `,
-            WebkitTextStroke: '2px rgba(102, 123, 0, 0.95)',
-            textStroke: '2px rgba(102, 123, 0, 0.95)',
             zIndex: 2,
             pointerEvents: 'none',
             px: { xs: 2, md: 4 },
@@ -883,17 +920,9 @@ function NutritionJourneyPage() {
             top: '170vh',
             left: '50%',
             fontWeight: 700,
-            fontSize: { xs: '2rem', sm: '2.8rem', md: '3.8rem', lg: '4.4rem' },
-            color: '#D7E9A0', // xanh nhạt, giữ stroke xanh đậm bên ngoài
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.8rem', lg: '3.8rem', xl: '4.4rem' },
+            color: 'rgb(52, 46, 36)', // màu cola
             textAlign: 'center',
-            // Tạo viền 3D bằng nhiều lớp shadow + stroke nhẹ
-            textShadow: `
-              0 2px 0 rgba(15,23,42,0.8),
-              0 4px 8px rgba(15,23,42,0.8),
-              0 8px 24px rgba(0,0,0,0.7)
-            `,
-            WebkitTextStroke: '2px rgba(102, 123, 0, 0.95)',
-            textStroke: '2px rgba(102, 123, 0, 0.95)',
             zIndex: 2,
             pointerEvents: 'none',
             px: { xs: 2, md: 4 },
@@ -931,7 +960,7 @@ function NutritionJourneyPage() {
               position: 'absolute',
               top: '0%',
               left,
-              width: { xs: 130, md: 190 },
+              width: { xs: 80, sm: 100, md: 150, lg: 190 },
               height: 'auto',
               pointerEvents: 'none',
               zIndex: 3,
@@ -996,7 +1025,7 @@ function NutritionJourneyPage() {
             left: '50%',
             transform: `translateX(-50%) translateY(${(nuocScrollProgress / 0.75) * 180}vh)`,
             width: { xs: '60%', md: '50%' },
-            maxWidth: '400px',
+            maxWidth: { xs: '300px', sm: '350px', md: '400px' },
             height: 'auto',
             objectFit: 'contain',
             zIndex: 1,
@@ -1013,17 +1042,9 @@ function NutritionJourneyPage() {
             left: '50%',
             transform: `translateX(-50%) translateY(${nuocScrollProgress >= 0.75 ? 0 : 20}px)`,
             fontWeight: 700,
-            fontSize: { xs: '2rem', sm: '2.8rem', md: '3.8rem', lg: '4.4rem' },
-            color: '#D7E9A0', // xanh nhạt, giữ stroke xanh đậm bên ngoài
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.8rem', lg: '3.8rem', xl: '4.4rem' },
+            color: 'rgb(52, 46, 36)', // màu cola
             textAlign: 'center',
-            // Tạo viền 3D bằng nhiều lớp shadow + stroke nhẹ
-            textShadow: `
-              0 2px 0 rgba(15,23,42,0.8),
-              0 4px 8px rgba(15,23,42,0.8),
-              0 8px 24px rgba(0,0,0,0.7)
-            `,
-            WebkitTextStroke: '2px rgba(102, 123, 0, 0.95)',
-            textStroke: '2px rgba(102, 123, 0, 0.95)',
             zIndex: 2,
             pointerEvents: 'none',
             px: { xs: 2, md: 4 },
@@ -1081,15 +1102,8 @@ function NutritionJourneyPage() {
           <Typography
             sx={{
               fontWeight: 700,
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
-              color: '#D7E9A0',
-              textShadow: `
-                0 2px 0 rgba(15,23,42,0.8),
-                0 4px 8px rgba(15,23,42,0.8),
-                0 8px 24px rgba(0,0,0,0.7)
-              `,
-              WebkitTextStroke: '2px rgba(102, 123, 0, 0.95)',
-              textStroke: '2px rgba(102, 123, 0, 0.95)',
+              fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '2.5rem', xl: '3rem' },
+              color: 'rgb(52, 46, 36)',
               lineHeight: 1.3,
             }}
           >
@@ -1106,7 +1120,7 @@ function NutritionJourneyPage() {
             transform: 'translateX(-50%)',
             zIndex: 2,
             width: '90%',
-            maxWidth: '1572px',
+            maxWidth: '2000px',
             textAlign: 'center',
             pointerEvents: 'none',
           }}
@@ -1115,19 +1129,12 @@ function NutritionJourneyPage() {
             component="div"
             sx={{
               fontWeight: 700,
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
-              color: '#D7E9A0',
-              textShadow: `
-                0 2px 0 rgba(15,23,42,0.8),
-                0 4px 8px rgba(15,23,42,0.8),
-                0 8px 24px rgba(0,0,0,0.7)
-              `,
-              WebkitTextStroke: '2px rgba(102, 123, 0, 0.95)',
-              textStroke: '2px rgba(102, 123, 0, 0.95)',
+              fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '2.5rem', xl: '3rem' },
+              color: 'rgb(52, 46, 36)',
               lineHeight: 1.3,
             }}
             dangerouslySetInnerHTML={{
-              __html: 'Một loại dầu nhẹ lành, nguyên bản, <br />giúp bữa ăn của bạn vui hơn, ngon hơn và hạnh phúc hơn mỗi ngày.'
+              __html: 'Một loại dầu nhẹ lành, nguyên bản, giúp bữa ăn của bạn <br />vui hơn, ngon hơn và hạnh phúc hơn mỗi ngày.'
             }}
           />
         </Box>
@@ -1148,7 +1155,8 @@ function NutritionJourneyPage() {
         <Box
           sx={{
             width: { xs: '100%', md: '50%' },
-            height: { xs: '50vh', md: '100vh' },
+            height: { xs: 'auto', sm: '50vh', md: '100vh' },
+            minHeight: { xs: '300px', sm: '50vh', md: '100vh' },
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1161,7 +1169,7 @@ function NutritionJourneyPage() {
             alt="Use"
             sx={{
               width: '100%',
-              maxWidth: '600px',
+              maxWidth: { xs: '90%', sm: '500px', md: '600px' },
               height: 'auto',
               objectFit: 'contain',
               pointerEvents: 'none',
@@ -1173,7 +1181,8 @@ function NutritionJourneyPage() {
         <Box
           sx={{
             width: { xs: '100%', md: '50%' },
-            height: { xs: '50vh', md: '100vh' },
+            height: { xs: 'auto', sm: '50vh', md: '100vh' },
+            minHeight: { xs: '300px', sm: '50vh', md: '100vh' },
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1184,15 +1193,8 @@ function NutritionJourneyPage() {
             component="div"
             sx={{
               fontWeight: 700,
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
-              color: '#ffffff', // Màu trắng để tương phản với background xanh nhạt
-              textShadow: `
-                0 2px 4px rgba(0, 0, 0, 0.3),
-                0 4px 8px rgba(0, 0, 0, 0.2),
-                0 0 20px rgba(102, 123, 0, 0.4)
-              `,
-              WebkitTextStroke: '2px #667B00', // Viền màu xanh đậm để tạo độ tương phản
-              textStroke: '2px #667B00',
+              fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '2.5rem', xl: '3rem' },
+              color: 'rgb(52, 46, 36)', // màu cola
               lineHeight: 1.3,
               textAlign: 'center',
               maxWidth: '100%',
@@ -1220,7 +1222,8 @@ function NutritionJourneyPage() {
         <Box
           sx={{
             width: { xs: '100%', md: '50%' },
-            height: { xs: '50vh', md: '100vh' },
+            height: { xs: 'auto', sm: '50vh', md: '100vh' },
+            minHeight: { xs: '300px', sm: '50vh', md: '100vh' },
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1231,15 +1234,8 @@ function NutritionJourneyPage() {
             component="div"
             sx={{
               fontWeight: 700,
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
-              color: '#667B00', // Màu xanh đậm (ngược với trắng của section trước)
-              textShadow: `
-                0 2px 4px rgba(255, 255, 255, 0.5),
-                0 4px 8px rgba(0, 0, 0, 0.1),
-                0 0 20px rgba(255, 255, 255, 0.3)
-              `,
-              WebkitTextStroke: '2px #ffffff', // Viền màu trắng (ngược với xanh đậm của section trước)
-              textStroke: '2px #ffffff',
+              fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '2.5rem', xl: '3rem' },
+              color: 'rgb(52, 46, 36)', // màu cola
               lineHeight: 1.3,
               textAlign: 'center',
               maxWidth: '100%',
@@ -1254,7 +1250,8 @@ function NutritionJourneyPage() {
         <Box
           sx={{
             width: { xs: '100%', md: '50%' },
-            height: { xs: '50vh', md: '100vh' },
+            height: { xs: 'auto', sm: '50vh', md: '100vh' },
+            minHeight: { xs: '300px', sm: '50vh', md: '100vh' },
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1267,7 +1264,7 @@ function NutritionJourneyPage() {
             alt="Use 2"
             sx={{
               width: '100%',
-              maxWidth: '600px',
+              maxWidth: { xs: '90%', sm: '500px', md: '600px' },
               height: 'auto',
               objectFit: 'contain',
               pointerEvents: 'none',
@@ -1278,72 +1275,63 @@ function NutritionJourneyPage() {
 
       {/* NEW SECTION - Foot image với text overlay */}
       <Box
+        ref={footSectionRef}
         sx={{
           position: 'relative',
           width: '100%',
-          minHeight: '100vh',
+          height: '120vh',
           overflow: 'hidden',
+          backgroundColor: `rgba(${255 * footScrollProgress}, ${255 * footScrollProgress}, ${255 * footScrollProgress}, 1)`, // Chuyển từ đen sang trắng khi zoom về 1x
+          transition: 'background-color 0.1s linear',
         }}
       >
-        {/* Ảnh foot.png */}
+        {/* Ảnh foot.png - zoom từ 30x về 1x và mờ dần khi scroll */}
         <Box
           component="img"
           src={foot}
           alt="Foot"
           sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
             width: '100%',
             height: '100vh',
             objectFit: 'cover',
             pointerEvents: 'none',
+            transform: `translate(-50%, -50%) scale(${30 - (footScrollProgress * 29)})`, // Từ 30 về 1
+            transformOrigin: 'center center',
+            opacity: footScrollProgress < 0.918 ? 1 : 1 - ((footScrollProgress - 0.918) / 0.082), // Bắt đầu mờ từ 10% zoom (scale = 5x, progress ≈ 0.918)
+            transition: 'transform 0.1s linear, opacity 0.1s linear',
           }}
         />
 
-        {/* Gradient overlay để ảnh trắng dần từ trên xuống */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(255, 255, 255, 0.4) 70%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.95) 100%)',
-            pointerEvents: 'none',
-            zIndex: 1,
-          }}
-        />
 
-        {/* Text overlay ở bottom */}
+        {/* Text overlay - di chuyển từ bottom lên center và hiện ra khi zoom về 1x */}
         <Typography
+          component="div"
           sx={{
             position: 'absolute',
-            bottom: '1%',
+            top: '50%',
             left: '50%',
-            transform: 'translateX(-50%)',
+            transform: `translate(-50%, ${footScrollProgress >= 1 ? '-50%' : 'calc(-50% + 40vh)'})`, // Từ bottom lên center
             fontWeight: 700,
-            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
-            color: '#ffffff',
-            textShadow: `
-              0 2px 4px rgba(0, 0, 0, 0.5),
-              0 4px 8px rgba(0, 0, 0, 0.3),
-              0 0 20px rgba(0, 0, 0, 0.4)
-            `,
-            WebkitTextStroke: '2px rgba(102, 123, 0, 0.8)',
-            textStroke: '2px rgba(102, 123, 0, 0.8)',
+            fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3.5rem', lg: '4.5rem', xl: '5.5rem' }, // Tăng font size lên
+            color: 'rgb(52, 46, 36)', // màu cola
             lineHeight: 1.3,
             textAlign: 'center',
-            whiteSpace: 'nowrap',
             maxWidth: '100%',
             width: '100%',
-            px: { xs: 2, md: 4 },
+            px: { xs: 1.5, sm: 2, md: 4 },
             zIndex: 2,
             pointerEvents: 'none',
+            opacity: footScrollProgress >= 1 ? 1 : 0, // Ẩn đi khi progress < 1, chỉ hiện ra khi progress = 1
+            transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
           }}
-        >
-          AnaOi - Hành trình lan tỏa dinh dưỡng và hạnh phúc vào từng gian bếp Việt.
-        </Typography>
+          dangerouslySetInnerHTML={{
+            __html: 'AnaOi - Hành trình lan tỏa dinh dưỡng và hạnh phúc <br />vào từng gian bếp Việt.'
+          }}
+        />
       </Box>
-
-      <Footer />
     </Box>
   );
 }
