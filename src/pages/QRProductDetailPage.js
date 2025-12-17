@@ -260,7 +260,7 @@ function QRProductDetailPage() {
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
                 mb: { xs: 0.5, md: 1 },
                 lineHeight: { xs: 1.4, md: 1.2 },
                 wordBreak: 'break-word',
@@ -277,7 +277,7 @@ function QRProductDetailPage() {
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
                 mb: { xs: 0.5, md: 1 },
                 lineHeight: { xs: 1.4, md: 1.2 },
                 wordBreak: 'break-word',
@@ -294,7 +294,7 @@ function QRProductDetailPage() {
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
                 mb: { xs: 0.5, md: 1 },
                 lineHeight: { xs: 1.4, md: 1.2 },
                 wordBreak: 'break-word',
@@ -311,7 +311,7 @@ function QRProductDetailPage() {
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
                 mb: { xs: 0.5, md: 1 },
                 lineHeight: { xs: 1.4, md: 1.2 },
                 wordBreak: 'break-word',
@@ -328,7 +328,7 @@ function QRProductDetailPage() {
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
                 mb: { xs: 0.5, md: 1 },
                 lineHeight: { xs: 1.4, md: 1.2 },
                 wordBreak: 'break-word',
@@ -421,7 +421,7 @@ function QRProductDetailPage() {
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
                 mb: { xs: 0.5, md: 1 },
                 lineHeight: { xs: 1.4, md: 1.2 },
                 whiteSpace: { xs: 'normal', md: 'nowrap' },
@@ -439,7 +439,7 @@ function QRProductDetailPage() {
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
                 mb: { xs: 0.5, md: 1 },
                 lineHeight: { xs: 1.4, md: 1.2 },
                 whiteSpace: { xs: 'normal', md: 'nowrap' },
@@ -457,7 +457,7 @@ function QRProductDetailPage() {
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '1rem', sm: '1.2rem', md: '1.6rem', lg: '2rem' },
+                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
                 mb: { xs: 0.5, md: 1 },
                 lineHeight: { xs: 1.4, md: 1.2 },
                 whiteSpace: { xs: 'normal', md: 'nowrap' },
