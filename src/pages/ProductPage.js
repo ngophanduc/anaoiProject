@@ -518,8 +518,10 @@ function ProductPage() {
                           WebkitBoxOrient: 'vertical',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
-                          minHeight: { xs: '4.5rem', md: '5.1rem' },
+                          height: { xs: '4.5rem', md: '5.1rem' },
                           mb: 0,
+                          fontFamily: "'VNM Sans Display', sans-serif",
+                          fontWeight: 400,
                         }}
                       >
                         {product.description}
@@ -843,6 +845,8 @@ function ProductPage() {
                       sx={{
                         color: '#666',
                         lineHeight: 1.8,
+                        fontFamily: "'VNM Sans Display', sans-serif",
+                        fontWeight: 400,
                       }}
                     >
                       {selectedProduct.fullDescription || selectedProduct.description}
