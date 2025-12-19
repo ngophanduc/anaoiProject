@@ -495,7 +495,8 @@ function ProductPage() {
                           variant="overline"
                           sx={{
                             color: americanYellow,
-                            fontWeight: 600,
+                            fontFamily: "'VNM Sans Display', sans-serif",
+                            fontWeight: 700,
                             fontSize: '0.75rem',
                             letterSpacing: 1,
                             mb: 2,
@@ -778,7 +779,8 @@ function ProductPage() {
                       variant="overline"
                       sx={{
                         color: americanYellow,
-                        fontWeight: 600,
+                        fontFamily: "'VNM Sans Display', sans-serif",
+                        fontWeight: 700,
                         fontSize: '0.75rem',
                         letterSpacing: 1,
                         display: 'block',
@@ -846,7 +848,7 @@ function ProductPage() {
                         color: '#666',
                         lineHeight: 1.8,
                         fontFamily: "'VNM Sans Display', sans-serif",
-                        fontWeight: 400,
+                        fontWeight: 700,
                       }}
                     >
                       {selectedProduct.fullDescription || selectedProduct.description}
@@ -1046,7 +1048,8 @@ function ProductPage() {
                         <Typography
                           variant="body1"
                           sx={{
-                            fontWeight: 600,
+                            fontFamily: "'VNM Sans Display', sans-serif",
+                            fontWeight: 700,
                             color: bronzeYellow,
                           }}
                         >
@@ -1066,6 +1069,8 @@ function ProductPage() {
                           <Typography
                             variant="caption"
                             sx={{
+                              fontFamily: "'VNM Sans Display', sans-serif",
+                              fontWeight: 700,
                               color: '#999',
                             }}
                           >
@@ -1079,6 +1084,8 @@ function ProductPage() {
                     <Typography
                       variant="body2"
                       sx={{
+                        fontFamily: "'VNM Sans Display', sans-serif",
+                        fontWeight: 700,
                         color: '#444',
                         lineHeight: 1.6,
                         pl: 7,
@@ -1136,6 +1143,8 @@ function ProductPage() {
                   <Typography
                     variant="caption"
                     sx={{
+                      fontFamily: "'VNM Sans Display', sans-serif",
+                      fontWeight: 700,
                       color: '#666',
                       display: 'block',
                       mt: 0.5,

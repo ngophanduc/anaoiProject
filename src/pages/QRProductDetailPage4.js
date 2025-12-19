@@ -4,7 +4,10 @@ import { Box, Typography } from '@mui/material';
 import SplitText from '../components/SplitText';
 import SixOSection from '../components/SixOSection';
 import elementbrg from '../assets/nguongoc/sp4/elementbrg.png';
-import chungnhan from '../assets/nguongoc/sp4/chungnhan.png';
+import logo1 from '../assets/nguongoc/sp1/logo1.png';
+import logo2 from '../assets/nguongoc/sp1/logo2.png';
+import logo3 from '../assets/nguongoc/sp1/logo3.png';
+import logo4 from '../assets/nguongoc/sp1/logo4.png';
 import anhsanpham from '../assets/nguongoc/sp4/anhsanpham.png';
 import diadiem from '../assets/nguongoc/sp4/diamdiem1.png';
 import diadiem2 from '../assets/nguongoc/sp4/diadiem2.png';
@@ -85,7 +88,7 @@ function QRProductDetailPage4() {
               alt="Element background"
               sx={{
                 position: 'absolute',
-                width: { xs: '80px', md: '120px' },
+                width: '60px',
                 height: 'auto',
                 opacity: 0.15,
                 top: `${(index * 7) % 100}%`,
@@ -102,26 +105,27 @@ function QRProductDetailPage4() {
           position: 'relative',
           zIndex: 1,
           width: '100%',
-          px: { xs: 2, md: 4 },
+          px: 2,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: 'calc(100vh - 64px)',
+          py: 4,
         }}
       >
         {/* Tiêu đề */}
-        <Box sx={{ textAlign: 'center', px: { xs: 2, sm: 3, md: 4 }, width: '100%' }}>
+        <Box sx={{ textAlign: 'center', px: 2, width: '100%' }}>
           <Typography
             variant="h3"
             sx={{
               fontWeight: 700,
               color: bronzeYellow,
-              mb: { xs: 0.5, md: 1 },
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '4rem', lg: '5rem', xl: '6rem' },
+              mb: 0.5,
+              fontSize: '2rem',
               textAlign: 'center',
               display: 'block',
-              lineHeight: { xs: 1.1, md: 1.2 },
+              lineHeight: 1.2,
               wordBreak: 'break-word',
             }}
           >
@@ -143,11 +147,11 @@ function QRProductDetailPage4() {
             sx={{
               fontWeight: 700,
               color: bronzeYellow,
-              mb: { xs: 0.5, md: 1 },
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '4rem', lg: '5rem', xl: '6rem' },
+              mb: 0.5,
+              fontSize: '2rem',
               textAlign: 'center',
               display: 'block',
-              lineHeight: { xs: 1.1, md: 1.2 },
+              lineHeight: 1.2,
               wordBreak: 'break-word',
             }}
           >
@@ -170,14 +174,15 @@ function QRProductDetailPage4() {
               fontWeight: 400,
               color: '#666',
               fontStyle: 'italic',
-              fontSize: { xs: '0.9rem', sm: '1.2rem', md: '2rem', lg: '2.5rem', xl: '3.2rem' },
+              fontSize: '0.85rem',
               textAlign: 'center',
               display: 'block',
-              whiteSpace: { xs: 'normal', md: 'nowrap' },
+              whiteSpace: 'normal',
               width: '100%',
-              px: { xs: 1, md: 0 },
-              lineHeight: { xs: 1.4, md: 1.5 },
+              px: 1,
+              lineHeight: 1.4,
               wordBreak: 'break-word',
+              mt: 0.5,
             }}
           >
             <SplitText
@@ -202,29 +207,29 @@ function QRProductDetailPage4() {
           position: 'relative',
           zIndex: 1,
           width: '100%',
-          minHeight: { xs: 'auto', md: '100vh' },
+          minHeight: 'auto',
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
-          backgroundColor: { xs: '#FDFCF5', md: 'transparent' },
+          backgroundColor: '#FDFCF5',
+          py: 3,
         }}
       >
-        {/* Ảnh sản phẩm - Full kích thước, làm background trên desktop */}
+        {/* Ảnh sản phẩm */}
         <Box
           sx={{
-            position: { xs: 'relative', md: 'absolute' },
-            top: { md: 0 },
-            left: { md: 0 },
+            position: 'relative',
             width: '100%',
-            height: { xs: 'auto', md: '100%' },
-            minHeight: { xs: '50vh', md: '100vh' },
+            height: 'auto',
+            minHeight: '40vh',
             zIndex: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            order: { xs: 2, md: 0 },
+            order: 2,
+            mb: 2,
           }}
         >
           <Box
@@ -233,47 +238,49 @@ function QRProductDetailPage4() {
             alt="Ảnh sản phẩm"
             sx={{
               width: 'auto',
-              height: { xs: 'auto', md: '100%' },
+              height: 'auto',
               maxWidth: '100%',
-              maxHeight: { xs: '60vh', md: '100%' },
+              maxHeight: '50vh',
               objectFit: 'contain',
               display: 'block',
             }}
           />
         </Box>
 
-        {/* Text - Tách biệt trên mobile, overlay trên desktop */}
+        {/* Text - Card thông tin sản phẩm */}
         <Box
           sx={{
-            position: { xs: 'relative', md: 'absolute' },
-            left: { md: 0 },
-            top: { md: 0 },
+            position: 'relative',
             zIndex: 1,
             width: '100%',
-            px: { xs: 2, sm: 3, md: 4 },
-            py: { xs: 4, sm: 6, md: 12 },
+            px: 2,
+            py: 3,
             display: 'flex',
             flexDirection: 'column',
-            gap: { xs: 2, sm: 2.5, md: 4 },
-            alignItems: { xs: 'flex-start', md: 'flex-start' },
-            maxWidth: { xs: '100%', md: '600px' },
-            height: { xs: 'auto', md: '100%' },
-            justifyContent: { xs: 'flex-start', md: 'center' },
+            gap: 2,
+            alignItems: 'flex-start',
+            maxWidth: '100%',
+            height: 'auto',
+            justifyContent: 'flex-start',
             boxSizing: 'border-box',
-            order: { xs: 1, md: 0 },
-            backgroundColor: { xs: '#FDFCF5', md: 'transparent' },
+            order: 1,
+            backgroundColor: '#fff',
+            borderRadius: 2,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            mx: 2,
+            mb: 2,
           }}
         >
           {/* Tiêu đề: Thông tin sản phẩm */}
-          <Box sx={{ width: '100%' }}>
+          <Box sx={{ width: '100%', borderBottom: `2px solid ${bronzeYellow}`, pb: 1 }}>
             <Typography
               variant="body1"
               sx={{
-                fontWeight: 600,
+                fontWeight: 700,
                 color: bronzeYellow,
-                fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.6rem', lg: '2rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.3, md: 1.2 },
+                fontSize: '1.1rem',
+                mb: 0,
+                lineHeight: 1.3,
                 wordBreak: 'break-word',
               }}
             >
@@ -284,126 +291,167 @@ function QRProductDetailPage4() {
           {/* Lô sản xuất */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Lô sản xuất : BRS-02
+              Lô sản xuất : <span style={{ fontWeight: 400 }}>BRS-02</span>
             </Typography>
           </Box>
 
           {/* Ngày sản xuất */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Ngày sản xuất : 24/09/2025
+              Ngày sản xuất : <span style={{ fontWeight: 400 }}>24/09/2025</span>
             </Typography>
           </Box>
 
           {/* Hạn dùng */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Hạn dùng : 24/03/2027
+              Hạn dùng : <span style={{ fontWeight: 400 }}>24/03/2027</span>
             </Typography>
           </Box>
 
           {/* Dung tích */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Dung tích : 500ML/1000ML
+              Dung tích : <span style={{ fontWeight: 400 }}>500ML/1000ML</span>
             </Typography>
           </Box>
 
           {/* Chứng nhận & tiêu chuẩn */}
-          <Box sx={{ width: '100%' }}>
+          <Box sx={{ width: '100%', mt: 1 }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
+                fontSize: '0.85rem',
+                mb: 1.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
               Chứng nhận & tiêu chuẩn:
             </Typography>
             <Box
-              component="img"
-              src={chungnhan}
-              alt="Chứng nhận & tiêu chuẩn"
               sx={{
-                width: 'auto',
-                height: { xs: '150px', md: '200px' },
-                maxWidth: '100%',
-                display: 'block',
-                mt: 2,
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 1,
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                flexWrap: 'wrap',
               }}
-            />
+            >
+              <Box
+                component="img"
+                src={logo1}
+                alt="Logo 1"
+                sx={{
+                  height: '60px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+              <Box
+                component="img"
+                src={logo2}
+                alt="Logo 2"
+                sx={{
+                  height: '60px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+              <Box
+                component="img"
+                src={logo3}
+                alt="Logo 3"
+                sx={{
+                  height: '60px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+              <Box
+                component="img"
+                src={logo4}
+                alt="Logo 4"
+                sx={{
+                  height: '60px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+            </Box>
           </Box>
         </Box>
       </Box>
 
-      {/* Section 3: Địa điểm - Full màn hình */}
+      {/* Section 3: Địa điểm */}
       <Box
         sx={{
           position: 'relative',
           zIndex: 1,
           width: '100%',
-          minHeight: '100vh',
+          minHeight: 'auto',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
+          backgroundColor: '#FDFCF5',
         }}
       >
         {/* Text: Địa điểm trồng */}
         <Box
           sx={{
-            position: 'absolute',
-            top: { xs: 8, sm: 10, md: 30 },
-            left: '50%',
-            transform: 'translateX(-50%)',
+            position: 'relative',
             zIndex: 2,
             width: '100%',
-            px: { xs: 2, md: 0 },
+            px: 2,
+            py: 3,
             textAlign: 'center',
+            backgroundColor: '#fff',
+            mb: 2,
           }}
         >
           <Typography
@@ -411,131 +459,136 @@ function QRProductDetailPage4() {
             sx={{
               fontWeight: 700,
               color: bronzeYellow,
-              fontSize: { xs: '1.3rem', sm: '1.6rem', md: '2.5rem', lg: '3rem' },
-              lineHeight: { xs: 1.2, md: 1.3 },
+              fontSize: '1.3rem',
+              lineHeight: 1.3,
               wordBreak: 'break-word',
-              px: { xs: 1, md: 0 },
             }}
           >
             Điểm trồng: "Nông trại Lâm Đồng"
           </Typography>
         </Box>
 
-        {/* Text overlay - Thông tin nông trại */}
+        {/* Ảnh địa điểm - Full width */}
         <Box
           sx={{
-            position: 'absolute',
-            left: 0,
-            top: 0,
+            width: '100%',
+            position: 'relative',
+            mb: 2,
+          }}
+        >
+          <Box
+            component="img"
+            src={diadiem}
+            alt="Địa điểm"
+            sx={{
+              width: '100%',
+              height: 'auto',
+              minHeight: '50vh',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              display: 'block',
+            }}
+          />
+        </Box>
+
+        {/* Card thông tin nông trại */}
+        <Box
+          sx={{
+            position: 'relative',
             zIndex: 2,
             width: '100%',
-            px: { xs: 2, sm: 3, md: 4 },
-            py: { xs: 6, sm: 8, md: 12 },
+            px: 2,
+            py: 3,
             display: 'flex',
             flexDirection: 'column',
-            gap: { xs: 2, sm: 2.5, md: 4 },
-            alignItems: { xs: 'flex-start', md: 'flex-start' },
-            height: '100%',
-            justifyContent: 'center',
-            mt: { xs: 6, sm: 7, md: '135px' },
-            ml: { xs: 0, md: '502px' },
-            boxSizing: 'border-box',
+            gap: 2,
+            alignItems: 'flex-start',
+            backgroundColor: '#fff',
+            borderRadius: 2,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            mx: 2,
+            mb: 3,
           }}
         >
           {/* Thông tin nông trại */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
-                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Thông tin nông trại: Hợp Tác Xã Sản Xuất Đậu Nành Nam Dong
+              Thông tin nông trại: <span style={{ fontWeight: 400 }}>Hợp Tác Xã Sản Xuất Đậu Nành Nam Dong</span>
             </Typography>
           </Box>
 
           {/* Tên hộ gia đình/hợp tác xã cung cấp */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
-                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Tên hộ gia đình/hợp tác xã cung cấp: Ông Nguyễn Văn Trung
+              Tên hộ gia đình/hợp tác xã cung cấp: <span style={{ fontWeight: 400 }}>Ông Nguyễn Văn Trung</span>
             </Typography>
           </Box>
 
           {/* Quy trình */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
-                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Quy trình: VietGAP, không sử dụng thuốc trừ sâu bị cấm.
+              Quy trình: <span style={{ fontWeight: 400 }}>VietGAP, không sử dụng thuốc trừ sâu bị cấm.</span>
             </Typography>
           </Box>
         </Box>
-
-        <Box
-          component="img"
-          src={diadiem}
-          alt="Địa điểm"
-          sx={{
-            width: '100%',
-            height: { xs: 'auto', md: '100vh' },
-            minHeight: { xs: '100vh', md: '100vh' },
-            objectFit: { xs: 'contain', md: 'cover' },
-            objectPosition: { xs: 'center', md: 'center' },
-            display: 'block',
-          }}
-        />
       </Box>
 
-      {/* Section 3b: Địa điểm 2 - Full màn hình */}
+      {/* Section 3b: Địa điểm 2 */}
       <Box
         sx={{
           position: 'relative',
           zIndex: 1,
           width: '100%',
-          minHeight: '100vh',
+          minHeight: 'auto',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
+          backgroundColor: '#FDFCF5',
         }}
       >
         {/* Text: Địa điểm trồng */}
         <Box
           sx={{
-            position: 'absolute',
-            top: { xs: 8, sm: 10, md: 30 },
-            left: '50%',
-            transform: 'translateX(-50%)',
+            position: 'relative',
             zIndex: 2,
             width: '100%',
-            px: { xs: 2, md: 0 },
+            px: 2,
+            py: 3,
             textAlign: 'center',
+            backgroundColor: '#fff',
+            mb: 2,
           }}
         >
           <Typography
@@ -543,105 +596,108 @@ function QRProductDetailPage4() {
             sx={{
               fontWeight: 700,
               color: bronzeYellow,
-              fontSize: { xs: '1.3rem', sm: '1.6rem', md: '2.5rem', lg: '3rem' },
-              lineHeight: { xs: 1.2, md: 1.3 },
+              fontSize: '1.3rem',
+              lineHeight: 1.3,
               wordBreak: 'break-word',
-              px: { xs: 1, md: 0 },
             }}
           >
             Điểm trồng: "Nông trại Đắk Lắk"
           </Typography>
         </Box>
 
-        {/* Text overlay - Thông tin nông trại */}
+        {/* Ảnh địa điểm - Full width */}
         <Box
           sx={{
-            position: 'absolute',
-            left: 0,
-            top: 0,
+            width: '100%',
+            position: 'relative',
+            mb: 2,
+          }}
+        >
+          <Box
+            component="img"
+            src={diadiem2}
+            alt="Địa điểm 2"
+            sx={{
+              width: '100%',
+              height: 'auto',
+              minHeight: '50vh',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              display: 'block',
+            }}
+          />
+        </Box>
+
+        {/* Card thông tin nông trại */}
+        <Box
+          sx={{
+            position: 'relative',
             zIndex: 2,
             width: '100%',
-            px: { xs: 2, sm: 3, md: 4 },
-            py: { xs: 6, sm: 8, md: 12 },
+            px: 2,
+            py: 3,
             display: 'flex',
             flexDirection: 'column',
-            gap: { xs: 2, sm: 2.5, md: 4 },
-            alignItems: { xs: 'flex-start', md: 'flex-start' },
-            height: '100%',
-            justifyContent: 'center',
-            mt: { xs: 6, sm: 7, md: '135px' },
-            ml: { xs: 0, md: '502px' },
-            boxSizing: 'border-box',
+            gap: 2,
+            alignItems: 'flex-start',
+            backgroundColor: '#fff',
+            borderRadius: 2,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            mx: 2,
+            mb: 3,
           }}
         >
           {/* Thông tin nông trại */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
-                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Thông tin nông trại: Họp Tác Xã Giảm Nghèo Ea Sup
+              Thông tin nông trại: <span style={{ fontWeight: 400 }}>Họp Tác Xã Giảm Nghèo Ea Sup</span>
             </Typography>
           </Box>
 
           {/* Tên hộ gia đình/hợp tác xã cung cấp */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
-                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Tên hộ gia đình/hợp tác xã cung cấp: Ông Nguyễn Thanh Lộc
+              Tên hộ gia đình/hợp tác xã cung cấp: <span style={{ fontWeight: 400 }}>Ông Nguyễn Thanh Lộc</span>
             </Typography>
           </Box>
 
           {/* Quy trình */}
           <Box sx={{ width: '100%' }}>
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{
                 fontWeight: 600,
                 color: '#000000',
-                fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.2rem', lg: '1.5rem' },
-                mb: { xs: 0.5, md: 1 },
-                lineHeight: { xs: 1.4, md: 1.2 },
-                whiteSpace: { xs: 'normal', md: 'nowrap' },
+                fontSize: '0.85rem',
+                mb: 0.5,
+                lineHeight: 1.5,
                 wordBreak: 'break-word',
               }}
             >
-              Quy trình: Hữu cơ, đạt tiêu chuẩn JAS, không sử dụng thuốc trừ sâu.
+              Quy trình: <span style={{ fontWeight: 400 }}>Hữu cơ, đạt tiêu chuẩn JAS, không sử dụng thuốc trừ sâu.</span>
             </Typography>
           </Box>
         </Box>
-
-        <Box
-          component="img"
-          src={diadiem2}
-          alt="Địa điểm 2"
-          sx={{
-            width: '100%',
-            height: { xs: 'auto', md: '100vh' },
-            minHeight: { xs: '100vh', md: '100vh' },
-            objectFit: { xs: 'contain', md: 'cover' },
-            objectPosition: { xs: 'center', md: 'center' },
-            display: 'block',
-          }}
-        />
       </Box>
 
       {/* Section 4: Quy trình sản xuất */}
@@ -650,37 +706,23 @@ function QRProductDetailPage4() {
           position: 'relative',
           zIndex: 1,
           width: '100%',
-          px: { xs: 2, md: 4 },
-          py: { xs: 8, md: 12 },
+          px: 2,
+          py: 4,
           backgroundColor: '#FDFCF5',
         }}
       >
         <Box
           sx={{
-            maxWidth: '1200px',
+            maxWidth: '100%',
             mx: 'auto',
             position: 'relative',
           }}
         >
-          {/* Đường thẳng nối tất cả các giai đoạn */}
-          <Box
-            sx={{
-              position: 'absolute',
-              left: { xs: '20px', md: '30px' },
-              top: { xs: '30px', md: '30px' },
-              bottom: { xs: '30px', md: '30px' },
-              width: '2px',
-              backgroundColor: bronzeYellow,
-              zIndex: 1,
-              display: { xs: 'none', md: 'block' },
-            }}
-          />
-
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              gap: { xs: 4, md: 6 },
+              gap: 3,
               position: 'relative',
               zIndex: 2,
             }}
@@ -691,7 +733,7 @@ function QRProductDetailPage4() {
               sx={{
                 fontWeight: 700,
                 color: bronzeYellow,
-                fontSize: { xs: '1.8rem', md: '2.5rem' },
+                fontSize: '1.5rem',
                 mb: 2,
                 textAlign: 'center',
               }}
@@ -699,46 +741,70 @@ function QRProductDetailPage4() {
               ĐẬU NÀNH
             </Typography>
 
+            {/* Container cho phần Đậu Nành với đường thẳng riêng */}
+            <Box
+              sx={{
+                position: 'relative',
+                pl: 6,
+              }}
+            >
+              {/* Đường thẳng nối các giai đoạn Đậu Nành */}
+              <Box
+                sx={{
+                  position: 'absolute',
+                  left: '20px',
+                  top: '20px',
+                  bottom: '20px',
+                  width: '2px',
+                  backgroundColor: bronzeYellow,
+                  zIndex: 1,
+                }}
+              />
+
             {/* Giai đoạn 1: Thu hoạch */}
             <Box
               sx={{
                 position: 'relative',
                 display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                gap: { xs: 2, md: 4 },
+                flexDirection: 'row',
+                gap: 2,
                 alignItems: 'flex-start',
+                pl: 6,
               }}
             >
               {/* Số giai đoạn */}
               <Box
                 sx={{
-                  width: { xs: '40px', md: '60px' },
-                  height: { xs: '40px', md: '60px' },
+                  width: '40px',
+                  height: '40px',
                   borderRadius: '50%',
                   backgroundColor: bronzeYellow,
                   color: '#fff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: { xs: '1.2rem', md: '1.8rem' },
+                  fontSize: '1.2rem',
                   fontWeight: 700,
                   flexShrink: 0,
-                  position: 'relative',
-                  zIndex: 2,
+                  position: 'absolute',
+                  left: 0,
+                  zIndex: 3,
+                  border: '3px solid #fff',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                 }}
               >
                 1
               </Box>
 
             {/* Nội dung */}
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, width: '100%', backgroundColor: '#fff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', p: 2.5 }}>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  mb: 2,
+                  fontSize: '1.1rem',
+                  mb: 1.5,
                 }}
               >
                 Giai đoạn 1: Thu hoạch
@@ -747,9 +813,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 0.5,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 0.75,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -770,10 +836,13 @@ function QRProductDetailPage4() {
                   src={nguoithuhoach1}
                   alt="Người thu hoạch"
                   sx={{
-                    width: 'auto',                   
-                    maxWidth: '25%',
+                    width: '100%',
+                    height: 'auto',
+                    maxHeight: '250px',
+                    objectFit: 'contain',
                     display: 'block',
                     mt: 2,
+                    borderRadius: 1,
                   }}
                 />
               </Box>
@@ -785,39 +854,43 @@ function QRProductDetailPage4() {
             sx={{
               position: 'relative',
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              gap: { xs: 2, md: 4 },
+              flexDirection: 'row',
+              gap: 2,
               alignItems: 'flex-start',
+              pl: 6,
             }}
           >
             <Box
               sx={{
-                width: { xs: '40px', md: '60px' },
-                height: { xs: '40px', md: '60px' },
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 backgroundColor: bronzeYellow,
                 color: '#fff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: { xs: '1.2rem', md: '1.8rem' },
+                fontSize: '1.2rem',
                 fontWeight: 700,
                 flexShrink: 0,
-                position: 'relative',
-                zIndex: 2,
+                position: 'absolute',
+                left: 0,
+                zIndex: 3,
+                border: '3px solid #fff',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}
             >
               2
             </Box>
 
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, width: '100%', backgroundColor: '#fff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', p: 2.5 }}>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  mb: 2,
+                  fontSize: '1.1rem',
+                  mb: 1.5,
                 }}
               >
                 Giai đoạn 2: Sơ chế
@@ -826,9 +899,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 0.5,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 0.75,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -850,39 +923,43 @@ function QRProductDetailPage4() {
             sx={{
               position: 'relative',
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              gap: { xs: 2, md: 4 },
+              flexDirection: 'row',
+              gap: 2,
               alignItems: 'flex-start',
+              pl: 6,
             }}
           >
             <Box
               sx={{
-                width: { xs: '40px', md: '60px' },
-                height: { xs: '40px', md: '60px' },
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 backgroundColor: bronzeYellow,
                 color: '#fff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: { xs: '1.2rem', md: '1.8rem' },
+                fontSize: '1.2rem',
                 fontWeight: 700,
                 flexShrink: 0,
-                position: 'relative',
-                zIndex: 2,
+                position: 'absolute',
+                left: 0,
+                zIndex: 3,
+                border: '3px solid #fff',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}
             >
               3
             </Box>
 
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, width: '100%', backgroundColor: '#fff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', p: 2.5 }}>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  mb: 2,
+                  fontSize: '1.1rem',
+                  mb: 1.5,
                 }}
               >
                 Giai đoạn 3: Ép lạnh ≤ 49°C
@@ -891,9 +968,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 0.5,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 0.75,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -915,39 +992,43 @@ function QRProductDetailPage4() {
             sx={{
               position: 'relative',
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              gap: { xs: 2, md: 4 },
+              flexDirection: 'row',
+              gap: 2,
               alignItems: 'flex-start',
+              pl: 6,
             }}
           >
             <Box
               sx={{
-                width: { xs: '40px', md: '60px' },
-                height: { xs: '40px', md: '60px' },
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 backgroundColor: bronzeYellow,
                 color: '#fff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: { xs: '1.2rem', md: '1.8rem' },
+                fontSize: '1.2rem',
                 fontWeight: 700,
                 flexShrink: 0,
-                position: 'relative',
-                zIndex: 2,
+                position: 'absolute',
+                left: 0,
+                zIndex: 3,
+                border: '3px solid #fff',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}
             >
               4
             </Box>
 
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, width: '100%', backgroundColor: '#fff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', p: 2.5 }}>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  mb: 2,
+                  fontSize: '1.1rem',
+                  mb: 1.5,
                 }}
               >
                 Giai đoạn 4: Lọc – Đóng chai – Niêm phong
@@ -956,9 +1037,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 0.5,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 0.75,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -977,6 +1058,7 @@ function QRProductDetailPage4() {
               </Box>
             </Box>
           </Box>
+            </Box>
 
           {/* Title: CÁM GẠO */}
           <Typography
@@ -984,55 +1066,79 @@ function QRProductDetailPage4() {
             sx={{
               fontWeight: 700,
               color: bronzeYellow,
-              fontSize: { xs: '1.8rem', md: '2.5rem' },
+              fontSize: '1.5rem',
               mb: 2,
-              mt: { xs: 6, md: 8 },
+              mt: 4,
               textAlign: 'center',
             }}
           >
             CÁM GẠO
           </Typography>
 
+          {/* Container cho phần Cám Gạo với đường thẳng riêng */}
+          <Box
+            sx={{
+              position: 'relative',
+              pl: 6,
+            }}
+          >
+            {/* Đường thẳng nối các giai đoạn Cám Gạo */}
+            <Box
+              sx={{
+                position: 'absolute',
+                left: '20px',
+                top: '20px',
+                bottom: '20px',
+                width: '2px',
+                backgroundColor: bronzeYellow,
+                zIndex: 1,
+              }}
+            />
+
           {/* Giai đoạn 1: Thu hoạch - CÁM GẠO */}
           <Box
             sx={{
               position: 'relative',
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              gap: { xs: 2, md: 4 },
+              flexDirection: 'row',
+              gap: 2,
               alignItems: 'flex-start',
+              pl: 6,
             }}
           >
             {/* Số giai đoạn */}
             <Box
               sx={{
-                width: { xs: '40px', md: '60px' },
-                height: { xs: '40px', md: '60px' },
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 backgroundColor: bronzeYellow,
                 color: '#fff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: { xs: '1.2rem', md: '1.8rem' },
+                fontSize: '1.2rem',
                 fontWeight: 700,
                 flexShrink: 0,
-                position: 'relative',
-                zIndex: 2,
+                position: 'absolute',
+                left: 0,
+                zIndex: 3,
+                border: '3px solid #fff',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}
             >
               1
             </Box>
 
             {/* Nội dung */}
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, width: '100%', backgroundColor: '#fff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', p: 2.5 }}>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  mb: 2,
+                  fontSize: '1.1rem',
+                  mb: 1.5,
                 }}
               >
                 Giai đoạn 1: Thu hoạch
@@ -1041,9 +1147,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 0.5,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 0.75,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -1061,10 +1167,13 @@ function QRProductDetailPage4() {
                   src={nguoithuhoach2}
                   alt="Người thu hoạch"
                   sx={{
-                    width: 'auto',                   
-                    maxWidth: '25%',
+                    width: '100%',
+                    height: 'auto',
+                    maxHeight: '250px',
+                    objectFit: 'contain',
                     display: 'block',
                     mt: 2,
+                    borderRadius: 1,
                   }}
                 />
               </Box>
@@ -1076,39 +1185,43 @@ function QRProductDetailPage4() {
             sx={{
               position: 'relative',
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              gap: { xs: 2, md: 4 },
+              flexDirection: 'row',
+              gap: 2,
               alignItems: 'flex-start',
+              pl: 6,
             }}
           >
             <Box
               sx={{
-                width: { xs: '40px', md: '60px' },
-                height: { xs: '40px', md: '60px' },
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 backgroundColor: bronzeYellow,
                 color: '#fff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: { xs: '1.2rem', md: '1.8rem' },
+                fontSize: '1.2rem',
                 fontWeight: 700,
                 flexShrink: 0,
-                position: 'relative',
-                zIndex: 2,
+                position: 'absolute',
+                left: 0,
+                zIndex: 3,
+                border: '3px solid #fff',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}
             >
               2
             </Box>
 
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, width: '100%', backgroundColor: '#fff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', p: 2.5 }}>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  mb: 2,
+                  fontSize: '1.1rem',
+                  mb: 1.5,
                 }}
               >
                 Giai đoạn 2: Sơ chế
@@ -1117,9 +1230,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 0.5,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 0.75,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -1141,39 +1254,43 @@ function QRProductDetailPage4() {
             sx={{
               position: 'relative',
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              gap: { xs: 2, md: 4 },
+              flexDirection: 'row',
+              gap: 2,
               alignItems: 'flex-start',
+              pl: 6,
             }}
           >
             <Box
               sx={{
-                width: { xs: '40px', md: '60px' },
-                height: { xs: '40px', md: '60px' },
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 backgroundColor: bronzeYellow,
                 color: '#fff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: { xs: '1.2rem', md: '1.8rem' },
+                fontSize: '1.2rem',
                 fontWeight: 700,
                 flexShrink: 0,
-                position: 'relative',
-                zIndex: 2,
+                position: 'absolute',
+                left: 0,
+                zIndex: 3,
+                border: '3px solid #fff',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}
             >
               3
             </Box>
 
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, width: '100%', backgroundColor: '#fff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', p: 2.5 }}>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  mb: 2,
+                  fontSize: '1.1rem',
+                  mb: 1.5,
                 }}
               >
                 Giai đoạn 3: Ép lạnh ≤ 49°C
@@ -1182,9 +1299,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 0.5,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 0.75,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -1206,39 +1323,43 @@ function QRProductDetailPage4() {
             sx={{
               position: 'relative',
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              gap: { xs: 2, md: 4 },
+              flexDirection: 'row',
+              gap: 2,
               alignItems: 'flex-start',
+              pl: 6,
             }}
           >
             <Box
               sx={{
-                width: { xs: '40px', md: '60px' },
-                height: { xs: '40px', md: '60px' },
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 backgroundColor: bronzeYellow,
                 color: '#fff',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: { xs: '1.2rem', md: '1.8rem' },
+                fontSize: '1.2rem',
                 fontWeight: 700,
                 flexShrink: 0,
-                position: 'relative',
-                zIndex: 2,
+                position: 'absolute',
+                left: 0,
+                zIndex: 3,
+                border: '3px solid #fff',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}
             >
               4
             </Box>
 
-            <Box sx={{ flex: 1 }}>
+            <Box sx={{ flex: 1, width: '100%', backgroundColor: '#fff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.1)', p: 2.5 }}>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
-                  mb: 2,
+                  fontSize: '1.1rem',
+                  mb: 1.5,
                 }}
               >
                 Giai đoạn 4: Lọc – Đóng chai – Niêm phong
@@ -1247,9 +1368,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 0.5,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 0.75,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -1268,37 +1389,29 @@ function QRProductDetailPage4() {
               </Box>
             </Box>
           </Box>
+            </Box>
 
-          {/* Phần 4: Bảng kiểm định chất lượng */}
-          <Box sx={{ mt: { xs: 4, md: 6 } }}>
+          {/* Phần 4: Bảng kiểm định chất lượng - Card */}
+          <Box sx={{ mt: 3 }}>
             <Typography
-              variant="h5"
+              variant="h6"
               sx={{
                 fontWeight: 700,
                 color: bronzeYellow,
-                fontSize: { xs: '1.2rem', md: '1.5rem' },
-                mb: 3,
+                fontSize: '1.1rem',
+                mb: 2,
                 textAlign: 'center',
               }}
             >
-                    Bảng kiểm định chất lượng (Quality & Safety Sheet)
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { xs: '0.8rem', md: '0.9rem' },
-                color: '#666',
-                fontStyle: 'italic',
-                mb: 3,
-              }}
-            >
+              Bảng kiểm định chất lượng (Quality & Safety Sheet)
             </Typography>
 
             {/* Card kiểm định */}
             <Box
               sx={{
                 backgroundColor: '#fff',
-                borderRadius: '8px',
-                p: { xs: 2, md: 3 },
+                borderRadius: 2,
+                p: 2.5,
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 border: `2px solid ${bronzeYellow}`,
               }}
@@ -1308,8 +1421,10 @@ function QRProductDetailPage4() {
                 sx={{
                   fontWeight: 700,
                   color: bronzeYellow,
-                  fontSize: { xs: '1rem', md: '1.2rem' },
+                  fontSize: '1rem',
                   mb: 2,
+                  borderBottom: `1px solid ${bronzeYellow}`,
+                  pb: 1,
                 }}
               >
                 Bảng kiểm định chất lượng
@@ -1318,9 +1433,9 @@ function QRProductDetailPage4() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 1,
-                  fontSize: { xs: '0.85rem', md: '1rem' },
-                  lineHeight: 1.3,
+                  gap: 1.25,
+                  fontSize: '0.85rem',
+                  lineHeight: 1.5,
                   color: '#333',
                 }}
               >
@@ -1335,32 +1450,33 @@ function QRProductDetailPage4() {
                     key={index}
                     sx={{
                       display: 'flex',
-                      alignItems: 'center',
-                      gap: 1,
+                      alignItems: 'flex-start',
+                      gap: 1.25,
                     }}
                   >
                     <Box
                       sx={{
-                        width: '20px',
-                        height: '20px',
+                        width: '18px',
+                        height: '18px',
                         borderRadius: '50%',
                         backgroundColor: '#4CAF50',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
+                        mt: 0.25,
                       }}
                     >
                       <Box
                         sx={{
-                          width: '8px',
-                          height: '8px',
+                          width: '7px',
+                          height: '7px',
                           backgroundColor: '#fff',
                           borderRadius: '50%',
                         }}
                       />
                     </Box>
-                    <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                    <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', flex: 1 }}>
                       {item}
                     </Typography>
                   </Box>

@@ -296,6 +296,8 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="body2"
                     sx={{
+                      fontFamily: "'VNM Sans Display', sans-serif",
+                      fontWeight: 400,
                       color: '#999',
                       fontSize: '0.875rem',
                     }}
@@ -404,6 +406,8 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="body2"
                     sx={{
+                      fontFamily: "'VNM Sans Display', sans-serif",
+                      fontWeight: 400,
                       color: '#999',
                       fontSize: '0.875rem',
                     }}
@@ -512,6 +516,8 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="body2"
                     sx={{
+                      fontFamily: "'VNM Sans Display', sans-serif",
+                      fontWeight: 400,
                       color: '#999',
                       fontSize: '0.875rem',
                     }}
@@ -620,6 +626,8 @@ function AlwaysHappyPage() {
                   <Typography
                     variant="body2"
                     sx={{
+                      fontFamily: "'VNM Sans Display', sans-serif",
+                      fontWeight: 400,
                       color: '#999',
                       fontSize: '0.875rem',
                     }}

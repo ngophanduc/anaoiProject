@@ -84,21 +84,21 @@ function Footer() {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <LocationOn sx={{ color: '#EDB500', fontSize: 20 }} />
-                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontWeight: 400 }}>
+                <Typography sx={{ fontWeight: 400, color: bronzeYellow, fontSize: '0.9rem' }}>
                   Thôn 6, xã Ia Lé, tỉnh Gia Lai, Việt Nam
                 </Typography>
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Phone sx={{ color: '#EDB500', fontSize: 20 }} />
-                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontWeight: 400 }}>
+                <Typography sx={{ fontWeight: 400, color: bronzeYellow, fontSize: '0.9rem' }}>
                   0901949426
                 </Typography>
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Email sx={{ color: '#EDB500', fontSize: 20 }} />
-                <Typography sx={{ color: bronzeYellow, fontSize: '0.9rem', fontWeight: 400 }}>
+                <Typography sx={{ fontWeight: 400, color: bronzeYellow, fontSize: '0.9rem' }}>
                   anaoi.tn@gmail.com
                 </Typography>
               </Box>
@@ -106,7 +106,7 @@ function Footer() {
 
             {/* Social media */}
             <Box sx={{ mt: 1 }}>
-              <Typography sx={{ color: bronzeYellow, mb: 1, fontSize: '0.9rem', fontWeight: 400 }}>
+              <Typography sx={{ fontWeight: 400, color: bronzeYellow, mb: 1, fontSize: '0.9rem' }}>
                 Liên hệ qua facebook, tiktok
               </Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>

@@ -81,6 +81,8 @@ function CartDrawer() {
               <Typography
                 variant="body1"
                 sx={{
+                  fontFamily: "'VNM Sans Display', sans-serif",
+                  fontWeight: 700,
                   color: '#999',
                   mb: 2,
                 }}
@@ -90,6 +92,8 @@ function CartDrawer() {
               <Typography
                 variant="body2"
                 sx={{
+                  fontFamily: "'VNM Sans Display', sans-serif",
+                  fontWeight: 700,
                   color: '#999',
                 }}
               >
@@ -141,8 +145,9 @@ function CartDrawer() {
                         <Typography
                           variant="caption"
                           sx={{
+                            fontFamily: "'VNM Sans Display', sans-serif",
+                            fontWeight: 700,
                             color: americanYellow,
-                            fontWeight: 600,
                             display: 'block',
                             mb: 0.5,
                           }}
@@ -155,6 +160,7 @@ function CartDrawer() {
                       <Typography
                         variant="body2"
                         sx={{
+                          fontFamily: "'VNM Sans Display', sans-serif",
                           fontWeight: 600,
                           color: bronzeYellow,
                           mb: 0.5,
@@ -172,6 +178,8 @@ function CartDrawer() {
                       <Typography
                         variant="caption"
                         sx={{
+                          fontFamily: "'VNM Sans Display', sans-serif",
+                          fontWeight: 600,
                           color: '#666',
                           display: 'block',
                           mb: 1,

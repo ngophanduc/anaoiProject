@@ -370,7 +370,8 @@ function HomePage() {
                       sx={{
                         fontSize: { xs: '0.85rem', md: '1rem' },
                         lineHeight: 1.6,
-                        fontWeight: 400,
+                        fontFamily: "'VNM Sans Display', sans-serif",
+                        fontWeight: 700,
                         color: '#4B5563',
                       }}
                     >
@@ -593,7 +594,8 @@ function HomePage() {
                 <Typography
                   variant="body2"
                   sx={{
-                    fontWeight: 600,
+                    fontFamily: "'VNM Sans Display', sans-serif",
+                    fontWeight: 700,
                     fontSize: { xs: '0.95rem', md: '1.1rem' },
                     color: '#1F2937',
                     textAlign: 'center',
