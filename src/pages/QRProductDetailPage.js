@@ -26,7 +26,7 @@ function QRProductDetailPage() {
         backgroundColor: '#FDFCF5',
         pt: 4,
         pb: 8,
-        overflow: 'hidden',
+        overflowX: 'hidden',
       }}
     >
       {/* Background Layer - Lớp nền cho toàn bộ trang */}
@@ -409,7 +409,6 @@ function QRProductDetailPage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          overflow: 'hidden',
           backgroundColor: '#FDFCF5',
         }}
       >
@@ -440,12 +439,16 @@ function QRProductDetailPage() {
           </Typography>
         </Box>
 
-        {/* Ảnh địa điểm */}
+        {/* Ảnh địa điểm - Full width mobile */}
         <Box
           sx={{
-            width: '100%',
+            width: '100vw',
             position: 'relative',
-            mb: 2,
+            left: '1%',
+            right: '50%',
+            marginLeft: '-50vw',
+            marginRight: '-50vw',
+            marginBottom: '16px',
           }}
         >
           <Box
@@ -455,9 +458,6 @@ function QRProductDetailPage() {
             sx={{
               width: '100%',
               height: 'auto',
-              minHeight: '50vh',
-              objectFit: 'cover',
-              objectPosition: 'center',
               display: 'block',
             }}
           />
