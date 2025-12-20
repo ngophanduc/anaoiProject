@@ -365,6 +365,7 @@ function ProductPage() {
                   textAlign: 'center',
                   mb: 2,
                   fontSize: { xs: '2rem', md: '3rem' },
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Sản phẩm AnaOi
@@ -378,6 +379,7 @@ function ProductPage() {
                   mx: 'auto',
                   opacity: 0.8,
                   fontSize: { xs: '1rem', md: '1.25rem' },
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Dầu ép lạnh nguyên chất từ thiên nhiên Tây Nguyên
@@ -466,6 +468,7 @@ function ProductPage() {
                             lineHeight: 1.3,
                             flex: 1,
                             pr: 1,
+                            fontFamily: "'VNM Sans Std', sans-serif",
                           }}
                         >
                           {product.name}
@@ -681,6 +684,7 @@ function ProductPage() {
                           color: bronzeYellow,
                           mb: 1.5,
                           fontSize: '0.95rem',
+                          fontFamily: "'VNM Sans Std', sans-serif",
                         }}
                       >
                         Ảnh liên quan
@@ -808,6 +812,7 @@ function ProductPage() {
                         lineHeight: 1.3,
                         flex: 1,
                         pr: 2,
+                        fontFamily: "'VNM Sans Std', sans-serif",
                       }}
                     >
                       {selectedProduct.name}
@@ -838,6 +843,7 @@ function ProductPage() {
                         fontWeight: 600,
                         color: bronzeYellow,
                         mb: 1.5,
+                        fontFamily: "'VNM Sans Std', sans-serif",
                       }}
                     >
                       Phần mô tả:
@@ -875,6 +881,7 @@ function ProductPage() {
                         fontWeight: 600,
                         color: bronzeYellow,
                         mb: 1.5,
+                        fontFamily: "'VNM Sans Std', sans-serif",
                       }}
                     >
                       Dung tích
@@ -914,6 +921,7 @@ function ProductPage() {
                         fontWeight: 600,
                         color: bronzeYellow,
                         mb: 1.5,
+                        fontFamily: "'VNM Sans Std', sans-serif",
                       }}
                     >
                       Số lượng
@@ -953,6 +961,7 @@ function ProductPage() {
                           fontSize: '1.1rem',
                           minWidth: 60,
                           textAlign: 'center',
+                          fontFamily: "'VNM Sans Std', sans-serif",
                         }}
                       >
                         {quantity}
@@ -1008,6 +1017,7 @@ function ProductPage() {
                   fontWeight: 700,
                   color: bronzeYellow,
                   mb: 2,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Nhận xét từ khách hàng
@@ -1048,7 +1058,7 @@ function ProductPage() {
                         <Typography
                           variant="body1"
                           sx={{
-                            fontFamily: "'VNM Sans Display', sans-serif",
+                            fontFamily: "'VNM Sans Std', sans-serif",
                             fontWeight: 700,
                             color: bronzeYellow,
                           }}

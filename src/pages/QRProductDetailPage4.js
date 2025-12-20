@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import SplitText from '../components/SplitText';
 import SixOSection from '../components/SixOSection';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import elementbrg from '../assets/nguongoc/sp4/elementbrg.png';
 import logo1 from '../assets/nguongoc/sp1/logo1.png';
 import logo2 from '../assets/nguongoc/sp1/logo2.png';
@@ -16,6 +17,27 @@ import nguoithuhoach2 from '../assets/nguongoc/sp4/nguoithuhoach2.png';
 
 // Color scheme
 const bronzeYellow = '#667B00';
+
+// Component wrapper cho các giai đoạn với scroll animation
+function StageBox({ children, delay = 0 }) {
+  const { elementRef, animationStyles } = useScrollAnimation({
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px',
+    triggerOnce: true,
+    delay,
+  });
+
+  return (
+    <Box
+      ref={elementRef}
+      sx={{
+        ...animationStyles,
+      }}
+    >
+      {children}
+    </Box>
+  );
+}
 
 function QRProductDetailPage4() {
   const { productId } = useParams();
@@ -127,6 +149,7 @@ function QRProductDetailPage4() {
               display: 'block',
               lineHeight: 1.2,
               wordBreak: 'break-word',
+              fontFamily: "'VNM Sans Std', sans-serif",
             }}
           >
             <SplitText
@@ -153,6 +176,7 @@ function QRProductDetailPage4() {
               display: 'block',
               lineHeight: 1.2,
               wordBreak: 'break-word',
+              fontFamily: "'VNM Sans Std', sans-serif",
             }}
           >
             <SplitText
@@ -282,6 +306,7 @@ function QRProductDetailPage4() {
                 mb: 0,
                 lineHeight: 1.3,
                 wordBreak: 'break-word',
+                fontFamily: "'VNM Sans Std', sans-serif",
               }}
             >
               Thông tin sản phẩm
@@ -299,6 +324,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Lô sản xuất : <span style={{ fontWeight: 400 }}>BRS-02</span>
@@ -316,6 +342,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Ngày sản xuất : <span style={{ fontWeight: 400 }}>24/09/2025</span>
@@ -333,6 +360,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Hạn dùng : <span style={{ fontWeight: 400 }}>24/03/2027</span>
@@ -350,6 +378,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Dung tích : <span style={{ fontWeight: 400 }}>500ML/1000ML</span>
@@ -367,6 +396,7 @@ function QRProductDetailPage4() {
                 mb: 1.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Chứng nhận & tiêu chuẩn:
@@ -461,6 +491,7 @@ function QRProductDetailPage4() {
               fontSize: '1.3rem',
               lineHeight: 1.3,
               wordBreak: 'break-word',
+              fontFamily: "'VNM Sans Std', sans-serif",
             }}
           >
             Điểm trồng: "Nông trại Lâm Đồng"
@@ -521,6 +552,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Thông tin nông trại: <span style={{ fontWeight: 400 }}>Hợp Tác Xã Sản Xuất Đậu Nành Nam Dong</span>
@@ -538,6 +570,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Tên hộ gia đình/hợp tác xã cung cấp: <span style={{ fontWeight: 400 }}>Ông Nguyễn Văn Trung</span>
@@ -555,6 +588,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Quy trình: <span style={{ fontWeight: 400 }}>VietGAP, không sử dụng thuốc trừ sâu bị cấm.</span>
@@ -598,6 +632,7 @@ function QRProductDetailPage4() {
               fontSize: '1.3rem',
               lineHeight: 1.3,
               wordBreak: 'break-word',
+              fontFamily: "'VNM Sans Std', sans-serif",
             }}
           >
             Điểm trồng: "Nông trại Đắk Lắk"
@@ -658,6 +693,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Thông tin nông trại: <span style={{ fontWeight: 400 }}>Họp Tác Xã Giảm Nghèo Ea Sup</span>
@@ -675,6 +711,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Tên hộ gia đình/hợp tác xã cung cấp: <span style={{ fontWeight: 400 }}>Ông Nguyễn Thanh Lộc</span>
@@ -692,6 +729,7 @@ function QRProductDetailPage4() {
                 mb: 0.5,
                 lineHeight: 1.5,
                 wordBreak: 'break-word',
+                fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Quy trình: <span style={{ fontWeight: 400 }}>Hữu cơ, đạt tiêu chuẩn JAS, không sử dụng thuốc trừ sâu.</span>
@@ -736,6 +774,7 @@ function QRProductDetailPage4() {
                 fontSize: '1.5rem',
                 mb: 2,
                 textAlign: 'center',
+                fontFamily: "'VNM Sans Std', sans-serif",
               }}
             >
               ĐẬU NÀNH
@@ -762,6 +801,7 @@ function QRProductDetailPage4() {
               />
 
             {/* Giai đoạn 1: Thu hoạch */}
+            <StageBox stageNumber={1} delay={0}>
             <Box
               sx={{
                 position: 'relative',
@@ -805,6 +845,7 @@ function QRProductDetailPage4() {
                   color: bronzeYellow,
                   fontSize: '1.1rem',
                   mb: 1.5,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Giai đoạn 1: Thu hoạch
@@ -819,16 +860,16 @@ function QRProductDetailPage4() {
                   color: '#333',
                 }}
               >
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Ngày:</strong> 18/09/2025
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Nguyên liệu:</strong> Hạt Đậu Nành giống Vinasoy 02-NS
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Độ chín:</strong> chín vừa đạt chuẩn
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Người thu hoạch:</strong> Võ Thị Liễu
                 </Typography>
                 <Box
@@ -848,8 +889,10 @@ function QRProductDetailPage4() {
               </Box>
             </Box>
           </Box>
+          </StageBox>
 
           {/* Giai đoạn 2: Sơ chế */}
+          <StageBox stageNumber={2} delay={100}>
           <Box
             sx={{
               position: 'relative',
@@ -891,6 +934,7 @@ function QRProductDetailPage4() {
                   color: bronzeYellow,
                   fontSize: '1.1rem',
                   mb: 1.5,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Giai đoạn 2: Sơ chế
@@ -905,20 +949,22 @@ function QRProductDetailPage4() {
                   color: '#333',
                 }}
               >
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Ngày:</strong> 22/09/2025
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Làm sạch:</strong> Đậu nành được rửa sạch, bóc vỏ bằng máy chuyên dụng, sau đó phơi khô dưới ánh nắng để đạt chuẩn độ ẩm.
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Kiểm tra Vi sinh:</strong> Mẫu đậu nành được kiểm tra nghiêm ngặt trước khi ép để đảm bảo không có mầm bệnh, đặc biệt là vi khuẩn và nấm mốc.
                 </Typography>
               </Box>
             </Box>
           </Box>
+          </StageBox>
 
           {/* Giai đoạn 3: Ép lạnh */}
+          <StageBox stageNumber={3} delay={200}>
           <Box
             sx={{
               position: 'relative',
@@ -960,6 +1006,7 @@ function QRProductDetailPage4() {
                   color: bronzeYellow,
                   fontSize: '1.1rem',
                   mb: 1.5,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Giai đoạn 3: Ép lạnh ≤ 49°C
@@ -974,20 +1021,22 @@ function QRProductDetailPage4() {
                   color: '#333',
                 }}
               >
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Ngày:</strong> 24/09/2025
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Máy Ép:</strong> Máy ép thủy lực Model: GM 200 HF, Tốc độ ép: 25 kg/5 phút.
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Lợi ích:</strong> Phương pháp này giữ lại Vitamin E, Omega 3, 6, 9 và các hoạt chất chống oxy hóa tự nhiên. Dầu thu được là Virgin Oil (nguyên chất, chưa tinh chế), giữ được hương vị đậu nành tự nhiên, không bị cháy dầu/mất chất do nhiệt.
                 </Typography>
               </Box>
             </Box>
           </Box>
+          </StageBox>
 
           {/* Giai đoạn 4: Lọc – Đóng chai – Niêm phong */}
+          <StageBox stageNumber={4} delay={300}>
           <Box
             sx={{
               position: 'relative',
@@ -1029,6 +1078,7 @@ function QRProductDetailPage4() {
                   color: bronzeYellow,
                   fontSize: '1.1rem',
                   mb: 1.5,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Giai đoạn 4: Lọc – Đóng chai – Niêm phong
@@ -1043,22 +1093,23 @@ function QRProductDetailPage4() {
                   color: '#333',
                 }}
               >
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Ngày:</strong> 24/09/2025
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Lọc:</strong> Máy lọc dầu Model: GM 300 OF, Tốc độ lọc: 15 Lít/giờ.
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Dây chuyền Đóng Chai Khép kín:</strong> Đảm bảo vệ sinh an toàn thực phẩm theo tiêu chuẩn ISO 22000.
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Mã Lô & Truy Xuất:</strong> Mã Lô 24092025-SOY
                 </Typography>
               </Box>
             </Box>
           </Box>
-            </Box>
+          </StageBox>
+          </Box>
 
           {/* Title: CÁM GẠO */}
           <Typography
@@ -1070,6 +1121,7 @@ function QRProductDetailPage4() {
               mb: 2,
               mt: 4,
               textAlign: 'center',
+              fontFamily: "'VNM Sans Std', sans-serif",
             }}
           >
             CÁM GẠO
@@ -1096,6 +1148,7 @@ function QRProductDetailPage4() {
             />
 
           {/* Giai đoạn 1: Thu hoạch - CÁM GẠO */}
+          <StageBox stageNumber={1} delay={0}>
           <Box
             sx={{
               position: 'relative',
@@ -1139,6 +1192,7 @@ function QRProductDetailPage4() {
                   color: bronzeYellow,
                   fontSize: '1.1rem',
                   mb: 1.5,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Giai đoạn 1: Thu hoạch
@@ -1153,13 +1207,13 @@ function QRProductDetailPage4() {
                   color: '#333',
                 }}
               >
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Ngày:</strong> 17/09/2025
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Nguyên liệu:</strong> Gạo ST25 Ngọc Nương
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Người thu hoạch:</strong> Tổ đội thu hoạch Hợp tác xã Giảm nghèo Ea Sup
                 </Typography>
                 <Box
@@ -1179,8 +1233,10 @@ function QRProductDetailPage4() {
               </Box>
             </Box>
           </Box>
+          </StageBox>
 
           {/* Giai đoạn 2: Sơ chế - CÁM GẠO */}
+          <StageBox stageNumber={2} delay={100}>
           <Box
             sx={{
               position: 'relative',
@@ -1222,6 +1278,7 @@ function QRProductDetailPage4() {
                   color: bronzeYellow,
                   fontSize: '1.1rem',
                   mb: 1.5,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Giai đoạn 2: Sơ chế
@@ -1236,20 +1293,22 @@ function QRProductDetailPage4() {
                   color: '#333',
                 }}
               >
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Ngày:</strong> 22/09/2025
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Kiểm tra chất lượng:</strong> Cám gạo được tiếp nhận và kiểm tra cảm quan (màu, mùi), kiểm tra nhanh hàm lượng dầu/độ ẩm để đảm bảo nguyên liệu tươi mới.
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Kiểm tra Vi sinh:</strong> Mẫu cám gạo được kiểm tra nghiêm ngặt trước khi ép để đảm bảo không có mầm bệnh, an toàn tuyệt đối.
                 </Typography>
               </Box>
             </Box>
           </Box>
+          </StageBox>
 
           {/* Giai đoạn 3: Ép lạnh - CÁM GẠO */}
+          <StageBox stageNumber={3} delay={200}>
           <Box
             sx={{
               position: 'relative',
@@ -1291,6 +1350,7 @@ function QRProductDetailPage4() {
                   color: bronzeYellow,
                   fontSize: '1.1rem',
                   mb: 1.5,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Giai đoạn 3: Ép lạnh ≤ 49°C
@@ -1305,20 +1365,22 @@ function QRProductDetailPage4() {
                   color: '#333',
                 }}
               >
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Ngày:</strong> 24/09/2025
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Máy Ép:</strong> Máy ép thủy lực Model: GM 200 HF, Tốc độ ép: 25 kg/5phút.
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Lợi ích:</strong> Phương pháp này giữ lại Gamma Oryzanol (hoạt chất chống oxy hóa mạnh, hỗ trợ giảm cholesterol), Vitamin E và Phytosterol. Dầu thu được là Virgin Oil (nguyên chất, chưa tinh chế), không bị cháy dầu/mất chất do nhiệt.
                 </Typography>
               </Box>
             </Box>
           </Box>
+          </StageBox>
 
           {/* Giai đoạn 4: Lọc – Đóng chai – Niêm phong - CÁM GẠO */}
+          <StageBox stageNumber={4} delay={300}>
           <Box
             sx={{
               position: 'relative',
@@ -1360,6 +1422,7 @@ function QRProductDetailPage4() {
                   color: bronzeYellow,
                   fontSize: '1.1rem',
                   mb: 1.5,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Giai đoạn 4: Lọc – Đóng chai – Niêm phong
@@ -1374,22 +1437,23 @@ function QRProductDetailPage4() {
                   color: '#333',
                 }}
               >
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Ngày:</strong> 24/09/2025
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Lọc:</strong> Máy lọc dầu Model: GM 300 OF, Tốc độ lọc: 15 Lít/giờ.
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Dây chuyền Đóng Chai Khép kín:</strong> Đảm bảo vệ sinh an toàn thực phẩm theo tiêu chuẩn ISO 22000.
                 </Typography>
-                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit' }}>
+                <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                   <strong>Mã Lô & Truy Xuất:</strong> Mã Lô 24092025-RBR
                 </Typography>
               </Box>
             </Box>
           </Box>
-            </Box>
+          </StageBox>
+          </Box>
 
           {/* Phần 4: Bảng kiểm định chất lượng - Card */}
           <Box sx={{ mt: 3 }}>
@@ -1401,6 +1465,7 @@ function QRProductDetailPage4() {
                 fontSize: '1.1rem',
                 mb: 2,
                 textAlign: 'center',
+                fontFamily: "'VNM Sans Std', sans-serif",
               }}
             >
               Bảng kiểm định chất lượng (Quality & Safety Sheet)
@@ -1425,6 +1490,7 @@ function QRProductDetailPage4() {
                   mb: 2,
                   borderBottom: `1px solid ${bronzeYellow}`,
                   pb: 1,
+                  fontFamily: "'VNM Sans Std', sans-serif",
                 }}
               >
                 Bảng kiểm định chất lượng
@@ -1476,7 +1542,7 @@ function QRProductDetailPage4() {
                         }}
                       />
                     </Box>
-                    <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', flex: 1 }}>
+                    <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', flex: 1, fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
                       {item}
                     </Typography>
                   </Box>

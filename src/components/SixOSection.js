@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 import img1 from '../assets/nguongoc/6o/1.png';
 import img22 from '../assets/nguongoc/6o/22.png';
@@ -31,9 +32,45 @@ const images = [
   img33,
 ];
 
-function SixOSection() {
+// Component wrapper cho từng ảnh với animation
+function AnimatedImage({ src, alt, index, delay = 0 }) {
+  const { elementRef, animationStyles } = useScrollAnimation({
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+    triggerOnce: true,
+    delay: delay,
+  });
+
   return (
     <Box
+      ref={elementRef}
+      component="img"
+      src={src}
+      alt={alt}
+      sx={{
+        position: 'absolute',
+        inset: 0,
+        margin: 'auto',
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        ...animationStyles,
+      }}
+    />
+  );
+}
+
+function SixOSection() {
+  const { elementRef, animationStyles } = useScrollAnimation({
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px',
+    triggerOnce: true,
+    delay: 0,
+  });
+
+  return (
+    <Box
+      ref={elementRef}
       sx={{
         position: 'relative',
         zIndex: 1,
@@ -45,6 +82,7 @@ function SixOSection() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        ...animationStyles,
       }}
     >
       <Box
@@ -56,51 +94,15 @@ function SixOSection() {
         }}
       >
         {images.map((src, index) => (
-          <Box
+          <AnimatedImage
             key={index}
-            component="img"
             src={src}
             alt={`6O-${index + 1}`}
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              margin: 'auto',
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-            }}
+            index={index}
+            delay={index * 50}
           />
         ))}
 
-        {/* Text overlay nằm trong khung ảnh */}
-        <Box
-          sx={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: { xs: 8, sm: 12, md: 16 },
-            px: { xs: 1, sm: 2, md: 3 },
-            display: 'flex',
-            justifyContent: 'center',
-            zIndex: 10,
-          }}
-        >
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 700,
-              color: '#667B00',
-              fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2.5rem', lg: '3rem', xl: '3.5rem' },
-              textAlign: 'center',
-              textShadow: '0 2px 4px rgba(0,0,0,0.25)',
-              lineHeight: 1.2,
-              wordBreak: 'break-word',
-              maxWidth: '100%',
-            }}
-          >
-            6 - 0 an toàn dinh dưỡng
-          </Typography>
-        </Box>
       </Box>
     </Box>
   );
