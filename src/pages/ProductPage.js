@@ -64,7 +64,7 @@ const products = [
     id: 1,
     name: 'Dầu bơ ép lạnh AnaOi',
     category: null,
-    description: 'Dầu bơ ép lạnh 100% nguyên chất từ những quả bơ trồng organic trên vùng đất bazan Dak Lak.',
+    description: 'Dầu bơ ép lạnh 100% nguyên chất từ những quả bơ trồng organic trên vùng đất bazan Dak Lak, giữ trọn vitamin E và omega tự nhiên.',
     fullDescription: 'Dầu bơ ép lạnh 100% nguyên chất từ những quả bơ trồng organic trên vùng đất bazan Dak Lak. Nhờ phương pháp ép lạnh, dầu giữ trọn vitamin E, omega và chất chống oxy hóa tự nhiên, mang hương vị thanh nhẹ, giúp món ăn thơm ngon và lành mạnh hơn mỗi ngày.',
     sizes: ['100ml', '250ml'],
     images: {
@@ -81,7 +81,7 @@ const products = [
     id: 2,
     name: 'Dầu lạc ép lạnh AnaOi',
     category: null,
-    description: 'Từ những hạt lạc được canh tác chuẩn VietGap trên cao nguyên Tây Nguyên, dầu lạc AnaOi được ép lạnh hoàn toàn.',
+    description: 'Từ những hạt lạc được canh tác chuẩn VietGap trên cao nguyên Tây Nguyên, dầu lạc AnaOi được ép lạnh hoàn toàn để giữ trọn hương vị.',
     fullDescription: 'Từ những hạt lạc được canh tác chuẩn VietGap trên cao nguyên Tây Nguyên, dầu lạc AnaOi được ép lạnh hoàn toàn để giữ trọn hương thơm tự nhiên và hàm lượng chất béo tốt. Dầu có vị béo dịu, dễ tiêu hóa, mang đến nguồn năng lượng thuần khiết và phù hợp cho các món chiên, xào và bữa ăn gia đình hàng ngày.',
     sizes: ['500ml', '1l'],
     images: {
@@ -98,7 +98,7 @@ const products = [
     id: 3,
     name: 'Dầu blend đậu nành & cám gạo ép lạnh AnaOi',
     category: 'Dầu blend',
-    description: 'Là một trong những dầu blend ép lạnh đầu tiên tại Việt Nam, kết hợp tinh tế giữa đậu nành và cám gạo.',
+    description: 'Là một trong những dầu blend ép lạnh đầu tiên tại Việt Nam, kết hợp tinh tế giữa đậu nành và cám gạo từ cao nguyên Tây Nguyên.',
     fullDescription: 'Là một trong những dầu blend ép lạnh đầu tiên tại Việt Nam, sản phẩm kết hợp tinh tế giữa đậu nành và cám gạo được canh tác trên cao nguyên Tây Nguyên. Nhờ công nghệ ép lạnh, từng giọt dầu giữ trọn gamma-oryzanol, vitamin nhóm B và dưỡng chất tự nhiên. Kết cấu nhẹ, ít bám dính, giúp món ăn thanh hơn mà vẫn đậm vị. Đây là lựa chọn lý tưởng cho chế độ ăn lành mạnh, hỗ trợ tim mạch và kiểm soát cholesterol mỗi ngày.',
     sizes: ['500ml', '1l'],
     images: {
@@ -115,7 +115,7 @@ const products = [
     id: 4,
     name: 'Dầu blend mè đen & cám gạo ép lạnh AnaOi',
     category: 'Dầu blend',
-    description: 'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa mè đen và cám gạo.',
+    description: 'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa mè đen và cám gạo từ cao nguyên Tây Nguyên.',
     fullDescription: 'Dầu blend ép lạnh đầu tiên tại Việt Nam chứa các chất dinh dưỡng vượt trội, kết hợp giữa mè đen và cám gạo được canh tác trên cao nguyên Tây Nguyên. Từng giọt dầu được ép lạnh ở nhiệt độ thấp để giữ nguyên gamma-oryzanol, vitamin nhóm B và các hợp chất chống oxy hoá tự nhiên. Kết cấu nhẹ, ít bám dính giúp món ăn thanh hơn mà vẫn tròn vị, đồng thời hỗ trợ tim mạch, kiểm soát cholesterol và phù hợp cho chế độ ăn lành mạnh mỗi ngày.',
     sizes: ['500ml', '1l'],
     images: {
@@ -516,7 +516,7 @@ function ProductPage() {
                           display: 'flex',
                           justifyContent: 'space-between',
                           alignItems: 'flex-start',
-                          mb: product.category ? 1 : 2,
+                          mb: 1,
                         }}
                       >
                         <Typography
@@ -529,6 +529,8 @@ function ProductPage() {
                             flex: 1,
                             pr: 1,
                             fontFamily: "'VNM Sans Std', sans-serif",
+                            height: (product.id === 1 || product.id === 2) ? '52px' : 'auto',
+                            minHeight: (product.id === 1 || product.id === 2) ? '52px' : 'auto',
                           }}
                         >
                           {product.name}
@@ -553,7 +555,7 @@ function ProductPage() {
                       </Box>
 
                       {/* Category Label - Moved below product name */}
-                      {product.category && (
+                      {product.category ? (
                         <Typography
                           variant="overline"
                           sx={{
@@ -564,10 +566,24 @@ function ProductPage() {
                             letterSpacing: 1,
                             mb: 2,
                             display: 'block',
+                            lineHeight: 1.2,
                           }}
                         >
                           {product.category}
                         </Typography>
+                      ) : (
+                        <Box
+                          sx={{
+                            mb: 2,
+                            height: 'calc(0.75rem * 1.2)',
+                            minHeight: 'calc(0.75rem * 1.2)',
+                            display: 'block',
+                            fontFamily: "'VNM Sans Display', sans-serif",
+                            fontSize: '0.75rem',
+                            lineHeight: 1.2,
+                            letterSpacing: 1,
+                          }}
+                        />
                       )}
 
                       {/* Product Description - Fixed height for consistency */}
@@ -584,7 +600,7 @@ function ProductPage() {
                           textOverflow: 'ellipsis',
                           height: { xs: '4.5rem', md: '5.1rem' },
                           mb: 0,
-                          fontFamily: "'VNM Sans Display', sans-serif",
+                          fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                           fontWeight: 400,
                         }}
                       >
