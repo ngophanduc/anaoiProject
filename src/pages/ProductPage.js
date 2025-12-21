@@ -148,7 +148,7 @@ const productReviews = {
       avatar: 'Đ',
       rating: 5,
       date: '25/11/2025',
-      comment: 'Dầu bơ AnaOi chất lượng thật sự! Mình đã dùng được 3 tháng, da mặt cải thiện rõ rệt. Sản phẩm đóng gói đẹp, chai thủy tinh tối màu bảo vệ tốt. Rất hài lòng!',
+      comment: 'Dầu bơ AnaOi chất lượng thật sự! Mình đã dùng được 3 tháng để nấu ăn, mùi vị thơm ngon tự nhiên. Sản phẩm đóng gói đẹp, chai thủy tinh tối màu bảo vệ tốt. Rất hài lòng!',
       image: daubofeedback,
     },
     {
@@ -157,7 +157,7 @@ const productReviews = {
       avatar: 'H',
       rating: 5,
       date: '20/11/2025',
-      comment: 'Dầu bơ rất thơm và nguyên chất, dùng cho da mặt rất tốt. Gia đình tôi đã dùng được 2 tháng và thấy da mịn màng hơn nhiều!',
+      comment: 'Dầu bơ rất thơm và nguyên chất, dùng để nấu ăn và trộn salad rất tốt. Gia đình tôi đã dùng được 2 tháng và rất hài lòng với chất lượng!',
     },
     {
       id: 2,
