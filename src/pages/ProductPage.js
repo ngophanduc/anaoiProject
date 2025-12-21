@@ -73,7 +73,7 @@ const products = [
     },
     additionalImages: [sp1_image1, sp1_image2],
     prices: {
-      '100ml': 120000,
+      '100ml': 200000,
       '250ml': 490000,
     },
   },
