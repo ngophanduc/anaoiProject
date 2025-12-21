@@ -15,7 +15,9 @@ import hat3 from '../assets/hanhtrinh/hat3.png';
 import hat4 from '../assets/hanhtrinh/hat4.png';
 import hat5 from '../assets/hanhtrinh/hat5.png';
 import hat6 from '../assets/hanhtrinh/hat6.png';
-import chaidau from '../assets/hanhtrinh/chaidau.png';
+import chaidau1 from '../assets/hanhtrinh/26.png';
+import chaidau2 from '../assets/hanhtrinh/27.png';
+import chaidau3 from '../assets/hanhtrinh/28.png';
 import use from '../assets/hanhtrinh/use.png';
 import use2 from '../assets/hanhtrinh/use1.png';
 import foot from '../assets/hanhtrinh/foot.png';
@@ -57,6 +59,10 @@ function NutritionJourneyPage() {
   // Next section text visibility (for entrance animations)
   const nextSectionTextRef = useRef(null);
   const [nextSectionTextVisible, setNextSectionTextVisible] = useState(false);
+
+  // Chaidau section visibility (for entrance animations)
+  const chaidauSectionRef = useRef(null);
+  const [chaidauSectionVisible, setChaidauSectionVisible] = useState(false);
 
   // Track scroll progress của hat section dựa trên window scroll (0 → 1 từ đầu đến hết section)
   useEffect(() => {
@@ -246,6 +252,34 @@ function NutritionJourneyPage() {
       },
       {
         threshold: 0.3,
+      }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // ==============================
+  //  CHAIDAU SECTION VISIBILITY (IntersectionObserver)
+  // ==============================
+  useEffect(() => {
+    const el = chaidauSectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setChaidauSectionVisible(true);
+            observer.disconnect(); // chỉ animate lần đầu
+          }
+        });
+      },
+      {
+        threshold: 0.2,
       }
     );
 
@@ -1066,19 +1100,21 @@ function NutritionJourneyPage() {
 
       {/* NEW SECTION - Chaidau (120vh) */}
       <Box
+        ref={chaidauSectionRef}
         sx={{
           position: 'relative',
           width: '100%',
           height: '120vh',
           overflow: 'hidden',
-          backgroundColor: '#020617',
+          backgroundColor: '#FFF8E7',
         }}
       >
-        {/* Ảnh chaidau.png */}
+        {/* 3 ảnh chồng lên nhau - tỷ lệ 16:9 với animation */}
+        {/* 27.png - rơi từ trên xuống */}
         <Box
           component="img"
-          src={chaidau}
-          alt="Chaidau"
+          src={chaidau2}
+          alt="Chaidau 2"
           sx={{
             position: 'absolute',
             top: 0,
@@ -1086,8 +1122,52 @@ function NutritionJourneyPage() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
+            objectPosition: 'center',
+            aspectRatio: '16/9',
+            zIndex: 2,
+            pointerEvents: 'none',
+            transform: chaidauSectionVisible ? 'translateY(0)' : 'translateY(-100%)',
+            transition: 'transform 0.8s ease-out',
+          }}
+        />
+        {/* 26.png - trượt từ trái sang phải */}
+        <Box
+          component="img"
+          src={chaidau1}
+          alt="Chaidau 1"
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            aspectRatio: '16/9',
             zIndex: 1,
             pointerEvents: 'none',
+            transform: chaidauSectionVisible ? 'translateX(0)' : 'translateX(-100%)',
+            transition: 'transform 0.8s ease-out 0.2s',
+          }}
+        />
+        {/* 28.png - trượt từ phải sang trái */}
+        <Box
+          component="img"
+          src={chaidau3}
+          alt="Chaidau 3"
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            aspectRatio: '16/9',
+            zIndex: 3,
+            pointerEvents: 'none',
+            transform: chaidauSectionVisible ? 'translateX(0)' : 'translateX(100%)',
+            transition: 'transform 0.8s ease-out 0.4s',
           }}
         />
 
@@ -1107,7 +1187,7 @@ function NutritionJourneyPage() {
         >
           <Typography
             sx={{
-              fontWeight: 700,
+              fontWeight: 400,
               fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '2.5rem', xl: '3rem' },
               color: 'rgb(52, 46, 36)',
               lineHeight: 1.3,
@@ -1134,7 +1214,7 @@ function NutritionJourneyPage() {
           <Typography
             component="div"
             sx={{
-              fontWeight: 700,
+              fontWeight: 400,
               fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '2.5rem', xl: '3rem' },
               color: 'rgb(52, 46, 36)',
               lineHeight: 1.3,
