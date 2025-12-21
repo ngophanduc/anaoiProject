@@ -788,7 +788,7 @@ function NutritionJourneyPage() {
                 color: 'rgb(52, 46, 36)',
               }}
             >
-              -Diện tích: <strong>20 ha</strong> • Giống: <strong>Booth, Tứ Quý, 034</strong>
+              -Diện tích: <strong>20 ha</strong><br /> -Giống: <strong>Booth, Tứ Quý, 034</strong>
               <br />
               -Đặc điểm: <strong>hữu cơ 100%</strong> (không phân hoá học, không thuốc BVTV)
             </Typography>
@@ -804,7 +804,7 @@ function NutritionJourneyPage() {
                 mb: { xs: 0.25, md: 0.5 },
               }}
             >
-              -Vùng trồng lúa tại xã Ea Súp, Đắk Lắk
+              Vùng trồng lúa tại xã Ea Súp, Đắk Lắk
             </Typography>
             <Typography
               sx={{
@@ -814,7 +814,7 @@ function NutritionJourneyPage() {
                 color: 'rgb(52, 46, 36)',
               }}
             >
-              -Diện tích: <strong>25 ha</strong> • Giống: <strong>ST25</strong> (gạo thơm đạt giải "Gạo ngon nhất thế
+              -Diện tích: <strong>25 ha</strong><br /> -Giống: <strong>ST25</strong> (gạo thơm đạt giải "Gạo ngon nhất thế
               giới")
               <br />
               -Đặc điểm: canh tác <strong>100% hữu cơ</strong> theo chuẩn JAS Nhật Bản & Việt Nam, không thuốc trừ cỏ,
@@ -842,7 +842,7 @@ function NutritionJourneyPage() {
                 color: 'rgb(52, 46, 36)',
               }}
             >
-              -Diện tích: <strong>10 ha</strong> • Giống: <strong>L14, L23</strong> (năng suất cao, thu hoạch ổn định)
+              -Diện tích: <strong>10 ha</strong><br /> -Giống: <strong>L14, L23</strong> (năng suất cao, thu hoạch ổn định)
               <br />
               -Đặc điểm: trồng theo chuẩn <strong>VietGAP</strong>, dùng phân chuồng hoai mục, hạn chế tối đa hoá chất
             </Typography>
@@ -879,7 +879,7 @@ function NutritionJourneyPage() {
                 color: 'rgb(52, 46, 36)',
               }}
             >
-              -Diện tích: <strong>18 ha</strong> • Giống: <strong>đậu nành không biến đổi gen (Non-GMO)</strong>
+              -Diện tích: <strong>18 ha</strong><br /> -Giống: <strong>đậu nành không biến đổi gen (Non-GMO)</strong>
               <br />
               -Đặc điểm: sản xuất theo chuẩn <strong>VietGAP</strong>, luân canh cải tạo đất, tuyệt đối không dùng thuốc cỏ
             </Typography>
