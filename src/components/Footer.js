@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, Container, IconButton } from '@mui/material';
-import { LocationOn, Phone, Email, Facebook, MusicNote } from '@mui/icons-material';
+import { LocationOn, Phone, Email, Facebook, YouTube, MusicNote } from '@mui/icons-material';
 import logo from '../assets/logo/LOGO-03.png';
 
 const primaryColor = '#F7F3CD'; // Màu của header
@@ -85,7 +85,7 @@ function Footer() {
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <LocationOn sx={{ color: '#EDB500', fontSize: 20 }} />
                 <Typography sx={{ fontWeight: 400, color: bronzeYellow, fontSize: '0.9rem' }}>
-                  Thôn 6, xã Ia Lé, tỉnh Gia Lai, Việt Nam
+                  Thôn 6, xã Ia Le, tỉnh Gia Lai, Việt Nam
                 </Typography>
               </Box>
 
@@ -107,10 +107,14 @@ function Footer() {
             {/* Social media */}
             <Box sx={{ mt: 1 }}>
               <Typography sx={{ fontWeight: 400, color: bronzeYellow, mb: 1, fontSize: '0.9rem' }}>
-                Liên hệ qua facebook, tiktok
+                Liên hệ qua facebook, youtube, tiktok
               </Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>
                 <IconButton
+                  component="a"
+                  href="https://www.facebook.com/people/AnaOi-Vietnam/61577576992252/?mibextid=wwXIfr&rdid=CaducwBfUmsTPWIp&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17xmyoSniE%2F%3Fmibextid%3DwwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   sx={{
                     backgroundColor: 'rgba(102, 123, 0, 0.1)',
                     color: bronzeYellow,
@@ -121,6 +125,24 @@ function Footer() {
                   <Facebook />
                 </IconButton>
                 <IconButton
+                  component="a"
+                  href="https://www.youtube.com/@anaoivietnam?si=qUIGxBVoW3GOslQV"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    backgroundColor: 'rgba(102, 123, 0, 0.1)',
+                    color: bronzeYellow,
+                    '&:hover': { backgroundColor: 'rgba(102, 123, 0, 0.2)' },
+                  }}
+                  size="small"
+                >
+                  <YouTube />
+                </IconButton>
+                <IconButton
+                  component="a"
+                  href="https://www.tiktok.com/@anaoi_vietnam?_r=1&_t=ZS-92PUIDj7gaw"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   sx={{
                     backgroundColor: 'rgba(102, 123, 0, 0.1)',
                     color: bronzeYellow,

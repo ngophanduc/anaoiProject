@@ -8,7 +8,7 @@ import elementbrg from '../assets/nguongoc/sp3/elementbrg.png';
 import logo1 from '../assets/nguongoc/sp1/logo1.png';
 import logo2 from '../assets/nguongoc/sp1/logo2.png';
 import logo3 from '../assets/nguongoc/sp1/logo3.png';
-import logo4 from '../assets/nguongoc/sp1/logo4.png';
+import logo5 from '../assets/nguongoc/sp1/logo5.png';
 import anhsanpham from '../assets/nguongoc/sp3/anhsanpham.png';
 import diadiem from '../assets/nguongoc/sp3/diadiem.png';
 import nguoithuhoach from '../assets/nguongoc/sp3/nguoithuhoach.png';
@@ -414,8 +414,8 @@ function QRProductDetailPage3() {
               />
               <Box
                 component="img"
-                src={logo4}
-                alt="Logo 4"
+                src={logo5}
+                alt="Logo 5"
                 sx={{
                   height: '60px',
                   width: 'auto',

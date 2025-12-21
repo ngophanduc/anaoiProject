@@ -8,7 +8,7 @@ import elementbrg from '../assets/nguongoc/sp4/elementbrg.png';
 import logo1 from '../assets/nguongoc/sp1/logo1.png';
 import logo2 from '../assets/nguongoc/sp1/logo2.png';
 import logo3 from '../assets/nguongoc/sp1/logo3.png';
-import logo4 from '../assets/nguongoc/sp1/logo4.png';
+import logo5 from '../assets/nguongoc/sp1/logo5.png';
 import anhsanpham from '../assets/nguongoc/sp4/anhsanpham.png';
 import diadiem from '../assets/nguongoc/sp4/diamdiem1.png';
 import diadiem2 from '../assets/nguongoc/sp4/diadiem2.png';
@@ -443,8 +443,8 @@ function QRProductDetailPage4() {
               />
               <Box
                 component="img"
-                src={logo4}
-                alt="Logo 4"
+                src={logo5}
+                alt="Logo 5"
                 sx={{
                   height: '60px',
                   width: 'auto',
@@ -870,7 +870,7 @@ function QRProductDetailPage4() {
                   <strong>Độ chín:</strong> chín vừa đạt chuẩn
                 </Typography>
                 <Typography sx={{ fontSize: 'inherit', lineHeight: 'inherit', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
-                  <strong>Người thu hoạch:</strong> Võ Thị Liễu
+                  <strong>Người thu hoạch:</strong> Tổ đội thu hoạch Hợp tác xã Nam Dong
                 </Typography>
                 <Box
                   component="img"

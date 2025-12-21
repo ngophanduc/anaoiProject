@@ -1334,7 +1334,7 @@ function NutritionJourneyPage() {
             transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
           }}
           dangerouslySetInnerHTML={{
-            __html: 'AnaOi - Hành trình lan tỏa dinh dưỡng và hạnh phúc <br />vào từng gian bếp Việt.'
+            __html: 'AnaOi - Hành trình lan tỏa dinh dưỡng và <br />hạnh phúc vào từng gian bếp Việt.'
           }}
         />
       </Box>
