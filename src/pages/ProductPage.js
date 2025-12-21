@@ -74,7 +74,7 @@ const products = [
     additionalImages: [sp1_image1, sp1_image2],
     prices: {
       '100ml': 120000,
-      '250ml': 280000,
+      '250ml': 490000,
     },
   },
   {
@@ -90,8 +90,8 @@ const products = [
     },
     additionalImages: [sp2_image1, sp2_image2],
     prices: {
-      '500ml': 95000,
-      '1l': 180000,
+      '500ml': 169000,
+      '1l': 335000,
     },
   },
   {
@@ -107,8 +107,8 @@ const products = [
     },
     additionalImages: [sp3_image1, sp3_image2],
     prices: {
-      '500ml': 85000,
-      '1l': 160000,
+      '500ml': 199000,
+      '1l': 390000,
     },
   },
   {
@@ -124,8 +124,8 @@ const products = [
     },
     additionalImages: [sp4_image1, sp4_image2],
     prices: {
-      '500ml': 90000,
-      '1l': 170000,
+      '500ml': 200000,
+      '1l': 390000,
     },
   },
 ];

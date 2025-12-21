@@ -107,7 +107,7 @@ function Footer() {
             {/* Social media */}
             <Box sx={{ mt: 1 }}>
               <Typography sx={{ fontWeight: 400, color: bronzeYellow, mb: 1, fontSize: '0.9rem' }}>
-                Liên hệ qua facebook, youtube, tiktok
+                Liên hệ qua Facebook, Youtube, Tiktok
               </Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>
                 <IconButton
