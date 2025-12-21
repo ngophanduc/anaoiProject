@@ -47,6 +47,12 @@ import sp4_500ml from '../assets/product/sp4_500ml.png';
 import sp4_1l from '../assets/product/sp4_1l.png';
 import sp4_image1 from '../assets/product/sp4_image1.png';
 import sp4_image2 from '../assets/product/sp4_image2.png';
+import daubofeedback from '../assets/daubofeedback.jpg';
+import daubofeedback2 from '../assets/daubofeedback2.jpg';
+import daunanhfeedback from '../assets/daunanhfeedback.jpg';
+import daulacfeedback1 from '../assets/daulacfeedback1.jpg';
+import daulacfeedback2 from '../assets/daulacfeedback2.jpg';
+import medenfeedback from '../assets/medenfeedback.jpg';
 
 // Color scheme
 const primaryColor = '#F7F3CD';
@@ -128,6 +134,24 @@ const products = [
 const productReviews = {
   1: [
     {
+      id: 5,
+      userName: 'Lê Văn Minh',
+      avatar: 'M',
+      rating: 5,
+      date: '28/11/2025',
+      comment: ' Sản phẩm chất lượng cao, đóng gói đẹp. Highly recommended!',
+      image: daubofeedback2,
+    },
+    {
+      id: 4,
+      userName: 'Phạm Văn Đức',
+      avatar: 'Đ',
+      rating: 5,
+      date: '25/11/2025',
+      comment: 'Dầu bơ AnaOi chất lượng thật sự! Mình đã dùng được 3 tháng, da mặt cải thiện rõ rệt. Sản phẩm đóng gói đẹp, chai thủy tinh tối màu bảo vệ tốt. Rất hài lòng!',
+      image: daubofeedback,
+    },
+    {
       id: 1,
       userName: 'Nguyễn Thị Hương',
       avatar: 'H',
@@ -154,6 +178,15 @@ const productReviews = {
   ],
   2: [
     {
+      id: 4,
+      userName: 'Thanh Nga',
+      avatar: 'L',
+      rating: 5,
+      date: '27/11/2025',
+      comment: 'Đã dùng được 1 thời gian và cảm thấy sản phẩm rất tuyệt vời, sẽ quay lại ủng hộ thêm',
+      image: daulacfeedback1,
+    },
+    {
       id: 1,
       userName: 'Phạm Văn Hùng',
       avatar: 'H',
@@ -177,8 +210,26 @@ const productReviews = {
       date: '17/11/2025',
       comment: 'Sản phẩm tốt, mùi vị đặc trưng của lạc. Chai 1L rất tiện dụng cho gia đình.',
     },
+    {
+      id: 5,
+      userName: 'Trần Thị Hoa',
+      avatar: 'H',
+      rating: 5,
+      date: '29/11/2025',
+      comment: 'Dầu lạc ép lạnh AnaOi rất tốt! Mình dùng để nấu ăn hàng ngày, mùi vị thơm ngon tự nhiên. Sản phẩm đóng gói cẩn thận, chất lượng đảm bảo. Sẽ tiếp tục ủng hộ!',
+      image: daulacfeedback2,
+    },
   ],
   3: [
+    {
+      id: 4,
+      userName: 'Trần Văn Hùng',
+      avatar: 'H',
+      rating: 5,
+      date: '26/11/2025',
+      comment: 'Dầu blend đậu nành & cám gạo AnaOi thật sự tuyệt vời! Mình dùng để nấu ăn hàng ngày, mùi vị thơm ngon tự nhiên. Sản phẩm đóng gói chuyên nghiệp, chất lượng cao. Rất đáng mua!',
+      image: daunanhfeedback,
+    },
     {
       id: 1,
       userName: 'Đặng Thu Hà',
@@ -205,6 +256,15 @@ const productReviews = {
     },
   ],
   4: [
+    {
+      id: 4,
+      userName: 'Nguyễn Văn Tuấn',
+      avatar: 'T',
+      rating: 5,
+      date: '30/11/2025',
+      comment: 'Dầu blend mè đen & cám gạo AnaOi thật sự tuyệt vời! Mình dùng để nấu ăn và chấm, mùi vị thơm ngon đặc trưng. Sản phẩm chất lượng cao, đóng gói đẹp. Rất hài lòng!',
+      image: medenfeedback,
+    },
     {
       id: 1,
       userName: 'Trương Thị Kim',
@@ -1091,18 +1151,36 @@ function ProductPage() {
                     </Box>
 
                     {/* Review Comment */}
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        fontFamily: "'VNM Sans Display', sans-serif",
-                        fontWeight: 700,
-                        color: '#444',
-                        lineHeight: 1.6,
-                        pl: 7,
-                      }}
-                    >
-                      {review.comment}
-                    </Typography>
+                    <Box sx={{ pl: 7 }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontFamily: "'VNM Sans Display', sans-serif",
+                          fontWeight: 700,
+                          color: '#444',
+                          lineHeight: 1.6,
+                          mb: review.image ? 2 : 0,
+                        }}
+                      >
+                        {review.comment}
+                      </Typography>
+                      {/* Review Image */}
+                      {review.image && (
+                        <Box
+                          component="img"
+                          src={review.image}
+                          alt="Feedback image"
+                          sx={{
+                            width: '100%',
+                            maxWidth: '400px',
+                            height: 'auto',
+                            borderRadius: 2,
+                            mt: 1,
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                          }}
+                        />
+                      )}
+                    </Box>
                   </Box>
                 ))}
               </Box>
