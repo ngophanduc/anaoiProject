@@ -39,10 +39,10 @@ function HomePage() {
     { front: sp4Front, tilt: sp4Tilt },
   ];
   const spotlightNames = [
-    'Dầu bơ ép lạnh',
-    'Dầu blend mè đen & cám gạo ép lạnh',
-    'Dầu lạc ép lạnh',
-    'Dầu blend đậu nành & cám gạo ép lạnh',
+    'Dầu Bơ Ép Lạnh',
+    'Dầu Lạc Ép Lạnh',
+    'Dầu Blend Mè Đen & Cám Gạo Ép Lạnh',
+    'Dầu Blend Đậu Nành & Cám Gạo Ép Lạnh',
   ];
 
   useEffect(() => {
