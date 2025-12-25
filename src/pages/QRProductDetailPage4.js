@@ -1457,20 +1457,6 @@ function QRProductDetailPage4() {
 
           {/* Phần 4: Bảng kiểm định chất lượng - Card */}
           <Box sx={{ mt: 3 }}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 700,
-                color: bronzeYellow,
-                fontSize: '1.1rem',
-                mb: 2,
-                textAlign: 'center',
-                fontFamily: "'VNM Sans Std', sans-serif",
-              }}
-            >
-              Bảng kiểm định chất lượng (Quality & Safety Sheet)
-            </Typography>
-
             {/* Card kiểm định */}
             <Box
               sx={{
@@ -1481,20 +1467,6 @@ function QRProductDetailPage4() {
                 border: `2px solid ${bronzeYellow}`,
               }}
             >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 700,
-                  color: bronzeYellow,
-                  fontSize: '1rem',
-                  mb: 2,
-                  borderBottom: `1px solid ${bronzeYellow}`,
-                  pb: 1,
-                  fontFamily: "'VNM Sans Std', sans-serif",
-                }}
-              >
-                Bảng kiểm định chất lượng
-              </Typography>
               <Box
                 sx={{
                   display: 'flex',

@@ -1102,29 +1102,6 @@ function QRProductDetailPage2() {
 
           {/* Phần 4: Bảng kiểm định chất lượng */}
           <Box sx={{ mt: { xs: 4, md: 6 } }}>
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 700,
-                color: bronzeYellow,
-                fontSize: { xs: '1.2rem', md: '1.5rem' },
-                mb: 3,
-                textAlign: 'center',
-                fontFamily: "'VNM Sans Std', sans-serif",
-              }}
-            >
-                    Bảng kiểm định chất lượng (Quality & Safety Sheet)
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { xs: '0.8rem', md: '0.9rem' },
-                color: '#666',
-                fontStyle: 'italic',
-                mb: 3,
-              }}
-            >
-            </Typography>
-
             {/* Card kiểm định */}
             <Box
               sx={{
@@ -1135,18 +1112,6 @@ function QRProductDetailPage2() {
                 border: `2px solid ${bronzeYellow}`,
               }}
             >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 700,
-                  color: bronzeYellow,
-                  fontSize: { xs: '1rem', md: '1.2rem' },
-                  mb: 2,
-                  fontFamily: "'VNM Sans Std', sans-serif",
-                }}
-              >
-                Bảng kiểm định chất lượng
-              </Typography>
               <Box
                 sx={{
                   display: 'flex',
@@ -1569,29 +1534,6 @@ function QRProductDetailPage2() {
 
           {/* Phần 4: Bảng kiểm định chất lượng */}
           <Box sx={{ mt: { xs: 4, md: 6 } }}>
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 700,
-                color: bronzeYellow,
-                fontSize: { xs: '1.2rem', md: '1.5rem' },
-                mb: 3,
-                textAlign: 'center',
-                fontFamily: "'VNM Sans Std', sans-serif",
-              }}
-            >
-                    Bảng kiểm định chất lượng (Quality & Safety Sheet)
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { xs: '0.8rem', md: '0.9rem' },
-                color: '#666',
-                fontStyle: 'italic',
-                mb: 3,
-              }}
-            >
-            </Typography>
-
             {/* Card kiểm định */}
             <Box
               sx={{
@@ -1602,17 +1544,6 @@ function QRProductDetailPage2() {
                 border: `2px solid ${bronzeYellow}`,
               }}
             >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 700,
-                  color: bronzeYellow,
-                  fontSize: { xs: '1rem', md: '1.2rem' },
-                  mb: 2,
-                }}
-              >
-                Bảng kiểm định chất lượng
-              </Typography>
               <Box
                 sx={{
                   display: 'flex',

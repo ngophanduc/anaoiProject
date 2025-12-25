@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 import img1 from '../assets/nguongoc/6o/1.png';
@@ -44,19 +44,43 @@ function AnimatedImage({ src, alt, index, delay = 0 }) {
   return (
     <Box
       ref={elementRef}
-      component="img"
-      src={src}
-      alt={alt}
       sx={{
         position: 'absolute',
         inset: 0,
         margin: 'auto',
         width: '100%',
         height: '100%',
-        objectFit: 'contain',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         ...animationStyles,
       }}
-    />
+    >
+      <Box
+        component="img"
+        src={src}
+        alt={alt}
+        sx={{
+          width: '100%',
+          height: 'auto',
+          maxHeight: 'calc(100% - 40px)',
+          objectFit: 'contain',
+          marginTop: '-644px',
+        }}
+      />
+      <Typography
+        sx={{
+          marginTop: '-192px',
+          fontSize: { xs: '0.75rem', md: '0.9rem' },
+          color: '#667B00',
+          fontWeight: 600,
+          fontFamily: "'VNM Sans Std', sans-serif",
+        }}
+      >
+        {index + 1}
+      </Typography>
+    </Box>
   );
 }
 
