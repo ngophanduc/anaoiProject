@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 import img1 from '../assets/nguongoc/6o/1.png';
@@ -66,20 +66,9 @@ function AnimatedImage({ src, alt, index, delay = 0 }) {
           height: 'auto',
           maxHeight: 'calc(100% - 40px)',
           objectFit: 'contain',
-          marginTop: '-644px',
+          marginTop: '-422px',
         }}
       />
-      <Typography
-        sx={{
-          marginTop: '-192px',
-          fontSize: { xs: '0.75rem', md: '0.9rem' },
-          color: '#667B00',
-          fontWeight: 600,
-          fontFamily: "'VNM Sans Std', sans-serif",
-        }}
-      >
-        {index + 1}
-      </Typography>
     </Box>
   );
 }
